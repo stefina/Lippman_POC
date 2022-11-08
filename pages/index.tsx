@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+function Home({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,6 +18,7 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by editing{' '}
+          {data.result}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -69,3 +70,15 @@ export default function Home() {
     </div>
   )
 }
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://opendata.swiss/api/3/action/package_list`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
+export default Home

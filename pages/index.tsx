@@ -3,10 +3,10 @@ import Text from '../components/text/Text'
 import CustomLink from '../components/link/Link'
 import Heading from '../components/heading/Heading'
 
-function Home(data: any) {
+function Home() {
   return (
     <div className={styles.Pagecontainer}>
-      <Heading size="large">À propos</Heading>
+      <Heading size="large">A Propos</Heading>
       <Heading size="medium">Catalogue raisonné</Heading>
       <Text>
         D’ici à 2025, Photo Elysée publiera en ligne le catalogue raisonné des
@@ -52,16 +52,6 @@ function Home(data: any) {
       </Text>
     </div>
   )
-}
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://opendata.swiss/api/3/action/package_list`)
-  const data = await res.json()
-
-  // Pass data to the page via props
-  return { props: { data } }
 }
 
 export default Home

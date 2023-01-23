@@ -47,7 +47,9 @@ function Home(data: any) {
         C’est la raison pour laquelle les deux noms sont généralement mentionnés
         ensemble comme auteurs.
       </Text>
-      <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" />
+      <Text>
+        <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" />
+      </Text>
     </div>
   )
 }

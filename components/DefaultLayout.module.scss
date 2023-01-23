@@ -1,0 +1,16 @@
+@import '../styles/abstracts/_variables';
+@import '../styles/abstracts/_mixins';
+
+.pageWrapper {
+    padding: $spacer-3-12px;
+    height: auto;
+    background-color: $secondary-color;
+}
+
+.content {
+    margin-top: $spacer-10-40px;
+    margin-bottom: $spacer-6-24px;
+    padding: $spacer-6-24px $spacer-4-16px $spacer-12-48px $spacer-4-16px;
+    background-color: $white;
+    max-width: 37rem;
+}

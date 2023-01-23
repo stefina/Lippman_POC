@@ -1,0 +1,28 @@
+
+@import '../../styles/abstracts/_variables';
+@import '../../styles/abstracts/_mixins';
+
+.logoAndSearchBarContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0.25rem; // 4px
+    margin-bottom: 0.25rem; // 4px
+    max-width: 90%;
+
+    .logo {
+        background-color: sandybrown;
+        padding: 10px 0;
+    }
+
+    .searchBar {
+        flex: 1;
+        padding: 0.25rem; // 4px
+        height: 28px;
+        background-color: $white;
+    }
+}
+
+.nav {
+    background-color: greenyellow;
+}

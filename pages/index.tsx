@@ -1,24 +1,21 @@
-import Link from 'next/link'
-import type { InferGetStaticPropsType } from 'next'
-import type { Artwork } from '../interfaces/artwork'
+import Head from 'next/head'
+import Image from 'next/image'
+import styles from '../styles/Home.module.css'
 
-export async function getStaticProps() {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const data: Artwork = await res.json()
-  return {
-    props: {
-      artworks: data.id,
-    },
-  }
+function Home({ data }) {
+  console.log(data)
+
+  return <div className={styles.container}>HELLO</div>
 }
 
-export default function IndexPage({
-  artworks,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <>
-      <p>Next.js has {artworks} ⭐️</p>
-      <Link href="/preact-stars">How about preact?</Link>
-    </>
-  )
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://opendata.swiss/api/3/action/package_list`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
 }
+
+export default Home

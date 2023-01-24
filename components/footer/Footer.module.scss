@@ -2,11 +2,6 @@
 @import '../../styles/abstracts/_mixins';
 
 .nav {
-
-    @include md {
-        max-width: 100%;
-    }
-
     text-align: right;
     text-transform: uppercase;
 }

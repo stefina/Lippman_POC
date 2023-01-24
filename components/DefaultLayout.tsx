@@ -8,7 +8,10 @@ interface DefaultLayoutProps {
   className?: string
 }
 
-export default function DefaultLayout({ className, children }: DefaultLayoutProps) {
+export default function DefaultLayout({
+  className,
+  children,
+}: DefaultLayoutProps) {
   return (
     <div className={[styles.pageWrapper, className].join(' ')}>
       <Header />

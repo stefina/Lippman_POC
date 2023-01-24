@@ -6,13 +6,63 @@ import localFont from '@next/font/local'
 const photoElyseeFont = localFont({
   src: [
     {
-      path: './fonts/PhotoElysee-Regular.woff2',
-      weight: '400',
+      path: './fonts/PhotoElysee-Bold.woff',
+      weight: '900',
       style: 'normal',
     },
     {
       path: './fonts/PhotoElysee-Bold.woff2',
       weight: '900',
+      style: 'normal',
+    },
+    {
+      path: './fonts/PhotoElysee-BoldItalic.woff',
+      weight: '900',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-BoldItalic.woff2',
+      weight: '900',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-DisplayBold.woff',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: './fonts/PhotoElysee-DisplayBold.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: './fonts/PhotoElysee-DisplayBoldItalic.woff',
+      weight: '900',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-DisplayBoldItalic.woff2',
+      weight: '900',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-Italic.woff',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/PhotoElysee-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/PhotoElysee-Regular.woff',
+      weight: '400',
       style: 'normal',
     },
   ],

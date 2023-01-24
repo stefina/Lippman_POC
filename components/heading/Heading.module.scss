@@ -3,10 +3,12 @@
 
 .headingLarge {
     padding-bottom: $spacer-10-40px;
+    font-weight: 900;
 }
 
 .headingMedium {
     padding-top: $spacer-16-64px;
+    font-weight: 900;
 }
 
 .headingLarge + .headingMedium {

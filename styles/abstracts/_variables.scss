@@ -1,16 +1,48 @@
 
 /* COLORS */
-$primary-color: #0052CC;
-$secondary-color: #6B7280;
+$primary-50: #F2F7FF;
+$primary-100: #CCDCF5;
+$primary-200: #99BAEB;
+$primary-300: #6697E0;
+$primary-400: #3375D6;
+$primary-500: #0052CC;
+$primary-600: #0042A3;
+$primary-700: #003380;
+$primary-800: #002152;
+$primary-900: #001738;
+
+$secondary-50: #F3F4F7;
 $secondary-100: #E1E3E6;
+$secondary-200: #C4C7CC;
+$secondary-300: #A6AAB3;
+$secondary-400: #898E99;
+$secondary-500: #6B7280;
+$secondary-600: #565B66;
+$secondary-700: #40444D;
+$secondary-800: #2B2E33;
+$secondary-900: #15171A;
+
 $black: #000000;
 $white: #FFFFFF;
-$transparent: #E5E5E5;
 
 /* SPACERS */
+$spacer-0-2px: 40.125rem;
+$spacer-1-4px: 0.25rem;
+$spacer-2-8px: 0.5rem;
 $spacer-3-12px: 0.75rem;
 $spacer-4-16px: 1rem;
+$spacer-5-20px: 1.25rem;
 $spacer-6-24px: 1.5rem;
+$spacer-7-28px: 1.75rem;
+$spacer-8-32px: 2rem;
+$spacer-9-36px: 2.25rem;
 $spacer-10-40px: 2.5rem;
+$spacer-11-44px: 2.75rem;
 $spacer-12-48px: 3rem;
+$spacer-14-56px: 3.5rem;
 $spacer-16-64px: 4rem;
+$spacer-20-80px: 5rem;
+$spacer-24-96px: 6rem;
+$spacer-28-112px: 7rem;
+$spacer-32-128px: 8rem;
+$spacer-36-144px: 9rem;

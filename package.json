@@ -17,6 +17,7 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
+    "@vanilla-extract/css": "^1.9.3",
     "sass": "^1.57.1",
     "next": "13.1.4",
     "react": "18.2.0",
@@ -24,6 +25,7 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
+    "@vanilla-extract/next-plugin": "^2.1.1",
     "eslint": "8.26.0",
     "eslint-config-next": "13.1.4",
     "eslint-config-prettier": "^8.5.0"

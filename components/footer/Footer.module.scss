@@ -3,8 +3,6 @@
 
 .nav {
 
-    max-width: $max-width-592px;
-
     @include md {
         max-width: 100%;
     }
@@ -15,7 +13,7 @@
 
 .nav ul {
     display: inline-flex;
-    gap: $gap-item-4px;
+    gap: $spacer-1-4px;
     margin: 0;
 }
 

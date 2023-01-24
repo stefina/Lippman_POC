@@ -1,32 +1,31 @@
-
 /* LAYOUT */
 $max-width-592px: 37rem;
 
 /* COLORS */
-$primary-50: #F2F7FF;
-$primary-100: #CCDCF5;
-$primary-200: #99BAEB;
-$primary-300: #6697E0;
-$primary-400: #3375D6;
-$primary-500: #0052CC;
-$primary-600: #0042A3;
+$primary-50: #f2f7ff;
+$primary-100: #ccdcf5;
+$primary-200: #99baeb;
+$primary-300: #6697e0;
+$primary-400: #3375d6;
+$primary-500: #0052cc;
+$primary-600: #0042a3;
 $primary-700: #003380;
 $primary-800: #002152;
 $primary-900: #001738;
 
-$secondary-50: #F3F4F7;
-$secondary-100: #E1E3E6;
-$secondary-200: #C4C7CC;
-$secondary-300: #A6AAB3;
-$secondary-400: #898E99;
-$secondary-500: #6B7280;
-$secondary-600: #565B66;
-$secondary-700: #40444D;
-$secondary-800: #2B2E33;
-$secondary-900: #15171A;
+$secondary-50: #f3f4f7;
+$secondary-100: #e1e3e6;
+$secondary-200: #c4c7cc;
+$secondary-300: #a6aab3;
+$secondary-400: #898e99;
+$secondary-500: #6b7280;
+$secondary-600: #565b66;
+$secondary-700: #40444d;
+$secondary-800: #2b2e33;
+$secondary-900: #15171a;
 
 $black: #000000;
-$white: #FFFFFF;
+$white: #ffffff;
 $transparent: transparent;
 
 /* SPACERS */
@@ -50,3 +49,12 @@ $spacer-24-96px: 6rem;
 $spacer-28-112px: 7rem;
 $spacer-32-128px: 8rem;
 $spacer-36-144px: 9rem;
+
+$box-shadow-default: 0px 47px 98px rgba(0, 0, 0, 0.0671069),
+  0px 23.5229px 49.0479px rgba(0, 0, 0, 0.0975551),
+  0px 14.1691px 29.5441px rgba(0, 0, 0, 0.120149),
+  0px 9.08032px 18.9334px rgba(0, 0, 0, 0.14),
+  0px 5.88513px 12.2711px rgba(0, 0, 0, 0.159851),
+  0px 3.70462px 7.72453px rgba(0, 0, 0, 0.182445),
+  0px 2.12854px 4.43822px rgba(0, 0, 0, 0.212893),
+  0px 0.936824px 1.95338px rgba(0, 0, 0, 0.28);

@@ -31,7 +31,7 @@
         font-weight: 700;
         color: $secondary-800;
         background-color: transparent;
-        transition: background-color 0.2s ease-in;
+        transition: background-color 200ms ease-in-out;
 
     &:hover {
         background-color: $secondary-100;

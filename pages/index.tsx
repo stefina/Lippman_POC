@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Image from 'next/image';
 
 import { Artwork, ArtworkCard } from '../components/ArtworkCard';
+import { Grid } from '../components/Grid';
 import CustomLink from '../components/link/Link';
 import testPicture from './lippmann-default.jpg';
 
@@ -13,7 +13,7 @@ const artwork: Artwork = {
   id: 'lippmann',
 };
 
-const content = Array.from({ length: 10 }, (_, i) => ({
+const mockContent = Array.from({ length: 10 }, (_, i) => ({
   ...artwork,
   id: `${artwork.id}${i}`,
 }));
@@ -24,11 +24,11 @@ export default function Home() {
       <Head>
         <title>Gabriel Lippmann | Catalogue Raisonnée</title>
       </Head>
-      <div>
-        {content.map((artwork) => (
+      <Grid>
+        {mockContent.map((artwork) => (
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}
-      </div>
+      </Grid>
       <div>
         <CustomLink label="A propos" link="/a-propos" />
       </div>

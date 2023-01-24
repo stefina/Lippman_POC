@@ -1,11 +1,12 @@
-import React from 'react'
-import Text from '../../components/text/Text'
-import CustomLink from '../../components/link/Link'
-import Heading from '../../components/heading/Heading'
+import React from 'react';
+import Text from '../../components/text/Text';
+import CustomLink from '../../components/link/Link';
+import Heading from '../../components/heading/Heading';
+import { ContentWrapper } from '../../components/ContentWrapper';
 
 export default function AProposPage() {
   return (
-    <>
+    <ContentWrapper>
       <Heading size="large">A Propos</Heading>
       <Heading size="medium">Catalogue raisonné</Heading>
       <Text>
@@ -50,6 +51,6 @@ export default function AProposPage() {
       <Text>
         <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" />
       </Text>
-    </>
-  )
+    </ContentWrapper>
+  );
 }

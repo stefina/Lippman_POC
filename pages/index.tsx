@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import { Artwork, ArtworkCard } from '../components/ArtworkCard';
+import { Box } from '../components/Box';
 import { Grid } from '../components/Grid';
 import CustomLink from '../components/link/Link';
 import testPicture from './lippmann-default.jpg';
@@ -20,7 +21,7 @@ const mockContent = Array.from({ length: 10 }, (_, i) => ({
 
 export default function Home() {
   return (
-    <div>
+    <Box as="main" backgroundColor="white" padding={4}>
       <Head>
         <title>Gabriel Lippmann | Catalogue Raisonnée</title>
       </Head>
@@ -35,6 +36,6 @@ export default function Home() {
       <div>
         <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" />
       </div>
-    </div>
+    </Box>
   );
 }

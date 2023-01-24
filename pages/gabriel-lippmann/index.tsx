@@ -1,10 +1,11 @@
-import React from 'react'
-import Text from '../../components/text/Text'
-import Heading from '../../components/heading/Heading'
+import React from 'react';
+import Text from '../../components/text/Text';
+import Heading from '../../components/heading/Heading';
+import { ContentWrapper } from '../../components/ContentWrapper';
 
 export default function index() {
   return (
-    <>
+    <ContentWrapper>
       <Heading size="large">Gabriel Lippmann</Heading>
       <Heading size="medium">Biographie</Heading>
       <Text>
@@ -43,6 +44,6 @@ export default function index() {
         de l’apparition des couleurs « iridescentes » dont le réalisme était
         surprenant.
       </Text>
-    </>
-  )
+    </ContentWrapper>
+  );
 }

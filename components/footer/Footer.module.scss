@@ -4,6 +4,11 @@
 .nav {
 
     max-width: $max-width-592px;
+
+    @include md {
+        max-width: 100%;
+    }
+
     text-align: right;
     text-transform: uppercase;
 

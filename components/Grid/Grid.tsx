@@ -1,10 +1,24 @@
 import { forwardRef } from 'react';
+import { composeClassNames } from '../../utils/composeClassNames';
 
 import { Box, BoxProps } from '../Box';
-import { gridStyles } from './Grid.css';
+import { gridStyles, gridWithOverlayStyles } from './Grid.css';
 
-export const Grid = forwardRef<HTMLElement, BoxProps>(
-  (props: BoxProps, ref) => {
-    return <Box className={gridStyles} {...props} ref={ref} />;
+interface GridProps extends BoxProps {
+  hasOverlay?: boolean;
+}
+
+export const Grid = forwardRef<HTMLElement, GridProps>(
+  ({ hasOverlay, ...rest }, ref) => {
+    return (
+      <Box
+        className={composeClassNames(
+          gridStyles,
+          hasOverlay ? gridWithOverlayStyles : undefined
+        )}
+        {...rest}
+        ref={ref}
+      />
+    );
   }
 );

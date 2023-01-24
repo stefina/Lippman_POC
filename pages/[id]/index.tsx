@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
+import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
 import { Overlay } from '../../components/Overlay';
 
@@ -48,21 +49,31 @@ export default function ArtworkDetailPage() {
   })).filter((artwork) => artwork.id !== query.id);
 
   return (
-    <div>
+    <Box as="main">
       <Head>
-        <title>Gabriel Lippmann | Catalogue Raisonnée</title>
+        <title>
+          {query && query.id && mockContentMap[query.id as keyof Artwork].title}{' '}
+          | Gabriel Lippmann | Catalogue Raisonnée
+        </title>
       </Head>
-      <Grid>
+      <Grid
+        backgroundColor="white"
+        boxShadow="default"
+        padding={4}
+        marginTop={4}
+        marginBottom={6}
+        hasOverlay
+      >
         {mockContent.map((artwork) => (
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}
       </Grid>
       {query && query.id && (
-        <Overlay>
+        <Overlay boxShadow="default">
           <p>{mockContentMap[query.id as keyof Artwork].id}</p>
           <Link href={`${query.id}/detail`}>Go to detail</Link>
         </Overlay>
       )}
-    </div>
+    </Box>
   );
 }

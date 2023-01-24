@@ -21,7 +21,14 @@ const mockContent = Array.from({ length: 10 }, (_, i) => ({
 
 export default function Home() {
   return (
-    <Box as="main" backgroundColor="white" padding={4}>
+    <Box
+      as="main"
+      backgroundColor="white"
+      boxShadow="default"
+      padding={4}
+      marginTop={4}
+      marginBottom={6}
+    >
       <Head>
         <title>Gabriel Lippmann | Catalogue Raisonnée</title>
       </Head>

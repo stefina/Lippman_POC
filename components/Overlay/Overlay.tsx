@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 
-import { Box } from '../Box';
+import { Box, BoxProps } from '../Box';
 import { overlayStyles } from './Overlay.css';
 
-interface OverlayProps {
+interface OverlayProps extends BoxProps {
   children?: ReactNode;
 }
 
-export const Overlay = ({ children }: OverlayProps) => {
-  return <Box className={overlayStyles}>{children}</Box>;
+export const Overlay = (props: OverlayProps) => {
+  return <Box className={overlayStyles} {...props} />;
 };

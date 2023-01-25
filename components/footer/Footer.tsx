@@ -1,30 +1,26 @@
-import React from 'react';
-import styles from './Footer.module.scss';
-import { ActiveLink } from '../ActiveLink';
+import React from 'react'
+import styles from './Footer.module.scss'
+import CustomLink from '../../components/link/Link'
 
 export default function Footer() {
   return (
     <nav className={styles.nav}>
       <ul>
         <li className={styles.navItem}>
-          <ActiveLink
-            href="/a-propos"
-            className={styles.navLink}
-            activeClassName={styles.active}
-          >
-            Á propos
-          </ActiveLink>
+          <CustomLink
+            label="Á propos"
+            link="/a-propos"
+            activeClassName="active"
+          />
         </li>
         <li className={styles.navItem}>
-          <ActiveLink
-            href="/gabriel-lippmann"
-            className={styles.navLink}
-            activeClassName={styles.active}
-          >
-            Gabriel Lippmann
-          </ActiveLink>
+          <CustomLink
+            label="Gabriel Lippmann"
+            link="/gabriel-lippmann"
+            activeClassName="active"
+          />
         </li>
       </ul>
     </nav>
-  );
+  )
 }

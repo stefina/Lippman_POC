@@ -1,21 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
+import CustomLink from '../components/link/Link'
 
-function Home({ data }) {
-  console.log(data)
-
-  return <div className={styles.container}>HELLO</div>
-}
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://opendata.swiss/api/3/action/package_list`)
-  const data = await res.json()
-
-  // Pass data to the page via props
-  return { props: { data } }
+function Home() {
+  return (
+    // <div className={styles.Pagecontainer}>
+    //   <div>
+    //     <CustomLink label="A propos" link="/a-propos" />
+    //   </div>
+    //   <div>
+    //     <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" />
+    //   </div>
+    // </div>
+  )
 }
 
 export default Home

@@ -48,7 +48,7 @@ export default function AProposPage() {
         ensemble comme auteurs.
       </Text>
       <Text>
-        <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" />
+        {/* <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" /> */}
       </Text>
     </>
   )

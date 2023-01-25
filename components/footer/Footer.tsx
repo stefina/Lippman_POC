@@ -7,10 +7,18 @@ export default function Footer() {
     <nav className={styles.nav}>
       <ul>
         <li className={styles.navItem}>
-          <CustomLink label="Á propos" link="/a-propos" />
+          <CustomLink
+            label="Á propos"
+            link="/a-propos"
+            activeClassName="active"
+          />
         </li>
         <li className={styles.navItem}>
-          <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" />
+          <CustomLink
+            label="Gabriel Lippmann"
+            link="/gabriel-lippmann"
+            activeClassName="active"
+          />
         </li>
       </ul>
     </nav>

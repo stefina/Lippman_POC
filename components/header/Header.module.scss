@@ -55,15 +55,16 @@
 
 .navContainer {
     width: auto;
+    background: chocolate;
+    height: 100%;
 
     nav {
-        display: flex;
+        // display: flex;
         padding: $spacer-0-3px $spacer-0-3px $spacer-0-3px $spacer-2-8px;
-        overflow: clip;
+        overflow: scroll;
         background-color: $white;
 
         @include md {
-            background: chocolate;
             width: 50%;
         }
 
@@ -81,6 +82,7 @@
             padding: 0;
             display: flex;
             gap: $spacer-1-4px;
+            white-space: nowrap;
 
             li {
                 padding: $spacer-0-3px $spacer-1-4px;
@@ -89,8 +91,6 @@
                 font-weight: 700;
                 text-transform: uppercase;
                 list-style-type: none;
-                // Define a min width to force overflow
-                min-width: 100%;
 
                 @include md {
                     min-width: auto;

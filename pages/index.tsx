@@ -3,14 +3,14 @@ import CustomLink from '../components/link/Link'
 
 function Home() {
   return (
-    // <div className={styles.Pagecontainer}>
-    //   <div>
-    //     <CustomLink label="A propos" link="/a-propos" />
-    //   </div>
-    //   <div>
-    //     <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" />
-    //   </div>
-    // </div>
+    <div className={styles.Pagecontainer}>
+      <div>
+        <CustomLink label="A propos" link="/a-propos" href="/a-propos" />
+      </div>
+      <div>
+        <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" href="/gabriel-lippmann" />
+      </div>
+    </div>
   )
 }
 

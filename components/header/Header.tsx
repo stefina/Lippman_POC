@@ -25,7 +25,7 @@ export default function Header() {
         <div className={styles.navContainer}>
           {/* <div className={styles.nav}> */}
           <nav>
-            <span className={styles.viz}>VIZ: </span>
+            {/* <span className={styles.viz}>VIZ: </span> */}
             <ul>
               <li>
                 <CustomLink

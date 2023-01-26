@@ -16,6 +16,7 @@ type ActiveLinkProps = LinkProps & {
 const CustomLink = ({
   label,
   activeClassName,
+  className,
   ...props
 }: PropsWithChildren<ActiveLinkProps>) => {
   // asPath, isReady come from router object
@@ -23,8 +24,6 @@ const CustomLink = ({
   // asPath = string - contains the path we are currently on
   // isReady = boolean - Whether the router fields are updated client-side and ready for use
   const { asPath, isReady } = useRouter()
-
-  const className = `${styles.link}`
   const [computedClassName, setComputedClassName] = useState(className)
   console.log('computedClassName', computedClassName)
 
@@ -42,8 +41,8 @@ const CustomLink = ({
       // If one of the linkPathname is strictly EQUAL to activePathname
       const newClassName =
         linkPathname === activePathname
-          ? `${styles.link} ${styles.active}`
-          : `${styles.link}`
+          ? `${className} ${styles.link} ${activeClassName} ${styles.active}`
+          : `${className} ${styles.link}`
 
       if (newClassName !== computedClassName) {
         setComputedClassName(newClassName)

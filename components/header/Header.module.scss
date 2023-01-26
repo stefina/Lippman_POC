@@ -54,18 +54,15 @@
 }
 
 .navContainer {
-    width: auto;
-    background: chocolate;
-    height: 100%;
+    // width: auto;
 
     nav {
-        // display: flex;
-        padding: $spacer-0-3px $spacer-0-3px $spacer-0-3px $spacer-2-8px;
+        padding: $spacer-0-3px $spacer-1-4px;
         overflow: scroll;
         background-color: $white;
 
         @include md {
-            width: 50%;
+            display: inline-block;
         }
 
         .viz {
@@ -80,6 +77,7 @@
         ul {
             margin: 0;
             padding: 0;
+            // The full width come from display flex
             display: flex;
             gap: $spacer-1-4px;
             white-space: nowrap;

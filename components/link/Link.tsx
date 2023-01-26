@@ -55,6 +55,7 @@ const CustomLink = ({
   }, [
     asPath,
     isReady,
+    link,
     // props.as,
     // props.href,
     // activeClassName,

@@ -59,11 +59,13 @@ export default function Header() {
         {/* NAV */}
         <div className={styles.navContainer}>
           <span className={styles.viz}>VIZ: </span>
+
           {leftArrowVisible && (
             <span className={styles.arrow} onClick={() => handleScrollLeft()}>
               <ArrowSvg direction="left" />
             </span>
           )}
+
           <nav
             ref={refNav}
             onTouchEnd={() => handleToggleArrowOnTouchEvent()}
@@ -90,6 +92,7 @@ export default function Header() {
               </li>
             </ul>
           </nav>
+
           <span className={styles.arrow} onClick={() => handleScrollRight()}>
             <ArrowSvg />
           </span>

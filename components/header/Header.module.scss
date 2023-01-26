@@ -83,6 +83,7 @@
         padding: $spacer-3px $spacer-1-4px;
         overflow: scroll;
         background-color: $white;
+        scroll-behavior: smooth;
 
         ul {
             position: relative;

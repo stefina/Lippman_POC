@@ -9,21 +9,38 @@ export default function Header() {
   const refThirdLink = useRef<HTMLInputElement>()
   const refNav = useRef<HTMLInputElement>()
 
-  const [arrowLeftVisible, setArrowLeftVisible] = useState(false)
+  const [leftArrowVisible, setLeftArrowVisible] = useState(false)
 
   const handleScrollRight = (): void => {
-    setArrowLeftVisible(true)
-    refNav.current.scrollLeft += 200
+    // TypeScript error but I don't understand it
+    refNav.current.scrollLeft += 100
+    setLeftArrowVisible(true)
   }
 
   const handleScrollLeft = (): void => {
-    refNav.current.scrollLeft -= 200
-
     const scrollLeft = refNav.current.scrollLeft
+    refNav.current.scrollLeft -= 100
 
     // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
     if (scrollLeft === 0) {
-      setArrowLeftVisible(false)
+      setLeftArrowVisible(false)
+    }
+  }
+
+  // For mobile only
+  // if scrollLeft is 0 when the user doesn't touch the screen anymore
+  // I delete the left arrow
+  const handleDeleteArrowOnTouchEnd = () => {
+    const scrollLeft = refNav.current.scrollLeft
+    if (scrollLeft === 0) {
+      setLeftArrowVisible(false)
+    }
+  }
+
+  const handleDisplayArrowOnTouchMove = () => {
+    const scrollLeft = refNav.current.scrollLeft
+    if (scrollLeft !== 0) {
+      setLeftArrowVisible(true)
     }
   }
 
@@ -48,12 +65,16 @@ export default function Header() {
         {/* NAV */}
         <div className={styles.navContainer}>
           <span className={styles.viz}>VIZ: </span>
-          {arrowLeftVisible && (
+          {leftArrowVisible && (
             <span className={styles.arrow} onClick={() => handleScrollLeft()}>
               <ArrowSvg direction="left" />
             </span>
           )}
-          <nav ref={refNav}>
+          <nav
+            ref={refNav}
+            onTouchEnd={() => handleDeleteArrowOnTouchEnd()}
+            onTouchMove={() => handleDisplayArrowOnTouchMove()}
+          >
             <ul>
               <li ref={refFirstLink}>
                 <CustomLink

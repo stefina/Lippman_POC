@@ -12,7 +12,6 @@ export default function Header() {
   const [leftArrowVisible, setLeftArrowVisible] = useState(false)
 
   const handleScrollRight = (): void => {
-    // TypeScript error but I don't understand it
     refNav.current.scrollLeft += 100
     setLeftArrowVisible(true)
   }
@@ -30,16 +29,11 @@ export default function Header() {
   // For mobile only
   // if scrollLeft is 0 when the user doesn't touch the screen anymore
   // I delete the left arrow
-  const handleDeleteArrowOnTouchEnd = () => {
+  const handleToggleArrowOnTouchEvent = () => {
     const scrollLeft = refNav.current.scrollLeft
     if (scrollLeft === 0) {
       setLeftArrowVisible(false)
-    }
-  }
-
-  const handleDisplayArrowOnTouchMove = () => {
-    const scrollLeft = refNav.current.scrollLeft
-    if (scrollLeft !== 0) {
+    } else {
       setLeftArrowVisible(true)
     }
   }
@@ -72,8 +66,8 @@ export default function Header() {
           )}
           <nav
             ref={refNav}
-            onTouchEnd={() => handleDeleteArrowOnTouchEnd()}
-            onTouchMove={() => handleDisplayArrowOnTouchMove()}
+            onTouchEnd={() => handleToggleArrowOnTouchEvent()}
+            onTouchMove={() => handleToggleArrowOnTouchEvent()}
           >
             <ul>
               <li ref={refFirstLink}>

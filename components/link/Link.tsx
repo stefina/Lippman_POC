@@ -61,7 +61,7 @@ const CustomLink = ({
   ])
 
   return (
-    <Link href={props.href} className={computedClassName}>
+    <Link {...props} className={computedClassName}>
       {label}
     </Link>
   )

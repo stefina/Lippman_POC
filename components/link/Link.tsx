@@ -8,7 +8,6 @@ type ActiveLinkProps = LinkProps & {
   className?: string
   activeClassName?: string
   label: string
-  link: string
 }
 
 // Ceux que je veux
@@ -16,7 +15,6 @@ type ActiveLinkProps = LinkProps & {
 
 const CustomLink = ({
   label,
-  link,
   activeClassName,
   ...props
 }: PropsWithChildren<ActiveLinkProps>) => {
@@ -36,7 +34,7 @@ const CustomLink = ({
     if (isReady) {
       // All the available path in the app
       // URL().pathname = to remove query and hash
-      const linkPathname = new URL(link as string, location.href).pathname
+      const linkPathname = new URL((props.as || props.href) as string, location.href).pathname
 
       // New URL created with the path from the browser (where I clicked)
       const activePathname = new URL(asPath, location.href).pathname
@@ -55,16 +53,15 @@ const CustomLink = ({
   }, [
     asPath,
     isReady,
-    link,
-    // props.as,
-    // props.href,
-    // activeClassName,
+    props.as,
+    props.href,
+    activeClassName,
     className,
     computedClassName,
   ])
 
   return (
-    <Link href={link} className={computedClassName}>
+    <Link href={props.href} className={computedClassName}>
       {label}
     </Link>
   )

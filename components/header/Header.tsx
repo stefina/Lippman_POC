@@ -35,7 +35,7 @@ export default function Header() {
               <li>
                 <CustomLink
                   label="Visual Content Map"
-                  link="/visual-content-mag"
+                  link="/visual-content-map"
                 />
               </li>
               <li>

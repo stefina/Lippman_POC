@@ -93,9 +93,14 @@
                 font-weight: 700;
                 text-transform: uppercase;
                 list-style-type: none;
+                transition: background-color 300ms ease-in-out;
 
                 @include md {
                     min-width: auto;
+
+                    &:hover {
+                        background-color: $white;
+                    }
                 }
 
                 a {

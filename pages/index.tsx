@@ -5,10 +5,10 @@ function Home() {
   return (
     <div className={styles.Pagecontainer}>
       <div>
-        <CustomLink label="A propos" link="/a-propos" href="/a-propos" />
+        <CustomLink label="A propos" href="/a-propos" />
       </div>
       <div>
-        <CustomLink label="Gabriel Lippmann" link="/gabriel-lippmann" href="/gabriel-lippmann" />
+        <CustomLink label="Gabriel Lippmann" href="/gabriel-lippmann" />
       </div>
     </div>
   )

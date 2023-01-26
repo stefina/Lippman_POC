@@ -9,14 +9,14 @@ export default function Footer() {
         <li className={styles.navItem}>
           <CustomLink
             label="Á propos"
-            link="/a-propos"
+            href="/a-propos"
             activeClassName="active"
           />
         </li>
         <li className={styles.navItem}>
           <CustomLink
             label="Gabriel Lippmann"
-            link="/gabriel-lippmann"
+            href="/gabriel-lippmann"
             activeClassName="active"
           />
         </li>

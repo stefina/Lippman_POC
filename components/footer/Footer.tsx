@@ -10,14 +10,14 @@ export default function Footer() {
           <CustomLink
             label="Á propos"
             href="/a-propos"
-            activeClassName="active"
+            activeClassName={styles.active}
           />
         </li>
         <li className={styles.navItem}>
           <CustomLink
             label="Gabriel Lippmann"
             href="/gabriel-lippmann"
-            activeClassName="active"
+            activeClassName={styles.active}
           />
         </li>
       </ul>

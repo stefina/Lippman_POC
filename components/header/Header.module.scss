@@ -2,27 +2,105 @@
 @import '../../styles/abstracts/_variables';
 @import '../../styles/abstracts/_mixins';
 
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-1-4px;
+}
+
 .logoAndSearchBarContainer {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: $spacer-1-4px;
-    margin-bottom: 0.25rem; // 4px
-    max-width: 90%;
+    padding-right: $spacer-14-56px;
+}
 
-    .logo {
-        background-color: sandybrown;
-        padding: 10px 0;
-    }
+.logo {
+    display: flex;
+}
+
+.searchBarContainer {
+    display: flex;
+    align-items: flex-end;
 
     .searchBar {
-        flex: 1;
-        padding: 0.25rem; // 4px
-        height: 28px;
+        padding: $spacer-1-4px;
         background-color: $white;
+
+        @include md {
+            display: flex;
+            gap: $spacer-1-4px;
+        }
+
+        .label {
+            display: none;
+            width: 100%;
+            color: $secondary-500;
+            font-weight: 900;
+
+            @include md {
+                display: block;
+            }
+        }
+
+        input {
+            padding: $spacer-1-4px;
+            height: $spacer-5-20px;
+            border: 1px solid $secondary-100;
+            background-color: $secondary-100;
+        }
+    }
+
+}
+
+.navContainer {
+    width: auto;
+
+    nav {
+        display: flex;
+        padding: $spacer-0-3px $spacer-0-3px $spacer-0-3px $spacer-2-8px;
+        overflow: clip;
+        background-color: $white;
+
+        @include md {
+            background: chocolate;
+            width: 50%;
+        }
+
+        .viz {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: $spacer-1-4px;
+            color: $secondary-500;
+            font-weight: 900;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: $spacer-1-4px;
+
+            li {
+                padding: $spacer-0-3px $spacer-1-4px;
+                background-color: $secondary-100;
+                color: $secondary-800;
+                font-weight: 700;
+                text-transform: uppercase;
+                list-style-type: none;
+                // Define a min width to force overflow
+                min-width: 100%;
+
+                @include md {
+                    min-width: auto;
+                }
+
+                a {
+                    border: none;
+                }
+            }
+        }
     }
 }
 
-.nav {
-    background-color: greenyellow;
-}

@@ -4,25 +4,26 @@ import styles from './Header.module.scss'
 import ArrowSvg from '../arrow-svg/ArrowSvg'
 
 export default function Header() {
-  const refFirstLink = useRef<HTMLInputElement>()
-  const refSecondLink = useRef<HTMLInputElement>()
-  const refThirdLink = useRef<HTMLInputElement>()
-  const refNav = useRef<HTMLInputElement>()
+  const refNav = useRef<HTMLElement>(null)
 
   const [leftArrowVisible, setLeftArrowVisible] = useState(false)
 
   const handleScrollRight = (): void => {
-    refNav.current.scrollLeft += 100
-    setLeftArrowVisible(true)
+    if (refNav?.current) {
+      refNav.current.scrollLeft += 100
+      setLeftArrowVisible(true)
+    }    
   }
 
   const handleScrollLeft = (): void => {
-    const scrollLeft = refNav.current.scrollLeft
-    refNav.current.scrollLeft -= 100
+    if (refNav?.current) {
+      const scrollLeft = refNav.current.scrollLeft
+      refNav.current.scrollLeft -= 100
 
-    // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
-    if (scrollLeft === 0) {
-      setLeftArrowVisible(false)
+      // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
+      if (scrollLeft === 0) {
+        setLeftArrowVisible(false)
+      }
     }
   }
 
@@ -30,11 +31,13 @@ export default function Header() {
   // if scrollLeft is 0 when the user doesn't touch the screen anymore
   // I delete the left arrow
   const handleToggleArrowOnTouchEvent = () => {
-    const scrollLeft = refNav.current.scrollLeft
-    if (scrollLeft === 0) {
-      setLeftArrowVisible(false)
-    } else {
-      setLeftArrowVisible(true)
+    if (refNav?.current) {
+      const scrollLeft = refNav.current.scrollLeft
+      if (scrollLeft === 0) {
+        setLeftArrowVisible(false)
+      } else {
+        setLeftArrowVisible(true)
+      }
     }
   }
 
@@ -72,19 +75,19 @@ export default function Header() {
             onTouchMove={() => handleToggleArrowOnTouchEvent()}
           >
             <ul>
-              <li ref={refFirstLink}>
+              <li>
                 <CustomLink
                   label="Creation Timeline"
                   link="/creation-timeline"
                 />
               </li>
-              <li ref={refSecondLink}>
+              <li>
                 <CustomLink
                   label="Visual Content Map"
                   link="/visual-content-map"
                 />
               </li>
-              <li ref={refThirdLink}>
+              <li>
                 <CustomLink
                   label="Artwork Location Map"
                   link="/artwork-location-map"

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, RefObject } from 'react'
+import React, { useState, useRef, useEffect, RefObject, useLayoutEffect } from 'react'
 import CustomLink from '../link/Link'
 import styles from './Header.module.scss'
 import ArrowSvg from '../arrow-svg/ArrowSvg'
@@ -7,23 +7,23 @@ import useIntersectionObserver from '@react-hook/intersection-observer'
 import useResizeObserver from '@react-hook/resize-observer'
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
-  const [size, setSize] = React.useState(false)
+  const [isCutOff, setIsCutOff] = useState({ isCutOff: false, width: 0 })
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (target.current) {
-      setSize(target.current.scrollWidth > target.current.offsetWidth)
+      setIsCutOff({ isCutOff: target.current.scrollWidth > target.current.clientWidth, width: target.current.clientWidth })
     }
   }, [target])
 
   useResizeObserver(target, (entry) => {
-    setSize(entry.target.scrollWidth > entry.target.clientWidth)
+    setIsCutOff({ isCutOff: entry.target.scrollWidth > entry.target.clientWidth, width: entry.target.clientWidth })
   })
-  return size
+  return isCutOff
 }
 
 export default function Header() {
   const refNav = useRef<HTMLUListElement>(null)
-  const navIsCutOff = useIsCutOff(refNav)
+  const { isCutOff: navIsCutOff, width: navWidth} = useIsCutOff(refNav)
   const [refFirstLink, setRefFirstLink] = useState<HTMLElement | null>(null)
   const [refSecondLink, setRefSecondLink] = useState<HTMLElement | null>(null)
   const [refThirdLink, setRefThirdLink] = useState<HTMLElement | null>(null)
@@ -34,52 +34,17 @@ export default function Header() {
   const [currentScrollLeft, setCurrentScrollLeft] = useState(0)
 
   useEffect(() => {
-    if (isIntersecting1 && refFirstLink) {
+    if (isIntersecting3 && refThirdLink && navWidth) {
+      setCurrentScrollRight(0)
+      setCurrentScrollLeft(navWidth - refThirdLink.clientWidth)
+    } else if (!isIntersecting1 && isIntersecting2 && refSecondLink && refFirstLink) {
+      setCurrentScrollRight(refSecondLink.clientWidth)
+      setCurrentScrollLeft(refFirstLink.clientWidth)
+    } else if (isIntersecting1 && refFirstLink) {
       setCurrentScrollRight(refFirstLink.clientWidth)
       setCurrentScrollLeft(0)
     }
-    if (!isIntersecting1 && isIntersecting2 && refSecondLink && refFirstLink) {
-      setCurrentScrollRight(refSecondLink.clientWidth)
-      setCurrentScrollLeft(refFirstLink.clientWidth)
-    }
-    if (isIntersecting3 && refThirdLink && refNav.current) {
-      setCurrentScrollRight(0)
-      setCurrentScrollLeft(refNav.current.clientWidth - refThirdLink.clientWidth)
-    }
-  }, [isIntersecting1, isIntersecting2, isIntersecting3, refFirstLink, refSecondLink, refThirdLink])
-
-  const handleScrollRight = (): void => {
-    if (refNav?.current) {
-      refNav.current.scrollLeft += 100
-      // setLeftArrowVisible(true)
-    }    
-  }
-
-  const handleScrollLeft = (): void => {
-    if (refNav?.current) {
-      const scrollLeft = refNav.current.scrollLeft
-      refNav.current.scrollLeft -= 100
-
-      // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
-      // if (scrollLeft === 0) {
-      //   setLeftArrowVisible(false)
-      // }
-    }
-  }
-
-  // For mobile only
-  // if scrollLeft is 0 when the user doesn't touch the screen anymore
-  // I delete the left arrow
-  const handleToggleArrowOnTouchEvent = () => {
-    if (refNav?.current) {
-      const scrollLeft = refNav.current.scrollLeft
-      // if (scrollLeft === 0) {
-      //   setLeftArrowVisible(false)
-      // } else {
-      //   setLeftArrowVisible(true)
-      // }
-    }
-  }
+  }, [isIntersecting1, isIntersecting2, isIntersecting3, refFirstLink, refSecondLink, refThirdLink, navWidth])
 
   return (
     <>
@@ -107,7 +72,7 @@ export default function Header() {
             aria-hidden
             onClick={() => {
               if (currentScrollLeft && refNav?.current) {
-                refNav.current.scrollLeft -= currentScrollLeft
+                refNav.current.scrollBy((-1 * currentScrollLeft), 0)
               }
             }}
             className={styles.arrow}
@@ -118,8 +83,6 @@ export default function Header() {
           <nav>
             <ul
               ref={refNav}
-              onTouchEnd={() => handleToggleArrowOnTouchEvent()}
-              onTouchMove={() => handleToggleArrowOnTouchEvent()}
               style={{ scrollSnapType: "inline", overflowX: 'auto' }}
             >
               <li ref={setRefFirstLink} style={{
@@ -156,7 +119,7 @@ export default function Header() {
             aria-hidden
             onClick={() => {
               if (currentScrollRight && refNav?.current) {
-                refNav.current.scrollLeft += currentScrollRight
+                refNav.current.scrollBy(currentScrollRight, 0)
               }
             }}
             className={styles.arrow}

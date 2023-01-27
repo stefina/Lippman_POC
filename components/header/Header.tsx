@@ -1,45 +1,45 @@
-import React, { useState, useRef } from 'react'
-import CustomLink from '../link/Link'
-import styles from './Header.module.scss'
-import ArrowSvg from '../arrow-svg/ArrowSvg'
+import React, { useState, useRef } from 'react';
+import CustomLink from '../link/Link';
+import styles from './Header.module.scss';
+import ArrowSvg from '../arrow-svg/ArrowSvg';
 
 export default function Header() {
-  const refNav = useRef<HTMLElement>(null)
+  const refNav = useRef<HTMLElement>(null);
 
-  const [leftArrowVisible, setLeftArrowVisible] = useState(false)
+  const [leftArrowVisible, setLeftArrowVisible] = useState(false);
 
   const handleScrollRight = (): void => {
     if (refNav?.current) {
-      refNav.current.scrollLeft += 100
-      setLeftArrowVisible(true)
-    }    
-  }
+      refNav.current.scrollLeft += 100;
+      setLeftArrowVisible(true);
+    }
+  };
 
   const handleScrollLeft = (): void => {
     if (refNav?.current) {
-      const scrollLeft = refNav.current.scrollLeft
-      refNav.current.scrollLeft -= 100
+      const scrollLeft = refNav.current.scrollLeft;
+      refNav.current.scrollLeft -= 100;
 
       // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
       if (scrollLeft === 0) {
-        setLeftArrowVisible(false)
+        setLeftArrowVisible(false);
       }
     }
-  }
+  };
 
   // For mobile only
   // if scrollLeft is 0 when the user doesn't touch the screen anymore
   // I delete the left arrow
   const handleToggleArrowOnTouchEvent = () => {
     if (refNav?.current) {
-      const scrollLeft = refNav.current.scrollLeft
-      if (scrollLeft === 0) {
-        setLeftArrowVisible(false)
-      } else {
-        setLeftArrowVisible(true)
-      }
+      const scrollLeft = refNav.current.scrollLeft;
+      // if (scrollLeft === 0) {
+      //   setLeftArrowVisible(false)
+      // } else {
+      //   setLeftArrowVisible(true)
+      // }
     }
-  }
+  };
 
   return (
     <>
@@ -63,11 +63,9 @@ export default function Header() {
         <div className={styles.navContainer}>
           <span className={styles.viz}>VIZ: </span>
 
-          {leftArrowVisible && (
-            <span className={styles.arrow} onClick={() => handleScrollLeft()}>
-              <ArrowSvg direction="left" />
-            </span>
-          )}
+          <span className={styles.arrow} onClick={() => handleScrollLeft()}>
+            <ArrowSvg direction="left" />
+          </span>
 
           <nav
             ref={refNav}
@@ -102,5 +100,5 @@ export default function Header() {
         </div>
       </div>
     </>
-  )
+  );
 }

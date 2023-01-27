@@ -1,120 +1,116 @@
-
 @import '../../styles/abstracts/_variables';
 @import '../../styles/abstracts/_mixins';
 
 .headerContainer {
-    display: flex;
-    flex-direction: column;
-    gap: $spacer-1-4px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacer-1-4px;
 }
 
 .logoAndSearchBarContainer {
-    display: flex;
-    justify-content: flex-start;
-    gap: $spacer-1-4px;
-    padding-right: $spacer-14-56px;
+  display: flex;
+  justify-content: flex-start;
+  gap: $spacer-1-4px;
+  padding-right: $spacer-14-56px;
 }
 
 .logo {
-    display: flex;
+  display: flex;
 }
 
 .searchBarContainer {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 
-    .searchBar {
-        padding: $spacer-1-4px;
-        background-color: $white;
+  .searchBar {
+    padding: $spacer-1-4px;
+    background-color: $white;
 
-        @include md {
-            display: flex;
-            gap: $spacer-1-4px;
-        }
-
-        .label {
-            display: none;
-            width: 100%;
-            color: $secondary-500;
-            font-weight: 900;
-
-            @include md {
-                display: block;
-            }
-        }
-
-        input {
-            padding: $spacer-1-4px;
-            height: $spacer-5-20px;
-            border: 1px solid $secondary-100;
-            background-color: $secondary-100;
-        }
+    @include md {
+      display: flex;
+      gap: $spacer-1-4px;
     }
 
+    .label {
+      display: none;
+      width: 100%;
+      color: $secondary-500;
+      font-weight: 900;
+
+      @include md {
+        display: block;
+      }
+    }
+
+    input {
+      padding: $spacer-1-4px;
+      height: $spacer-5-20px;
+      border: 1px solid $secondary-100;
+      background-color: $secondary-100;
+    }
+  }
 }
 
 .navContainer {
+  display: flex;
+  background: $white;
+
+  width: max-content;
+  flex-grow: 0;
+
+  .viz,
+  .arrow {
     display: flex;
-    background: $white;
+    justify-content: center;
+    align-items: center;
+    padding: $spacer-6px $spacer-2-8px;
+    color: $secondary-500;
+    font-weight: 900;
+  }
 
-    @include md {
-        width: max-content;
-        flex-grow: 0;
-    }
-
-    .viz,
+  @include md {
     .arrow {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: $spacer-6px $spacer-2-8px;
-        color: $secondary-500;
-        font-weight: 900;
+      display: none;
     }
+  }
 
-    @include md {
-        .arrow {
-            display: none;
-        }
-    }
+  nav {
+    display: flex;
+    padding: $spacer-3px $spacer-1-4px;
+    overflow: scroll;
+    background-color: $white;
+    scroll-behavior: smooth;
 
-    nav {
-        display: flex;
+    ul {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      // The full width come from display flex
+      display: flex;
+      gap: $spacer-1-4px;
+      white-space: nowrap;
+
+      li {
         padding: $spacer-3px $spacer-1-4px;
-        overflow: scroll;
-        background-color: $white;
-        scroll-behavior: smooth;
+        background-color: $secondary-100;
+        color: $secondary-800;
+        font-weight: 700;
+        text-transform: uppercase;
+        list-style-type: none;
+        transition: background-color 300ms ease-in-out;
 
-        ul {
-            position: relative;
-            margin: 0;
-            padding: 0;
-            // The full width come from display flex
-            display: flex;
-            gap: $spacer-1-4px;
-            white-space: nowrap;
+        @include md {
+          min-width: auto;
 
-            li {
-                padding: $spacer-3px $spacer-1-4px;
-                background-color: $secondary-100;
-                color: $secondary-800;
-                font-weight: 700;
-                text-transform: uppercase;
-                list-style-type: none;
-                transition: background-color 300ms ease-in-out;
-
-                @include md {
-                    min-width: auto;
-
-                    &:hover {
-                        background-color: $white;
-                    }
-                }
-
-                a {
-                    border: none;
-                }
-            }
+          &:hover {
+            background-color: $white;
+          }
         }
+
+        a {
+          border: none;
+        }
+      }
     }
+  }
 }

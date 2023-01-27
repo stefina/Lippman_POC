@@ -87,6 +87,7 @@
 
         ul {
             position: relative;
+            scroll-behavior: smooth;
             margin: 0;
             padding: 0;
             // The full width come from display flex

@@ -1,17 +1,49 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import CustomLink from '../link/Link'
 import styles from './Header.module.scss'
 import ArrowSvg from '../arrow-svg/ArrowSvg'
 
-export default function Header() {
-  const refNav = useRef<HTMLElement>(null)
+import useIntersectionObserver from '@react-hook/intersection-observer'
 
-  const [leftArrowVisible, setLeftArrowVisible] = useState(false)
+export default function Header() {
+  const refNav = useRef<HTMLUListElement>(null)
+  const [refFirstLink, setRefFirstLink] = useState<HTMLElement | null>(null)
+  const [refSecondLink, setRefSecondLink] = useState<HTMLElement | null>(null)
+  const [refThirdLink, setRefThirdLink] = useState<HTMLElement | null>(null)
+  const { isIntersecting: isIntersecting1 } = useIntersectionObserver(refFirstLink)
+  const { isIntersecting: isIntersecting2 } = useIntersectionObserver(refSecondLink)
+  const { isIntersecting: isIntersecting3 } = useIntersectionObserver(refThirdLink, {threshold: 1})
+  const [currentScrollRight, setCurrentScrollRight] = useState(0)
+  const [currentScrollLeft, setCurrentScrollLeft] = useState(0)
+
+  useEffect(() => {
+    
+    if (isIntersecting1 && refFirstLink) {
+      setCurrentScrollRight(refFirstLink.clientWidth)
+      setCurrentScrollLeft(0)
+    }
+    if (!isIntersecting1 && isIntersecting2 && refSecondLink && refFirstLink) {
+      setCurrentScrollRight(refSecondLink.clientWidth)
+      setCurrentScrollLeft(refFirstLink.clientWidth)
+    }
+    if (isIntersecting3 && refThirdLink && refNav.current) {
+      setCurrentScrollRight(0)
+      setCurrentScrollLeft(refNav.current.clientWidth - refThirdLink.clientWidth)
+    }
+  }, [isIntersecting1, isIntersecting2, isIntersecting3, refFirstLink, refSecondLink, refThirdLink])
+  
+  useEffect(() => {
+    console.log('curreItem',currentScrollLeft, currentScrollRight)
+  }, [currentScrollRight, currentScrollLeft])
+  
+
+
+  // const [leftArrowVisible, setLeftArrowVisible] = useState(false)
 
   const handleScrollRight = (): void => {
     if (refNav?.current) {
       refNav.current.scrollLeft += 100
-      setLeftArrowVisible(true)
+      // setLeftArrowVisible(true)
     }    
   }
 
@@ -21,9 +53,9 @@ export default function Header() {
       refNav.current.scrollLeft -= 100
 
       // ScrollLeft = To know how many horizontal pixels the HTML element has for scroll
-      if (scrollLeft === 0) {
-        setLeftArrowVisible(false)
-      }
+      // if (scrollLeft === 0) {
+      //   setLeftArrowVisible(false)
+      // }
     }
   }
 
@@ -33,11 +65,11 @@ export default function Header() {
   const handleToggleArrowOnTouchEvent = () => {
     if (refNav?.current) {
       const scrollLeft = refNav.current.scrollLeft
-      if (scrollLeft === 0) {
-        setLeftArrowVisible(false)
-      } else {
-        setLeftArrowVisible(true)
-      }
+      // if (scrollLeft === 0) {
+      //   setLeftArrowVisible(false)
+      // } else {
+      //   setLeftArrowVisible(true)
+      // }
     }
   }
 
@@ -63,31 +95,47 @@ export default function Header() {
         <div className={styles.navContainer}>
           <span className={styles.viz}>VIZ: </span>
 
-          {leftArrowVisible && (
-            <span className={styles.arrow} onClick={() => handleScrollLeft()}>
-              <ArrowSvg direction="left" />
-            </span>
-          )}
-
-          <nav
-            ref={refNav}
-            onTouchEnd={() => handleToggleArrowOnTouchEvent()}
-            onTouchMove={() => handleToggleArrowOnTouchEvent()}
+          <button
+            aria-hidden
+            onClick={() => {
+              if (currentScrollLeft && refNav?.current) {
+                refNav.current.scrollLeft -= currentScrollLeft
+              }
+            }}
+            className={styles.arrow}
           >
-            <ul>
-              <li>
+              <ArrowSvg direction="left" />
+          </button>
+
+          <nav>
+            <ul
+              ref={refNav}
+              onTouchEnd={() => handleToggleArrowOnTouchEvent()}
+              onTouchMove={() => handleToggleArrowOnTouchEvent()}
+              style={{ scrollSnapType: "inline", overflowX: 'auto' }}
+            >
+              <li ref={setRefFirstLink} style={{
+                scrollSnapAlign: "start",
+                scrollSnapStop: "normal"
+              }}>
                 <CustomLink
                   label="Creation Timeline"
                   link="/creation-timeline"
                 />
               </li>
-              <li>
+              <li ref={setRefSecondLink} style={{
+                scrollSnapAlign: "start",
+                scrollSnapStop: "normal"
+              }}>
                 <CustomLink
                   label="Visual Content Map"
                   link="/visual-content-map"
                 />
               </li>
-              <li>
+              <li ref={setRefThirdLink} style={{
+                scrollSnapAlign: "start",
+                scrollSnapStop: "normal"
+              }}>
                 <CustomLink
                   label="Artwork Location Map"
                   link="/artwork-location-map"
@@ -96,9 +144,17 @@ export default function Header() {
             </ul>
           </nav>
 
-          <span className={styles.arrow} onClick={() => handleScrollRight()}>
+          <button
+            aria-hidden
+            onClick={() => {
+              if (currentScrollRight && refNav?.current) {
+                refNav.current.scrollLeft += currentScrollRight
+              }
+            }}
+            className={styles.arrow}
+          >
             <ArrowSvg />
-          </span>
+          </button>
         </div>
       </div>
     </>

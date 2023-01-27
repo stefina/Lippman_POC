@@ -56,12 +56,10 @@
 .navContainer {
     display: flex;
     background: $white;
-
-    @include md {
-        width: max-content;
-        flex-grow: 0;
-    }
-
+    max-width: 100%;
+    width: max-content;
+    flex-grow: 0;
+    
     .viz,
     .arrow {
         display: flex;

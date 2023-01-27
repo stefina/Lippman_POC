@@ -1,12 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, RefObject } from 'react'
 import CustomLink from '../link/Link'
 import styles from './Header.module.scss'
 import ArrowSvg from '../arrow-svg/ArrowSvg'
 
 import useIntersectionObserver from '@react-hook/intersection-observer'
+import useResizeObserver from '@react-hook/resize-observer'
+
+const useIsCutOff = (target: RefObject<HTMLElement>) => {
+  const [size, setSize] = React.useState(false)
+
+  React.useLayoutEffect(() => {
+    if (target.current) {
+      setSize(target.current.scrollWidth > target.current.offsetWidth)
+    }
+  }, [target])
+
+  useResizeObserver(target, (entry) => {
+    setSize(entry.target.scrollWidth > entry.target.clientWidth)
+  })
+  return size
+}
 
 export default function Header() {
   const refNav = useRef<HTMLUListElement>(null)
+  const navIsCutOff = useIsCutOff(refNav)
   const [refFirstLink, setRefFirstLink] = useState<HTMLElement | null>(null)
   const [refSecondLink, setRefSecondLink] = useState<HTMLElement | null>(null)
   const [refThirdLink, setRefThirdLink] = useState<HTMLElement | null>(null)
@@ -17,7 +34,6 @@ export default function Header() {
   const [currentScrollLeft, setCurrentScrollLeft] = useState(0)
 
   useEffect(() => {
-    
     if (isIntersecting1 && refFirstLink) {
       setCurrentScrollRight(refFirstLink.clientWidth)
       setCurrentScrollLeft(0)
@@ -31,14 +47,6 @@ export default function Header() {
       setCurrentScrollLeft(refNav.current.clientWidth - refThirdLink.clientWidth)
     }
   }, [isIntersecting1, isIntersecting2, isIntersecting3, refFirstLink, refSecondLink, refThirdLink])
-  
-  useEffect(() => {
-    console.log('curreItem',currentScrollLeft, currentScrollRight)
-  }, [currentScrollRight, currentScrollLeft])
-  
-
-
-  // const [leftArrowVisible, setLeftArrowVisible] = useState(false)
 
   const handleScrollRight = (): void => {
     if (refNav?.current) {
@@ -95,7 +103,7 @@ export default function Header() {
         <div className={styles.navContainer}>
           <span className={styles.viz}>VIZ: </span>
 
-          <button
+          {navIsCutOff && (<button
             aria-hidden
             onClick={() => {
               if (currentScrollLeft && refNav?.current) {
@@ -104,8 +112,8 @@ export default function Header() {
             }}
             className={styles.arrow}
           >
-              <ArrowSvg direction="left" />
-          </button>
+            <ArrowSvg direction="left" />
+          </button>)}
 
           <nav>
             <ul
@@ -144,7 +152,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <button
+          {navIsCutOff && (<button
             aria-hidden
             onClick={() => {
               if (currentScrollRight && refNav?.current) {
@@ -154,7 +162,7 @@ export default function Header() {
             className={styles.arrow}
           >
             <ArrowSvg />
-          </button>
+          </button>)}
         </div>
       </div>
     </>

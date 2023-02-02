@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import styles from './Link.module.scss'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link'
 
-export default function CustomLink(props: any) {
-  const { label, link } = props
-
+export const CustomLink = ({
+  ...props
+}: PropsWithChildren<Omit<LinkProps, 'className'>>) => {
   return (
-    <Link href={link} className={styles.link}>
-      {label}
-    </Link>
+    <Link {...props} className={styles.link} />
   )
 }

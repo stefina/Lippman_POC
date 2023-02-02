@@ -2,6 +2,7 @@ import React from 'react'
 import Text from '../../components/text/Text'
 import CustomLink from '../../components/link/Link'
 import Heading from '../../components/heading/Heading'
+import { CustomLink } from '../../components/link/Link'
 
 export default function AProposPage() {
   return (
@@ -48,7 +49,7 @@ export default function AProposPage() {
         ensemble comme auteurs.
       </Text>
       <Text>
-        {/* <CustomLink link="https://www.elysee.ch" label="www.elysee.ch" /> */}
+        <CustomLink href="https://www.elysee.ch">www.elysee.ch</CustomLink>
       </Text>
     </>
   )

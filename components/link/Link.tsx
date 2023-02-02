@@ -8,7 +8,6 @@ type ActiveLinkProps = LinkProps & {
   className?: string
   activeClassName?: string
   label: string
-  link: string
 }
 
 // Ceux que je veux
@@ -16,8 +15,8 @@ type ActiveLinkProps = LinkProps & {
 
 const CustomLink = ({
   label,
-  link,
   activeClassName,
+  className,
   ...props
 }: PropsWithChildren<ActiveLinkProps>) => {
   // asPath, isReady come from router object
@@ -25,8 +24,6 @@ const CustomLink = ({
   // asPath = string - contains the path we are currently on
   // isReady = boolean - Whether the router fields are updated client-side and ready for use
   const { asPath, isReady } = useRouter()
-
-  const className = `${styles.link}`
   const [computedClassName, setComputedClassName] = useState(className)
   console.log('computedClassName', computedClassName)
 
@@ -36,7 +33,7 @@ const CustomLink = ({
     if (isReady) {
       // All the available path in the app
       // URL().pathname = to remove query and hash
-      const linkPathname = new URL(link as string, location.href).pathname
+      const linkPathname = new URL((props.as || props.href) as string, location.href).pathname
 
       // New URL created with the path from the browser (where I clicked)
       const activePathname = new URL(asPath, location.href).pathname
@@ -44,8 +41,8 @@ const CustomLink = ({
       // If one of the linkPathname is strictly EQUAL to activePathname
       const newClassName =
         linkPathname === activePathname
-          ? `${styles.link} ${styles.active}`
-          : `${styles.link}`
+          ? `${className} ${styles.link} ${activeClassName} ${styles.active}`
+          : `${className} ${styles.link}`
 
       if (newClassName !== computedClassName) {
         setComputedClassName(newClassName)
@@ -55,15 +52,15 @@ const CustomLink = ({
   }, [
     asPath,
     isReady,
-    // props.as,
-    // props.href,
-    // activeClassName,
+    props.as,
+    props.href,
+    activeClassName,
     className,
     computedClassName,
   ])
 
   return (
-    <Link href={link} className={computedClassName}>
+    <Link {...props} className={computedClassName}>
       {label}
     </Link>
   )

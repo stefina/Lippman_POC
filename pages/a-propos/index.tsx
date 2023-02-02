@@ -1,6 +1,5 @@
 import React from 'react'
 import Text from '../../components/text/Text'
-import CustomLink from '../../components/link/Link'
 import Heading from '../../components/heading/Heading'
 
 export default function AProposPage() {

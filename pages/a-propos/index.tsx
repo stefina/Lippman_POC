@@ -2,10 +2,11 @@ import React from 'react';
 import Text from '../../components/text/Text';
 import Heading from '../../components/heading/Heading';
 import { CustomLink } from '../../components/link/Link';
+import { ContentWrapper } from '../../components/ContentWrapper';
 
 export default function AProposPage() {
   return (
-    <>
+    <ContentWrapper>
       <Heading size="large">A Propos</Heading>
       <Heading size="medium">Catalogue raisonné</Heading>
       <Text>
@@ -50,6 +51,6 @@ export default function AProposPage() {
       <Text>
         <CustomLink href="https://www.elysee.ch">www.elysee.ch</CustomLink>
       </Text>
-    </>
+    </ContentWrapper>
   );
 }

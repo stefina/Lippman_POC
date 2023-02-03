@@ -1,0 +1,21 @@
+image: node:18-alpine
+
+default:
+  tags:
+    - docker
+
+stages: # List of stages for jobs, and their order of execution
+  - test
+
+test-job:
+  stage: test
+  script:
+    - echo "Linting code..."
+    - npm clean-install
+    - npx next telemetry disable
+    - npx next telemetry status
+    - npm run lint
+    - echo "No lint issues found."
+    - echo "Compiling the code..."
+    - npm run build
+    - echo "Compile complete."

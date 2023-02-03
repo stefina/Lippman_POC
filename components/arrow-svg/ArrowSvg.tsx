@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 interface ArrowSvg {
-  direction?: string
+  direction?: string;
 }
 
 export default function LeftArrowSvg(props: ArrowSvg) {
-  const { direction } = props
+  const { direction } = props;
 
   return direction ? (
     <svg
@@ -41,5 +41,5 @@ export default function LeftArrowSvg(props: ArrowSvg) {
         fill="#6B7280"
       />
     </svg>
-  )
+  );
 }

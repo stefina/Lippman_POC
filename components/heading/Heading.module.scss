@@ -1,16 +1,15 @@
-
 @import '../../styles//abstracts/variables';
 
 .headingLarge {
-    padding-bottom: $spacer-10-40px;
-    font-weight: 900;
+  padding-bottom: $spacer-10-40px;
+  font-weight: 900;
 }
 
 .headingMedium {
-    padding-top: $spacer-16-64px;
-    font-weight: 900;
+  padding-top: $spacer-16-64px;
+  font-weight: 900;
 }
 
 .headingLarge + .headingMedium {
-    padding-top: 0;
+  padding-top: 0;
 }

@@ -1,5 +1,5 @@
-import styles from '../styles/pages/Home.module.scss'
-import { CustomLink } from '../components/link/Link'
+import styles from '../styles/pages/Home.module.scss';
+import { CustomLink } from '../components/link/Link';
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
         <CustomLink href="/gabriel-lippmann">Gabriel Lippmann</CustomLink>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

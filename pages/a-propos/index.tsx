@@ -1,7 +1,7 @@
-import React from 'react'
-import Text from '../../components/text/Text'
-import Heading from '../../components/heading/Heading'
-import { CustomLink } from '../../components/link/Link'
+import React from 'react';
+import Text from '../../components/text/Text';
+import Heading from '../../components/heading/Heading';
+import { CustomLink } from '../../components/link/Link';
 
 export default function AProposPage() {
   return (
@@ -51,5 +51,5 @@ export default function AProposPage() {
         <CustomLink href="https://www.elysee.ch">www.elysee.ch</CustomLink>
       </Text>
     </>
-  )
+  );
 }

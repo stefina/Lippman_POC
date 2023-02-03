@@ -44,10 +44,6 @@ export default function index() {
         de l’apparition des couleurs « iridescentes » dont le réalisme était
         surprenant.
       </Text>
-<<<<<<< HEAD
     </ContentWrapper>
-=======
-    </>
->>>>>>> 29a3024 (Format files)
   );
 }

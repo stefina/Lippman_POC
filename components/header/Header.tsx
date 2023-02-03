@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, RefObject, useLayoutEffect } from 'react'
-import CustomLink from '../link/Link'
 import styles from './Header.module.scss'
 import ArrowSvg from '../arrow-svg/ArrowSvg'
 
 import useIntersectionObserver from '@react-hook/intersection-observer'
 import useResizeObserver from '@react-hook/resize-observer'
+import { ActiveLink } from '../ActiveLink'
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
   const [isCutOff, setIsCutOff] = useState({ isCutOff: false, width: 0 })
@@ -49,7 +49,6 @@ export default function Header() {
   return (
     <>
       <div className={styles.headerContainer}>
-        {/* LOGO & SEARCH */}
         <div className={styles.logoAndSearchBarContainer}>
           <div className={styles.logo}>
             <img src="./icons/logo.svg" width="" alt="" />
@@ -58,15 +57,14 @@ export default function Header() {
           <div className={styles.searchBarContainer}>
             <div className={styles.searchBar}>
               <label htmlFor="search-bar" className={styles.label}>
-                SEARCH:
+                Search
               </label>
-              <input type="search" id="search-bar" name="search-bar" />
+              <input className={styles.input} type="search" id="search-bar" name="search-bar" />
             </div>
           </div>
         </div>
-        {/* NAV */}
         <div className={styles.navContainer}>
-          <span className={styles.viz}>VIZ: </span>
+          <span className={styles.viz}>Viz: </span>
 
           {navIsCutOff && (<button
             aria-hidden
@@ -80,37 +78,38 @@ export default function Header() {
             <ArrowSvg direction="left" />
           </button>)}
 
-          <nav>
+          <nav className={styles.nav}>
             <ul
+              className={styles.ul}
               ref={refNav}
               style={{ scrollSnapType: "inline", overflowX: 'auto' }}
             >
-              <li ref={setRefFirstLink} style={{
+              <li className={styles.li} ref={setRefFirstLink} style={{
                 scrollSnapAlign: "start",
                 scrollSnapStop: "normal"
               }}>
-                <CustomLink
-                  label="Creation Timeline"
-                  link="/creation-timeline"
-                />
+                <ActiveLink activeClassName={styles.active} href="/creation-timeline">
+                  Creation Timeline
+                </ActiveLink>
               </li>
-              <li ref={setRefSecondLink} style={{
+              <li className={styles.li}ref={setRefSecondLink} style={{
                 scrollSnapAlign: "start",
                 scrollSnapStop: "normal"
               }}>
-                <CustomLink
-                  label="Visual Content Map"
-                  link="/visual-content-map"
-                />
+                <ActiveLink activeClassName={styles.active} href="/visual-content-map">
+                  Visual Content Map
+                </ActiveLink>
               </li>
-              <li ref={setRefThirdLink} style={{
+              <li className={styles.li} ref={setRefThirdLink} style={{
                 scrollSnapAlign: "start",
                 scrollSnapStop: "normal"
               }}>
-                <CustomLink
-                  label="Artwork Location Map"
-                  link="/artwork-location-map"
-                />
+                <ActiveLink
+                  activeClassName={styles.active}
+                  href="/artwork-location-map"
+                >
+                  Artwork Location Map
+                </ActiveLink>
               </li>
             </ul>
           </nav>

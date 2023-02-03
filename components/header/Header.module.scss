@@ -22,6 +22,7 @@
 .searchBarContainer {
     display: flex;
     align-items: flex-end;
+}
 
     .searchBar {
         padding: $spacer-1-4px;
@@ -31,6 +32,7 @@
             display: flex;
             gap: $spacer-1-4px;
         }
+    }
 
         .label {
             display: none;
@@ -43,15 +45,15 @@
             }
         }
 
-        input {
+        .input {
             padding: $spacer-1-4px;
             height: $spacer-5-20px;
             border: 1px solid $secondary-100;
             background-color: $secondary-100;
         }
-    }
+    
 
-}
+
 
 .navContainer {
     display: flex;
@@ -59,6 +61,7 @@
     max-width: 100%;
     width: max-content;
     flex-grow: 0;
+}
     
     .viz,
     .arrow {
@@ -76,14 +79,15 @@
         }
     }
 
-    nav {
+    .nav {
         display: flex;
         padding: $spacer-3px $spacer-1-4px;
-        overflow: scroll;
+        overflow-x: auto;
         background-color: $white;
         scroll-behavior: smooth;
+    }
 
-        ul {
+        .ul {
             position: relative;
             scroll-behavior: smooth;
             margin: 0;
@@ -92,14 +96,16 @@
             display: flex;
             gap: $spacer-1-4px;
             white-space: nowrap;
+            list-style-type: none;
+        }
 
-            li {
+            .li {
                 padding: $spacer-3px $spacer-1-4px;
                 background-color: $secondary-100;
                 color: $secondary-800;
                 font-weight: 700;
                 text-transform: uppercase;
-                list-style-type: none;
+                
                 transition: background-color 300ms ease-in-out;
 
                 @include md {
@@ -112,12 +118,14 @@
 
                 a {
                     border: none;
+                    text-decoration: none;
 
                     &:hover {
                         border: none;
                     }
                 }
             }
-        }
-    }
+
+.active {
+    background-color: violet;
 }

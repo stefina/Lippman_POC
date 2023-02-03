@@ -11,9 +11,24 @@ import ArrowSvg from '../arrow-svg/ArrowSvg';
 import useIntersectionObserver from '@react-hook/intersection-observer';
 import useResizeObserver from '@react-hook/resize-observer';
 import { ActiveLink } from '../ActiveLink';
+import { Logo } from '../Logo/Logo';
+import { Box } from '../Box';
+import {
+  headerLabelStyle,
+  headerLogoWrapperStyle,
+  headerNavArrowButton,
+  headerNavContainer,
+  headerSearchIconWrapperStyle,
+  headerSearchInputStyle,
+} from './Header.css';
+import { Stack } from '../Stack';
+import { IconSearch } from '../Icons/IconSearch';
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
-  const [isCutOff, setIsCutOff] = useState({ isCutOff: false, width: 0 });
+  const [isCutOff, setIsCutOff] = useState({
+    isCutOff: false,
+    width: 0,
+  });
 
   useLayoutEffect(() => {
     if (target.current) {
@@ -75,101 +90,172 @@ export default function Header() {
     refThirdLink,
     navWidth,
   ]);
+  const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState(false);
+  const [isFullyScrolledRight, setIsFullyScrolledRight] = useState(false);
 
   return (
-    <>
-      <div className={styles.headerContainer}>
-        <div className={styles.logoAndSearchBarContainer}>
-          <div className={styles.logo}>
-            <img src="./icons/logo.svg" width="" alt="" />
-          </div>
-
-          <div className={styles.searchBarContainer}>
-            <div className={styles.searchBar}>
-              <label htmlFor="search-bar" className={styles.label}>
-                Search
-              </label>
-              <input
-                className={styles.input}
-                type="search"
-                id="search-bar"
-                name="search-bar"
-              />
-            </div>
-          </div>
-        </div>
-        <div className={styles.navContainer}>
-          <span className={styles.viz}>Viz: </span>
-
+    <Stack gap={1}>
+      <Stack
+        flexDirection="row"
+        justifyContent="flex-start"
+        alignItems="flex-end"
+        gap={1}
+      >
+        <Box
+          backgroundColor="white"
+          color="black"
+          flexShrink="0"
+          className={headerLogoWrapperStyle}
+        >
+          <Logo />
+        </Box>
+        <Stack
+          as="form"
+          backgroundColor="white"
+          boxShadow="default"
+          padding={1}
+          gap={2}
+          flexDirection="row"
+          alignItems="center"
+        >
+          <Box
+            as="label"
+            display={['none', 'block']}
+            htmlFor="search-bar"
+            className={headerLabelStyle}
+          >
+            Search
+          </Box>
+          <Stack
+            flexDirection="row"
+            alignItems="center"
+            backgroundColor="black"
+            color="white"
+          >
+            <input
+              className={headerSearchInputStyle}
+              type="search"
+              id="search-bar"
+              name="search-bar"
+            />
+            <Box
+              flexShrink="0"
+              padding={1}
+              className={headerSearchIconWrapperStyle}
+            >
+              <IconSearch />
+            </Box>
+          </Stack>
+        </Stack>
+      </Stack>
+      <Stack
+        flexDirection="row"
+        maxWidth="full"
+        boxShadow="default"
+        backgroundColor="white"
+        overflow="hidden"
+        className={headerNavContainer}
+      >
+        <Stack
+          boxShadow={isFullyScrolledLeft ? 'default' : undefined}
+          flexDirection="row"
+          alignItems="center"
+          position="relative"
+          zIndex="generic1"
+          transition="medium"
+        >
+          <span className={headerLabelStyle}>Viz: </span>
           {navIsCutOff && (
-            <button
+            <Box
+              as="button"
               aria-hidden
+              height="full"
               onClick={() => {
                 if (currentScrollLeft && refNav?.current) {
                   refNav.current.scrollBy(-1 * currentScrollLeft, 0);
                 }
               }}
-              className={styles.arrow}
+              className={headerNavArrowButton}
             >
               <ArrowSvg direction="left" />
-            </button>
+            </Box>
           )}
-
-          <nav className={styles.nav}>
-            <ul
-              className={styles.ul}
-              ref={refNav}
-              style={{ scrollSnapType: 'inline', overflowX: 'auto' }}
+        </Stack>
+        <Box as="nav" className={styles.nav}>
+          <Box
+            as="ul"
+            className={styles.ul}
+            onScroll={(e) => {
+              if (e.currentTarget.scrollLeft) {
+                setIsFullyScrolledLeft(true);
+              } else {
+                setIsFullyScrolledLeft(false);
+              }
+              if (
+                Math.ceil(e.currentTarget.scrollLeft) + navWidth >=
+                e.currentTarget.scrollWidth
+              ) {
+                setIsFullyScrolledRight(true);
+              } else {
+                setIsFullyScrolledRight(false);
+              }
+            }}
+            ref={refNav}
+            style={{ scrollSnapType: 'inline', overflowX: 'auto' }}
+          >
+            <li
+              ref={setRefFirstLink}
+              style={{
+                scrollSnapAlign: 'start',
+                scrollSnapStop: 'normal',
+              }}
             >
-              <li
+              <ActiveLink
                 className={styles.li}
-                ref={setRefFirstLink}
-                style={{
-                  scrollSnapAlign: 'start',
-                  scrollSnapStop: 'normal',
-                }}
+                activeClassName={styles.active}
+                href="/creation-timeline"
               >
-                <ActiveLink
-                  activeClassName={styles.active}
-                  href="/creation-timeline"
-                >
-                  Creation Timeline
-                </ActiveLink>
-              </li>
-              <li
+                Creation Timeline
+              </ActiveLink>
+            </li>
+            <li
+              ref={setRefSecondLink}
+              style={{
+                scrollSnapAlign: 'start',
+                scrollSnapStop: 'normal',
+              }}
+            >
+              <ActiveLink
                 className={styles.li}
-                ref={setRefSecondLink}
-                style={{
-                  scrollSnapAlign: 'start',
-                  scrollSnapStop: 'normal',
-                }}
+                activeClassName={styles.active}
+                href="/visual-content-map"
               >
-                <ActiveLink
-                  activeClassName={styles.active}
-                  href="/visual-content-map"
-                >
-                  Visual Content Map
-                </ActiveLink>
-              </li>
-              <li
+                Visual Content Map
+              </ActiveLink>
+            </li>
+            <li
+              ref={setRefThirdLink}
+              style={{
+                scrollSnapAlign: 'start',
+                scrollSnapStop: 'normal',
+              }}
+            >
+              <ActiveLink
                 className={styles.li}
-                ref={setRefThirdLink}
-                style={{
-                  scrollSnapAlign: 'start',
-                  scrollSnapStop: 'normal',
-                }}
+                activeClassName={styles.active}
+                href="/artwork-location-map"
               >
-                <ActiveLink
-                  activeClassName={styles.active}
-                  href="/artwork-location-map"
-                >
-                  Artwork Location Map
-                </ActiveLink>
-              </li>
-            </ul>
-          </nav>
-
-          {navIsCutOff && (
+                Artwork Location Map
+              </ActiveLink>
+            </li>
+          </Box>
+        </Box>
+        {navIsCutOff && (
+          <Box
+            boxShadow={!isFullyScrolledRight ? 'default' : undefined}
+            position="relative"
+            zIndex="generic1"
+          >
             <button
               aria-hidden
               onClick={() => {
@@ -177,13 +263,13 @@ export default function Header() {
                   refNav.current.scrollBy(currentScrollRight, 0);
                 }
               }}
-              className={styles.arrow}
+              className={headerNavArrowButton}
             >
               <ArrowSvg />
             </button>
-          )}
-        </div>
-      </div>
-    </>
+          </Box>
+        )}
+      </Stack>
+    </Stack>
   );
 }

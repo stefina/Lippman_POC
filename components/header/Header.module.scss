@@ -1,65 +1,14 @@
 @import '../../styles/abstracts/_variables';
 @import '../../styles/abstracts/_mixins';
 
-.headerContainer {
-  display: flex;
-  flex-direction: column;
-  gap: $spacer-1-4px;
-}
-
-.logoAndSearchBarContainer {
-  display: flex;
-  justify-content: flex-start;
-  gap: $spacer-1-4px;
-  padding-right: $spacer-14-56px;
-}
-
-.logo {
-  display: flex;
-}
-
-.searchBarContainer {
-  display: flex;
-  align-items: flex-end;
-}
-
-.searchBar {
-  padding: $spacer-1-4px;
-  background-color: $white;
-
-  @include md {
-    display: flex;
-    gap: $spacer-1-4px;
-  }
-}
-
-.label {
-  display: none;
-  width: 100%;
-  color: $secondary-500;
-  font-weight: 900;
-
-  @include md {
-    display: block;
-  }
-}
-
-.input {
-  padding: $spacer-1-4px;
-  height: $spacer-5-20px;
-  border: 1px solid $secondary-100;
-  background-color: $secondary-100;
-}
-
 .navContainer {
   display: flex;
   background: $white;
   max-width: 100%;
   width: max-content;
-  flex-grow: 0;
+  box-shadow: $box-shadow-default;
 }
 
-.viz,
 .arrow {
   display: flex;
   justify-content: center;
@@ -67,17 +16,12 @@
   padding: $spacer-6px $spacer-2-8px;
   color: $secondary-500;
   font-weight: 900;
-}
-
-@include md {
-  .arrow {
-    display: none;
-  }
+  text-transform: uppercase;
 }
 
 .nav {
   display: flex;
-  padding: $spacer-3px $spacer-1-4px;
+  // padding: $spacer-3px $spacer-1-4px;
   overflow-x: auto;
   background-color: $white;
   scroll-behavior: smooth;
@@ -87,7 +31,7 @@
   position: relative;
   scroll-behavior: smooth;
   margin: 0;
-  padding: 0;
+  padding: $spacer-1-4px;
   // The full width come from display flex
   display: flex;
   gap: $spacer-1-4px;
@@ -101,6 +45,7 @@
   color: $secondary-800;
   font-weight: 700;
   text-transform: uppercase;
+  display: block;
 
   transition: background-color 300ms ease-in-out;
 
@@ -112,13 +57,11 @@
     }
   }
 
-  a {
-    border: none;
-    text-decoration: none;
+  border: none;
+  text-decoration: none;
 
-    &:hover {
-      border: none;
-    }
+  &:hover {
+    border: none;
   }
 }
 

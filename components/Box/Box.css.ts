@@ -1,10 +1,6 @@
-import {
-  createMapValueFn,
-  createSprinkles,
-  defineProperties,
-} from '@vanilla-extract/sprinkles';
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { vars } from '../../styles/theme.css';
-import { color } from '../../styles/tokens/color';
+import { brandColor, neutralColor } from '../../styles/tokens/color';
 
 const defaultSizes = {
   full: '100%',
@@ -22,7 +18,6 @@ const boxPropertiesResponsive = defineProperties({
   },
   defaultCondition: 'default',
   responsiveArray: ['default', 'md'],
-
   properties: {
     // Keyword values
     position: ['static', 'absolute', 'fixed', 'relative', 'sticky'],
@@ -62,15 +57,30 @@ const boxPropertiesResponsive = defineProperties({
     },
 
     // Themed values
-    boxShadow: {
-      default:
-        '0px 47px 98px rgba(0, 0, 0, 0.0671069), 0px 23.5229px 49.0479px rgba(0, 0, 0, 0.0975551), 0px 14.1691px 29.5441px rgba(0, 0, 0, 0.120149), 0px 9.08032px 18.9334px rgba(0, 0, 0, 0.14), 0px 5.88513px 12.2711px rgba(0, 0, 0, 0.159851), 0px 3.70462px 7.72453px rgba(0, 0, 0, 0.182445), 0px 2.12854px 4.43822px rgba(0, 0, 0, 0.212893), 0px 0.936824px 1.95338px rgba(0, 0, 0, 0.28)',
-    },
+    boxShadow: vars.shadows,
+    height: defaultSizes,
+    width: defaultSizes,
     maxWidth: {
       staticContent: '37rem',
       ...defaultSizes,
     },
-    backgroundColor: vars.color,
+    backgroundColor: {
+      white: vars.color.white,
+      black: vars.color.black,
+      transparent: vars.color.transparent,
+      ...neutralColor,
+      ...brandColor,
+    },
+    color: {
+      white: vars.color.white,
+      black: vars.color.black,
+      transparent: vars.color.transparent,
+      ...neutralColor,
+      ...brandColor,
+    },
+    transition: {
+      medium: 'all 200ms ease',
+    },
     paddingTop: vars.space,
     paddingRight: vars.space,
     paddingBottom: vars.space,

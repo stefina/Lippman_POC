@@ -1,11 +1,9 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { vars } from '../../styles/theme.css';
-import { space } from '../../styles/tokens/space';
-import { boxSprinkles } from '../Box/Box.css';
 
 export const headerLogoWrapperStyle = style([
   {
-    height: vars.space[12],
+    height: vars.space[14],
     position: 'relative',
     ':before': {
       content: '',

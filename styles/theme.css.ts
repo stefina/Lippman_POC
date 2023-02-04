@@ -1,7 +1,20 @@
+import { precomputeValues } from '@capsizecss/vanilla-extract';
 import { createTheme } from '@vanilla-extract/css';
+import { getResponsiveFontStyles } from '../utils/getResponsiveFontStyles';
+import { fromFile } from '@capsizecss/unpack';
 
 import { color } from './tokens/color';
 import { space } from './tokens/space';
+
+// fromFile('../pages/fonts/PhotoElysee-Regular.woff2')
+// returns a promise
+const photoElyseeMetrics = {
+  ascent: 835, // file says 965,
+  capHeight: 705, // file says 730,
+  descent: -210, // file says -235,
+  lineGap: 0,
+  unitsPerEm: 1000,
+};
 
 export const [themeClass, vars] = createTheme({
   color,
@@ -15,5 +28,28 @@ export const [themeClass, vars] = createTheme({
     insetRight: `
       inset -5em 1em gold;
     `,
+  },
+  typography: {
+    'heading-large': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 30,
+        leading: 30,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'heading-medium': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 18,
+        leading: 22,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'copy-default': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 12,
+        leading: 22,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
   },
 });

@@ -1,6 +1,11 @@
 import React from 'react';
-import styles from './Text.module.scss';
+import { composeClassNames } from '../../utils/composeClassNames';
+import { textFontStyle, textStyle } from './Text.css';
 
 export default function Text(props: any) {
-  return <p className={styles.text}>{props.children}</p>;
+  return (
+    <p className={composeClassNames(textStyle, textFontStyle)}>
+      {props.children}
+    </p>
+  );
 }

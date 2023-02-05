@@ -4,12 +4,12 @@ import { vars } from '../../styles/theme.css';
 
 export const headingLargeStyle = style({
   paddingBottom: vars.space[10],
-  fontWeight: 900,
+  fontWeight: 700,
 });
 
 export const headingMediumStyle = style({
   paddingTop: vars.space[16],
-  fontWeight: 900,
+  fontWeight: 700,
 });
 
 globalStyle(`.${headingLargeStyle} + .${headingMediumStyle}`, {

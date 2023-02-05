@@ -1,7 +1,6 @@
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 import { createTheme } from '@vanilla-extract/css';
 import { getResponsiveFontStyles } from '../utils/getResponsiveFontStyles';
-import { fromFile } from '@capsizecss/unpack';
 
 import { color } from './tokens/color';
 import { space } from './tokens/space';

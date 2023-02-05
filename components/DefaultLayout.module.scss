@@ -5,6 +5,7 @@
   padding: $spacer-3-12px;
   height: auto;
   position: relative;
+  min-height: 100dvh;
 }
 
 .pageWrapper::before {

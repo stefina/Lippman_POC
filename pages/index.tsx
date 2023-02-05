@@ -1,9 +1,8 @@
-import styles from '../styles/pages/Home.module.scss';
 import { CustomLink } from '../components/link/Link';
 
 function Home() {
   return (
-    <div className={styles.Pagecontainer}>
+    <div>
       <div>
         <CustomLink href="/a-propos">A propos</CustomLink>
       </div>

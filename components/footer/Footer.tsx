@@ -7,12 +7,20 @@ export default function Footer() {
     <nav className={styles.nav}>
       <ul>
         <li className={styles.navItem}>
-          <ActiveLink href="/a-propos" activeClassName={styles.active}>
+          <ActiveLink
+            href="/a-propos"
+            className={styles.navLink}
+            activeClassName={styles.active}
+          >
             Á propos
           </ActiveLink>
         </li>
         <li className={styles.navItem}>
-          <ActiveLink href="/gabriel-lippmann" activeClassName={styles.active}>
+          <ActiveLink
+            href="/gabriel-lippmann"
+            className={styles.navLink}
+            activeClassName={styles.active}
+          >
             Gabriel Lippmann
           </ActiveLink>
         </li>

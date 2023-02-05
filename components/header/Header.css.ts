@@ -31,10 +31,26 @@ export const headerSearchInputStyle = style({
 export const headerSearchIconWrapperStyle = style({
   width: vars.space[6],
   height: vars.space[6],
+  background: 'none',
+  border: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  color: vars.color.neutral[700],
+  transition: 'color 200ms ease',
+
+  '@media': {
+    '(hover: hover)': {
+      ':hover': {
+        color: vars.color.black,
+      },
+    },
+  },
 });
 
 export const headerLabelStyle = style({
-  padding: `0 ${vars.space[2]}`,
+  paddingLeft: vars.space[2],
   color: vars.color.neutral[500],
   fontWeight: 900,
   textTransform: 'uppercase',
@@ -58,7 +74,59 @@ export const headerNavArrowButton = style({
   zIndex: '2',
   padding: 0,
 
-  ':hover': {
-    color: vars.color.neutral[900],
+  '@media': {
+    '(hover: hover)': {
+      ':hover': {
+        color: vars.color.neutral[900],
+      },
+    },
   },
+});
+
+export const headerNavList = style({
+  scrollSnapType: 'inline',
+  overflowX: 'auto',
+  whiteSpace: 'nowrap',
+  listStyleType: 'none',
+});
+
+export const headerNavItem = style({
+  scrollSnapAlign: 'start',
+  scrollSnapStop: 'normal',
+});
+
+export const headerNavLink = style({
+  color: vars.color.neutral[800],
+  fontWeight: 700,
+  textTransform: 'uppercase',
+  textDecoration: 'none',
+  backgroundColor: vars.color.neutral[100],
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: vars.space[6],
+  paddingLeft: vars.space[2],
+  paddingRight: vars.space[2],
+  transition: 'background-color 300ms ease-in-out',
+
+  selectors: {
+    [`${headerNavItem}:first-child &`]: {
+      marginLeft: vars.space[1],
+    },
+    [`${headerNavItem}:last-child &`]: {
+      marginRight: vars.space[1],
+    },
+  },
+
+  '@media': {
+    '(hover: hover)': {
+      ':hover': {
+        backgroundColor: vars.color.neutral[200],
+      },
+    },
+  },
+});
+
+export const headerNavLinkActive = style({
+  backgroundColor: vars.color.neutral[200],
 });

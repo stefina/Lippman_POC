@@ -9,7 +9,13 @@ const defaultSizes = {
   auto: 'auto',
 };
 
-export const globals = ['inherit', 'initial', 'revert', 'unset'];
+export const globals = [
+  'inherit',
+  'initial',
+  'revert',
+  'revert-layer',
+  'unset',
+];
 
 const boxPropertiesResponsive = defineProperties({
   conditions: {
@@ -47,6 +53,7 @@ const boxPropertiesResponsive = defineProperties({
     overflowY: ['visible', 'hidden', 'scroll', 'clip', 'auto'],
     cursor: [...globals, 'auto', 'default', 'pointer'],
     pointerEvents: ['none', 'auto'],
+    scrollBehavior: ['smooth', 'auto'],
     zIndex: {
       auto: 'auto',
       negative: -1,

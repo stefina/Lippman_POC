@@ -18,11 +18,17 @@ import {
   headerLogoWrapperStyle,
   headerNavArrowButton,
   headerNavContainer,
+  headerNavItem,
+  headerNavLink,
+  headerNavLinkActive,
+  headerNavList,
   headerSearchIconWrapperStyle,
   headerSearchInputStyle,
 } from './Header.css';
 import { Stack } from '../Stack';
 import { IconSearch } from '../Icons/IconSearch';
+import Link from 'next/link';
+import { composeClassNames } from '../../utils/composeClassNames';
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
   const [isCutOff, setIsCutOff] = useState({
@@ -101,14 +107,16 @@ export default function Header() {
         alignItems="flex-end"
         gap={1}
       >
-        <Box
-          backgroundColor="white"
-          color="black"
-          flexShrink="0"
-          className={headerLogoWrapperStyle}
-        >
-          <Logo />
-        </Box>
+        <Link href="/">
+          <Box
+            backgroundColor="white"
+            color="black"
+            flexShrink="0"
+            className={headerLogoWrapperStyle}
+          >
+            <Logo />
+          </Box>
+        </Link>
         <Stack
           as="form"
           backgroundColor="white"
@@ -124,13 +132,13 @@ export default function Header() {
             htmlFor="search-bar"
             className={headerLabelStyle}
           >
-            Search
+            Search:
           </Box>
           <Stack
             flexDirection="row"
             alignItems="center"
-            backgroundColor="black"
-            color="white"
+            backgroundColor="neutral-100"
+            color="neutral-900"
           >
             <input
               className={headerSearchInputStyle}
@@ -139,6 +147,7 @@ export default function Header() {
               name="search-bar"
             />
             <Box
+              as="button"
               flexShrink="0"
               padding={1}
               className={headerSearchIconWrapperStyle}
@@ -164,7 +173,13 @@ export default function Header() {
           zIndex="generic1"
           transition="medium"
         >
-          <span className={headerLabelStyle}>Viz: </span>
+          <Box
+            as="span"
+            paddingRight={navIsCutOff ? 0 : 1}
+            className={headerLabelStyle}
+          >
+            Viz:
+          </Box>
           {navIsCutOff && (
             <Box
               as="button"
@@ -181,10 +196,21 @@ export default function Header() {
             </Box>
           )}
         </Stack>
-        <Box as="nav" className={styles.nav}>
-          <Box
+        <Stack
+          as="nav"
+          flexDirection="row"
+          overflowX="auto"
+          backgroundColor="white"
+        >
+          <Stack
+            ref={refNav}
             as="ul"
-            className={styles.ul}
+            flexDirection="row"
+            gap={1}
+            scrollBehavior="smooth"
+            paddingY={1}
+            paddingX={0}
+            className={headerNavList}
             onScroll={(e) => {
               if (e.currentTarget.scrollLeft) {
                 setIsFullyScrolledLeft(true);
@@ -200,56 +226,36 @@ export default function Header() {
                 setIsFullyScrolledRight(false);
               }
             }}
-            ref={refNav}
-            style={{ scrollSnapType: 'inline', overflowX: 'auto' }}
           >
-            <li
-              ref={setRefFirstLink}
-              style={{
-                scrollSnapAlign: 'start',
-                scrollSnapStop: 'normal',
-              }}
-            >
+            <Box as="li" ref={setRefFirstLink} className={headerNavItem}>
               <ActiveLink
-                className={styles.li}
-                activeClassName={styles.active}
+                className={headerNavLink}
+                activeClassName={headerNavLinkActive}
                 href="/creation-timeline"
               >
                 Creation Timeline
               </ActiveLink>
-            </li>
-            <li
-              ref={setRefSecondLink}
-              style={{
-                scrollSnapAlign: 'start',
-                scrollSnapStop: 'normal',
-              }}
-            >
+            </Box>
+            <Box as="li" ref={setRefSecondLink} className={headerNavItem}>
               <ActiveLink
-                className={styles.li}
-                activeClassName={styles.active}
+                className={headerNavLink}
+                activeClassName={headerNavLinkActive}
                 href="/visual-content-map"
               >
                 Visual Content Map
               </ActiveLink>
-            </li>
-            <li
-              ref={setRefThirdLink}
-              style={{
-                scrollSnapAlign: 'start',
-                scrollSnapStop: 'normal',
-              }}
-            >
+            </Box>
+            <Box as="li" ref={setRefThirdLink} className={headerNavItem}>
               <ActiveLink
-                className={styles.li}
-                activeClassName={styles.active}
+                className={headerNavLink}
+                activeClassName={headerNavLinkActive}
                 href="/artwork-location-map"
               >
                 Artwork Location Map
               </ActiveLink>
-            </li>
-          </Box>
-        </Box>
+            </Box>
+          </Stack>
+        </Stack>
         {navIsCutOff && (
           <Box
             boxShadow={!isFullyScrolledRight ? 'default' : undefined}

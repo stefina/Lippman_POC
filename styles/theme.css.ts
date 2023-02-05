@@ -43,6 +43,13 @@ export const [themeClass, vars] = createTheme({
         fontMetrics: photoElyseeMetrics,
       })
     ),
+    'heading-small': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 12,
+        leading: 22,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
     'copy-default': getResponsiveFontStyles(
       precomputeValues({
         capHeight: 12,

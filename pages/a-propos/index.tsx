@@ -1,15 +1,19 @@
 import React from 'react';
-import Text from '../../components/text/Text';
-import Heading from '../../components/heading/Heading';
+import { Text } from '../../components/Text';
+import { Heading } from '../../components/Heading';
 import { CustomLink } from '../../components/link/Link';
 import { ContentWrapper } from '../../components/ContentWrapper';
 
 export default function AProposPage() {
   return (
     <ContentWrapper>
-      <Heading size="large">A Propos</Heading>
-      <Heading size="medium">Catalogue raisonné</Heading>
-      <Text>
+      <Heading as="h1" size="large">
+        A Propos
+      </Heading>
+      <Heading as="h2" size="medium">
+        Catalogue raisonné
+      </Heading>
+      <Text marginTop={4}>
         D’ici à 2025, Photo Elysée publiera en ligne le catalogue raisonné des
         plaques Lippmann, c’est-à-dire l’inventaire de toutes les photographies
         interférentielles aujourd’hui conservées. Une première étape de la
@@ -20,7 +24,7 @@ export default function AProposPage() {
         de rassembler des indications sur la matérialité et l’état de
         conservation de chaque objet.
       </Text>
-      <Text>
+      <Text marginTop={4}>
         Cette étude a pour ambition d’affiner la connaissance de la collection
         de Photo Elysée, en précisant quelle a été la place de Gabriel Lippmann
         tant dans l’histoire des sciences – déjà bien connue – que dans celle de
@@ -35,8 +39,10 @@ export default function AProposPage() {
         qu’à ses modes de présentation et de circulation (projection,
         exposition).
       </Text>
-      <Heading size="medium">Photo Elysée</Heading>
-      <Text>
+      <Heading as="h2" size="medium">
+        Photo Elysée
+      </Heading>
+      <Text marginTop={4}>
         Enfin, un travail dans les archives permet d’enrichir la connaissance.
         Ainsi, en rapprochant la correspondance envoyée par Gabriel Lippmann à
         sa mère en octobre 1902, on peut dater les photographies représentant
@@ -48,7 +54,7 @@ export default function AProposPage() {
         C’est la raison pour laquelle les deux noms sont généralement mentionnés
         ensemble comme auteurs.
       </Text>
-      <Text>
+      <Text marginTop={4}>
         <CustomLink href="https://www.elysee.ch">www.elysee.ch</CustomLink>
       </Text>
     </ContentWrapper>

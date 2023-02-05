@@ -1,14 +1,18 @@
 import React from 'react';
-import Text from '../../components/text/Text';
-import Heading from '../../components/heading/Heading';
+import { Text } from '../../components/Text';
+import { Heading } from '../../components/Heading';
 import { ContentWrapper } from '../../components/ContentWrapper';
 
 export default function index() {
   return (
     <ContentWrapper>
-      <Heading size="large">Gabriel Lippmann</Heading>
-      <Heading size="medium">Biographie</Heading>
-      <Text>
+      <Heading as="h1" size="large">
+        Gabriel Lippmann
+      </Heading>
+      <Heading as="h2" size="medium">
+        Biographie
+      </Heading>
+      <Text marginTop={4}>
         Né au Luxembourg en 1845, Gabriel Lippmann a vécu et réalisé toute sa
         carrière à Paris. À la suite d’une thèse de physique soutenue en 1875 à
         la Sorbonne, il y enseigne et dirige le laboratoire des recherches
@@ -18,7 +22,7 @@ export default function index() {
         personnalités, en particulier les frères Lumière. En 1908, Lippmann
         reçoit le prix Nobel de physique pour cette découverte.
       </Text>
-      <Text>
+      <Text marginTop={4}>
         Toute sa vie, le physicien s’intéresse à la façon de reproduire la
         réalité de la manière la plus fidèle possible à la perception humaine.
         Le procédé interférentiel est en effet le seul qui permette de fixer
@@ -29,7 +33,7 @@ export default function index() {
         temps – pour créer des photographies « intégrales » qui permettent de
         reproduire, en plus des couleurs, le relief.
       </Text>
-      <Text>
+      <Text marginTop={4}>
         En 1888, il épouse Laurence Cherbuliez, fille de l’académicien Victor
         Cherbuliez. Elle occupe une place prépondérante – encore à étudier –
         dans la production des plaques interférentielles. Très investi dans le

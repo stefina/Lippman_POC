@@ -26,6 +26,7 @@ globalStyle('html:focus-within', {
 
 globalStyle('img', {
   maxWidth: '100%',
+  height: 'auto',
   display: 'block',
 });
 

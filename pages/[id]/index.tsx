@@ -46,6 +46,7 @@ export default function ArtworkDetailPage() {
   const mockContent = Array.from({ length: 10 }, (_, i) => ({
     ...artwork,
     id: `${artwork.id}${i}`,
+    title: `${artwork.title} ${i + 1}`,
   })).filter((artwork) => artwork.id !== query.id);
 
   return (
@@ -56,14 +57,7 @@ export default function ArtworkDetailPage() {
           | Gabriel Lippmann | Catalogue Raisonnée
         </title>
       </Head>
-      <Grid
-        backgroundColor="white"
-        boxShadow="default"
-        padding={4}
-        marginTop={4}
-        marginBottom={6}
-        hasOverlay
-      >
+      <Grid marginTop={4} marginBottom={6} hasOverlay>
         {mockContent.map((artwork) => (
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}

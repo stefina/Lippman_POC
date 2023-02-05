@@ -14,6 +14,8 @@ test-job:
     - npm clean-install
     - npx next telemetry disable
     - npx next telemetry status
+    - npm run format:check
+    - echo "No formatting issues found."
     - npm run lint
     - echo "No lint issues found."
     - echo "Compiling the code..."

@@ -2,23 +2,40 @@
   "name": "lippmann-poc",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": "16"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check \"**/*.(ts|tsx)\""
   },
   "dependencies": {
+    "@capsizecss/unpack": "^1.0.0",
+    "@capsizecss/vanilla-extract": "^1.0.0",
     "@next/font": "13.1.4",
+    "@react-hook/intersection-observer": "^3.1.1",
+    "@react-hook/resize-observer": "^1.2.6",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.1.4",
+    "@vanilla-extract/css": "^1.9.3",
+    "@vanilla-extract/sprinkles": "^1.5.1",
     "next": "13.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "sass": "^1.57.1",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@vanilla-extract/next-plugin": "^2.1.1",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.1.4",
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "2.8.3"
   }
 }

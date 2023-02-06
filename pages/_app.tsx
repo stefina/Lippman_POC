@@ -1,7 +1,9 @@
-import '../styles/main.scss'
-import type { AppProps } from 'next/app'
-import DefaultLayout from '../components/DefaultLayout'
-import localFont from '@next/font/local'
+import '../styles/main.scss';
+import type { AppProps } from 'next/app';
+import DefaultLayout from '../components/DefaultLayout';
+import localFont from '@next/font/local';
+import { themeClass } from '../styles/theme.css';
+import '../styles/global.css';
 
 const photoElyseeFont = localFont({
   src: [
@@ -66,12 +68,14 @@ const photoElyseeFont = localFont({
       style: 'normal',
     },
   ],
-})
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <DefaultLayout className={photoElyseeFont.className}>
+    <DefaultLayout
+      className={[photoElyseeFont.className, themeClass].join(' ')}
+    >
       <Component {...pageProps} />
     </DefaultLayout>
-  )
+  );
 }

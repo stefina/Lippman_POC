@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from './Footer.module.scss'
-import { ActiveLink } from '../ActiveLink'
+import React from 'react';
+import styles from './Footer.module.scss';
+import { ActiveLink } from '../ActiveLink';
 
 export default function Footer() {
   return (
@@ -9,6 +9,7 @@ export default function Footer() {
         <li className={styles.navItem}>
           <ActiveLink
             href="/a-propos"
+            className={styles.navLink}
             activeClassName={styles.active}
           >
             Á propos
@@ -17,6 +18,7 @@ export default function Footer() {
         <li className={styles.navItem}>
           <ActiveLink
             href="/gabriel-lippmann"
+            className={styles.navLink}
             activeClassName={styles.active}
           >
             Gabriel Lippmann
@@ -24,5 +26,5 @@ export default function Footer() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }

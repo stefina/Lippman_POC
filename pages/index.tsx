@@ -1,9 +1,7 @@
 import Head from 'next/head';
-
 import { Artwork, ArtworkCard } from '../components/ArtworkCard';
 import { Box } from '../components/Box';
 import { Grid } from '../components/Grid';
-import { CustomLink } from '../components/link/Link';
 import testPicture from './lippmann-default.jpg';
 
 const artwork: Artwork = {

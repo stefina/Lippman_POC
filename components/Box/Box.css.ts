@@ -68,7 +68,7 @@ const boxPropertiesResponsive = defineProperties({
     height: defaultSizes,
     width: defaultSizes,
     maxWidth: {
-      staticContent: '37rem',
+      staticContent: vars.contentWidth,
       ...defaultSizes,
     },
     backgroundColor: {

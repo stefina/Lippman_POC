@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { vars } from '../../styles/theme.css';
 
 export const overlayStyles = style({
   position: 'fixed',
@@ -6,6 +7,6 @@ export const overlayStyles = style({
   right: 0,
   bottom: 0,
   width: '100%',
-  maxWidth: '40rem',
+  maxWidth: vars.overlaySize,
   background: '#e6e6e6',
 });

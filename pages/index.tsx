@@ -1,33 +1,24 @@
-import Head from 'next/head';
-import { Artwork, ArtworkCard } from '../components/ArtworkCard';
-import { Box } from '../components/Box';
-import { Grid } from '../components/Grid';
-import testPicture from './lippmann-default.jpg';
+import Link from 'next/link'
+import type { InferGetStaticPropsType } from 'next'
+import type { Artwork } from '../interfaces/artwork'
 
-const artwork: Artwork = {
-  author: 'Gabriel Lippmann',
-  image: testPicture,
-  title: 'Haus am See',
-  year: '1904',
-  id: 'lippmann',
-};
+export async function getStaticProps() {
+  const res = await fetch('https://api.github.com/repos/vercel/next.js')
+  const data: Artwork = await res.json()
+  return {
+    props: {
+      artworks: data.id,
+    },
+  }
+}
 
-const mockContent = Array.from({ length: 10 }, (_, i) => ({
-  ...artwork,
-  id: `${artwork.id}${i}`,
-}));
-
-export default function Home() {
+export default function IndexPage({
+  artworks,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Box as="main" marginTop={4} marginBottom={6}>
-      <Head>
-        <title>Gabriel Lippmann | Catalogue Raisonnée</title>
-      </Head>
-      <Grid>
-        {mockContent.map((artwork) => (
-          <ArtworkCard key={artwork.id} {...artwork} />
-        ))}
-      </Grid>
-    </Box>
-  );
+    <>
+      <p>Next.js has {artworks} ⭐️</p>
+      <Link href="/preact-stars">How about preact?</Link>
+    </>
+  )
 }

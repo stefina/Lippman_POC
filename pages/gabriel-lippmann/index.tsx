@@ -7,46 +7,43 @@ export default function index() {
   return (
     <ContentWrapper>
       <Heading as="h1" size="large">
-        Gabriel Lippmann
-      </Heading>
-      <Heading as="h2" size="medium">
-        Biographie
+        Gabriel Lippmann: Scientist and Photographer
       </Heading>
       <Text marginTop={4}>
-        Né au Luxembourg en 1845, Gabriel Lippmann a vécu et réalisé toute sa
-        carrière à Paris. À la suite d’une thèse de physique soutenue en 1875 à
-        la Sorbonne, il y enseigne et dirige le laboratoire des recherches
-        physiques. Parmi ses travaux, il invente le procédé interférentiel et le
-        présente en 1891 à l’Académie des sciences, dont il est membre depuis
-        1886. Très novateur, son procédé intéresse rapidement d’autres
-        personnalités, en particulier les frères Lumière. En 1908, Lippmann
-        reçoit le prix Nobel de physique pour cette découverte.
+        Born in Luxembourg in 1845, Gabriel Lippmann lived and spent his entire
+        career in Paris. After presenting a thesis in physics in 1875 at the
+        Sorbonne, he taught there and directed the laboratory for research in
+        physics. His research led him, among other things, to invent the
+        interferential process that he presented in 1891 to the French Academy
+        of Sciences, of which he had been a member since 1886. Very innovative,
+        his process quickly interested other prominent personalities of his day,
+        in particular, the Lumière brothers. In 1908, Lippmann was awarded the
+        Nobel Prize in Physics for this discovery.
       </Text>
       <Text marginTop={4}>
-        Toute sa vie, le physicien s’intéresse à la façon de reproduire la
-        réalité de la manière la plus fidèle possible à la perception humaine.
-        Le procédé interférentiel est en effet le seul qui permette de fixer
-        l’ensemble des couleurs du spectre lumineux selon une méthode
-        « directe », au lieu d’en faire une décomposition et recomposition
-        trichrome à l’aide de filtres, de colorants ou de pigments. Dans cette
-        même perspective, Lippmann engage des recherches – inabouties en son
-        temps – pour créer des photographies « intégrales » qui permettent de
-        reproduire, en plus des couleurs, le relief.
+        Throughout his life, he attempted to reproduce reality in a way that was
+        as faithful as possible to human perception. The interferential process
+        is in fact the only one in which the colors of the light spectrum can be
+        fixed according to a &quot;direct&quot; method, instead of separating
+        them into the three primary colors and then recomposing them using
+        filters, dyes or pigments. In a similar vein, Lippmann undertook
+        research – unfinished during his lifetime – to create
+        &quot;integral&quot; photography that reproduces the relief in addition
+        to the colors.
       </Text>
       <Text marginTop={4}>
-        En 1888, il épouse Laurence Cherbuliez, fille de l’académicien Victor
-        Cherbuliez. Elle occupe une place prépondérante – encore à étudier –
-        dans la production des plaques interférentielles. Très investi dans le
-        monde scientifique, Gabriel Lippmann est aussi engagé dans les milieux
-        photographiques, notamment à la Société française de photographie.
-        Premier praticien de son procédé, il va ainsi s’adonner à la
-        photographie en tant qu’amateur averti en collaboration avec sa femme.
-        Paysages, natures mortes, portraits témoignent d’une sensibilité
-        artistique autant que d’une volonté d’enregistrer les couleurs de la
-        réalité. Le photographe Edward Steichen, à qui Lippmann a projeté des
-        photographies de natures mortes dans son laboratoire, se souvient ainsi
-        de l’apparition des couleurs « iridescentes » dont le réalisme était
-        surprenant.
+        In 1888, he married Laurence Cherbuliez, daughter of the French Academy
+        member Victor Cherbuliez. She played a major role – still to be
+        elucidated – in the production of interferential plates. Very involved
+        in the scientific world, Gabriel Lippmann was also involved in
+        photographic circles, notably at the French Society of Photography. As
+        the first person to actually use his process, he thus devoted himself to
+        photography as an informed amateur together with his wife. Their
+        landscapes, still lifes and portraits testify to an artistic sensitivity
+        as much as to a desire to record the actual colors. The photographer
+        Edward Steichen, for whom Lippmann projected still life photographs in
+        his laboratory, remembers the appearance of &quot;iridescent&quot;
+        colors whose realism was surprising.
       </Text>
     </ContentWrapper>
   );

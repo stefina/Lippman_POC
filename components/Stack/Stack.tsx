@@ -17,6 +17,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
       alignItems,
       flexDirection = 'column',
       justifyContent,
+      flexWrap,
       className,
       ...rest
     }: StackProps,
@@ -27,7 +28,13 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
         className={composeClassNames(
           className,
           stackStyle,
-          stackSprinkles({ gap, alignItems, flexDirection, justifyContent })
+          stackSprinkles({
+            gap,
+            alignItems,
+            flexDirection,
+            justifyContent,
+            flexWrap,
+          })
         )}
         ref={ref}
         {...rest}

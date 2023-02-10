@@ -18,6 +18,12 @@ export const headerLogoWrapperStyle = style([
   },
 ]);
 
+const INPUT_WIDTH = '13rem';
+
+export const headerSearchInputWrapperStyle = style({
+  width: INPUT_WIDTH,
+});
+
 export const headerSearchInputStyle = style({
   padding: vars.space[1],
   height: vars.space[6],

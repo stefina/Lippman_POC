@@ -15,6 +15,7 @@ const artwork: Artwork = {
 const mockContent = Array.from({ length: 10 }, (_, i) => ({
   ...artwork,
   id: `${artwork.id}${i}`,
+  title: `${artwork.title} ${i + 1}`,
 }));
 
 export default function Home() {

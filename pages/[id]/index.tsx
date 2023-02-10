@@ -3,11 +3,13 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
+import { ArtworkDetailCloseButton } from '../../components/ArtworkDetailCloseButton/ArtworkDetailCloseButton';
 import { ArtworkDetailCluster } from '../../components/ArtworkDetailCluster';
 import { Box } from '../../components/Box';
 import { Button } from '../../components/Button';
 import { Grid } from '../../components/Grid';
 import { Heading } from '../../components/Heading';
+import { IconArrowLeft } from '../../components/Icons/IconArrowLeft';
 import { IconArrowRight } from '../../components/Icons/IconArrowRight';
 import { Overlay } from '../../components/Overlay';
 import { Text } from '../../components/Text';
@@ -26,6 +28,7 @@ const artwork: Artwork = {
 export const mockContent = Array.from({ length: 10 }, (_, i) => ({
   ...artwork,
   id: `${artwork.id}${i}`,
+  title: `${artwork.title} ${i + 1}`,
 }));
 
 const isValidKey = (x: unknown): x is string => typeof x === 'string';
@@ -75,7 +78,7 @@ export default function ArtworkDetailPage() {
     ...artwork,
     id: `${artwork.id}${i}`,
     title: `${artwork.title} ${i + 1}`,
-  })).filter((artwork) => artwork.id !== query.id);
+  }));
 
   const getMock = (key: keyof Artwork) =>
     mockContentMap[query.id as keyof Artwork][key];
@@ -94,7 +97,8 @@ export default function ArtworkDetailPage() {
         ))}
       </Grid>
       {query && query.id && (
-        <Overlay boxShadow="default" padding={8}>
+        <Overlay boxShadow="default" position="relative" padding={8}>
+          <ArtworkDetailCloseButton />
           <Heading>{mockContentMap[query.id as keyof Artwork].title}</Heading>
           <ArtworkDetailCluster>
             <Text as="dt" color="neutral-400">

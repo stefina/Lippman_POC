@@ -3,7 +3,11 @@ import rdf from 'rdf-ext'
 import type { InferGetStaticPropsType } from 'next'
 import type { Artwork } from '../../interfaces/artwork'
 
-export async function getStaticProps() {
+interface GetStaticPropsType {
+    artworks: Artwork[]
+}
+
+export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
 
     var artworkregex = /^https:\/\/pe\.plateforme10\.ch\/Artwork\/\d{5}\/\d{9}$/;
     const SparqlClient = require('sparql-http-client')
@@ -28,7 +32,7 @@ export async function getStaticProps() {
     var data = ''
     let subjectArray: Array<String> = []
     let objectArray: Array<String> = []
-    let artworks = []
+    let artworks: Artwork[] = []
 
     for (const quad of dataset) {
         var subject = quad.subject.value.toString()
@@ -38,6 +42,7 @@ export async function getStaticProps() {
             objectArray.push(`${quad.object.value}`)
 
             artworks.push({
+                id: `${quad.subject.value}`,
                 subject: `${quad.subject.value}`,
                 predicate: `${quad.predicate.value}`,
                 object: `${quad.object.value}`
@@ -70,20 +75,18 @@ export async function getStaticProps() {
     // console.log('----')
 
   return {
-    props: {
-    //   artworks: artworks.map(artwork => <li>{artwork.subject}</li>),
-      subjects: subjectArray,
-      objects: objectArray,
-    },
+    props:{
+        artworks: artworks,
+    }
   }
 }
 
 export default function ArtworksPage({
-  subjects,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+  artworks,
+}: GetStaticPropsType) {
   return (
     <>
-      <div>{subjects} ⭐</div>
+      <div>{artworks.map(artwork => <p>{artwork.subject}</p>)} ⭐</div>
     </>
   )
 }

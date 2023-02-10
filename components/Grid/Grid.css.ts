@@ -5,6 +5,7 @@ export type GridVariant = 'large' | 'small';
 export const gridStyles = style({
   display: 'grid',
   gap: '1rem',
+  transition: 'all 300ms ease',
 });
 
 export const gridLargeStyles = style({
@@ -12,5 +13,5 @@ export const gridLargeStyles = style({
 });
 
 export const gridSmallStyles = style({
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(6rem, 100%), 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(10rem, 100%), 1fr))',
 });

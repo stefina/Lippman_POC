@@ -1,5 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react';
 import { composeClassNames } from '../../utils/composeClassNames';
+import { extractAtomsFromProps } from '../../utils/extractAtomsFromProps';
 
 import { Box, BoxProps } from '../Box';
 import { stackStyle, StackSprinkles, stackSprinkles } from './Stack.css';
@@ -10,34 +11,22 @@ export type StackProps = {
 } & StackSprinkles &
   BoxProps;
 
+export const extractStackAtomsFromProps = (props: any) =>
+  extractAtomsFromProps(props, [stackSprinkles]);
+
 export const Stack = forwardRef<HTMLElement, StackProps>(
-  (
-    {
-      gap,
-      alignItems,
-      flexDirection = 'column',
-      justifyContent,
-      flexWrap,
-      className,
-      ...rest
-    }: StackProps,
-    ref
-  ) => {
+  ({ className, ...rest }: StackProps, ref) => {
+    const { atomProps, otherProps } = extractStackAtomsFromProps(rest);
+
     return (
       <Box
         className={composeClassNames(
           className,
           stackStyle,
-          stackSprinkles({
-            gap,
-            alignItems,
-            flexDirection,
-            justifyContent,
-            flexWrap,
-          })
+          stackSprinkles(atomProps)
         )}
         ref={ref}
-        {...rest}
+        {...otherProps}
       />
     );
   }

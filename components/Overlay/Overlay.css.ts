@@ -8,5 +8,5 @@ export const overlayStyles = style({
   bottom: 0,
   width: '100%',
   maxWidth: vars.overlaySize,
-  background: '#e6e6e6',
+  background: vars.color.white,
 });

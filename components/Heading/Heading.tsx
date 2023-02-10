@@ -4,7 +4,7 @@ import { Box, BoxProps } from '../Box';
 import { headingVariants } from './Heading.css';
 
 interface HeadingProps extends BoxProps {
-  size: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   children?: ReactNode;
 }
 

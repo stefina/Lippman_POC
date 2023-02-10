@@ -20,6 +20,7 @@ export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
     <Link className={artworkLinkStyles} href={`/${id}`}>
       <Stack
         as="section"
+        flexDirection="column"
         gap={2}
         padding={2}
         paddingBottom={3}

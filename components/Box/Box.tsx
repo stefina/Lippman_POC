@@ -22,11 +22,12 @@ type BoxSpecificProps = {
 
 export type BoxProps = BoxSpecificProps & BoxSprinkles & HTMLProperties;
 
+export const extractBoxAtomsFromProps = (props: any) =>
+  extractAtomsFromProps(props, [boxSprinkles]);
+
 export const Box = forwardRef<HTMLElement, BoxProps>(
   ({ as: element = 'div', children, className, ...rest }: BoxProps, ref) => {
-    const { atomProps, otherProps } = extractAtomsFromProps(rest, [
-      boxSprinkles,
-    ]);
+    const { atomProps, otherProps } = extractBoxAtomsFromProps(rest);
 
     return createElement(
       element,

@@ -1,12 +1,19 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 import { useContext, useEffect } from 'react';
 
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
+import { ArtworkDetailCluster } from '../../components/ArtworkDetailCluster';
 import { Box } from '../../components/Box';
+import { Button } from '../../components/Button';
+import { Clickable } from '../../components/Clickable';
 import { Grid } from '../../components/Grid';
+import { Heading } from '../../components/Heading';
+import { IconArrowRight } from '../../components/Icons/IconArrowRight';
 import { Overlay } from '../../components/Overlay';
+import { Text } from '../../components/Text';
 
 import testPicture from '../lippmann-default.jpg';
 import { ActionType, AppContext } from '../_app';
@@ -73,6 +80,9 @@ export default function ArtworkDetailPage() {
     title: `${artwork.title} ${i + 1}`,
   })).filter((artwork) => artwork.id !== query.id);
 
+  const getMock = (key: keyof Artwork) =>
+    mockContentMap[query.id as keyof Artwork][key];
+
   return (
     <Box as="main" flexGrow="1">
       <Head>
@@ -87,9 +97,31 @@ export default function ArtworkDetailPage() {
         ))}
       </Grid>
       {query && query.id && (
-        <Overlay boxShadow="default">
-          <p>{mockContentMap[query.id as keyof Artwork].id}</p>
-          <Link href={`${query.id}/detail`}>Go to detail</Link>
+        <Overlay boxShadow="default" padding={8}>
+          <Heading>{mockContentMap[query.id as keyof Artwork].title}</Heading>
+          <ArtworkDetailCluster>
+            <Text as="dt" color="neutral-400">
+              Title
+            </Text>
+            <Text as="dd">{getMock('title') as string}</Text>
+            <Text as="dt" color="neutral-400">
+              Authors
+            </Text>
+            <Text as="dd">{getMock('author') as string}</Text>
+            <Text as="dt" color="neutral-400">
+              Year
+            </Text>
+            <Text as="dd">{getMock('year') as string}</Text>
+          </ArtworkDetailCluster>
+          <Button
+            asLayout="stack"
+            marginTop={8}
+            gap={3}
+            internalHref={`${query.id}/detail`}
+          >
+            <Box as="span">Go to detail</Box>
+            <IconArrowRight size={5} />
+          </Button>
         </Overlay>
       )}
     </Box>

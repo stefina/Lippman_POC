@@ -1,14 +1,11 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
 import { useContext, useEffect } from 'react';
 
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
 import { ArtworkDetailCluster } from '../../components/ArtworkDetailCluster';
 import { Box } from '../../components/Box';
 import { Button } from '../../components/Button';
-import { Clickable } from '../../components/Clickable';
 import { Grid } from '../../components/Grid';
 import { Heading } from '../../components/Heading';
 import { IconArrowRight } from '../../components/Icons/IconArrowRight';

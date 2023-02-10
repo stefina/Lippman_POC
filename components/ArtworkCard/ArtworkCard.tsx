@@ -4,8 +4,13 @@ import React from 'react';
 import { Box } from '../Box';
 import { Text } from '../Text';
 import { Heading } from '../Heading';
-import { artworkLinkStyles } from './ArtworkCard.css';
+import {
+  artworkLinkStyles,
+  artworkTypeIconStyle,
+  artworkTypeIconWrapperStyle,
+} from './ArtworkCard.css';
 import { Stack } from '../Stack';
+import { IconTypeArtwork } from '../Icons/IconTypeArtwork';
 
 export interface Artwork {
   author: string;
@@ -26,7 +31,14 @@ export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
         paddingBottom={3}
         backgroundColor="white"
       >
-        <Image src={image} alt={title} />
+        <Box position="relative">
+          <Image src={image} alt={title} />
+          <Box position="absolute" className={artworkTypeIconStyle}>
+            <Box className={artworkTypeIconWrapperStyle}>
+              <IconTypeArtwork />
+            </Box>
+          </Box>
+        </Box>
         <Heading size="small">{title}</Heading>
         <Text>{year}</Text>
         <Text>{author}</Text>

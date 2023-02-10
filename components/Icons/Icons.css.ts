@@ -6,6 +6,7 @@ import { neutralColor, brandColor } from '../../styles/tokens/color';
 export const iconStyle = style({
   fill: 'currentcolor',
   flexShrink: 0,
+  display: 'block',
 });
 
 const iconPropertiesResponsive = defineProperties({

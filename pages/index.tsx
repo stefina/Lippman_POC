@@ -19,7 +19,7 @@ const mockContent = Array.from({ length: 10 }, (_, i) => ({
 
 export default function Home() {
   return (
-    <Box as="main" marginTop={4} marginBottom={6}>
+    <Box as="main" flexGrow="1" marginTop={4} marginBottom={6}>
       <Head>
         <title>Gabriel Lippmann | Catalogue Raisonnée</title>
       </Head>

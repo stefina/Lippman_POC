@@ -7,22 +7,19 @@ import {
   gridSmallStyles,
   gridStyles,
   GridVariant,
-  gridWithOverlayStyles,
 } from './Grid.css';
 
 interface GridProps extends BoxProps {
-  hasOverlay?: boolean;
   variant?: GridVariant;
 }
 
 export const Grid = forwardRef<HTMLElement, GridProps>(
-  ({ hasOverlay, variant = 'large', ...rest }, ref) => {
+  ({ variant = 'large', ...rest }, ref) => {
     return (
       <Box
         className={composeClassNames(
           gridStyles,
-          variant === 'large' ? gridLargeStyles : gridSmallStyles,
-          hasOverlay ? gridWithOverlayStyles : undefined
+          variant === 'large' ? gridLargeStyles : gridSmallStyles
         )}
         {...rest}
         ref={ref}

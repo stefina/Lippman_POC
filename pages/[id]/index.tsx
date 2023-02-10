@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
 import { Box } from '../../components/Box';
@@ -8,6 +9,7 @@ import { Grid } from '../../components/Grid';
 import { Overlay } from '../../components/Overlay';
 
 import testPicture from '../lippmann-default.jpg';
+import { ActionType, AppContext } from '../_app';
 
 const artwork: Artwork = {
   author: 'Gabriel Lippmann',
@@ -42,6 +44,28 @@ const mockContentMap: Record<keyof Artwork, Artwork> = createObject(
 
 export default function ArtworkDetailPage() {
   const { query } = useRouter();
+  const { dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    dispatch &&
+      dispatch({
+        type: ActionType.SetOverlay,
+        payload: {
+          isOverlayOpen: true,
+        },
+      });
+
+    return () => {
+      dispatch &&
+        dispatch({
+          type: ActionType.SetOverlay,
+          payload: {
+            isOverlayOpen: false,
+          },
+        });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mockContent = Array.from({ length: 10 }, (_, i) => ({
     ...artwork,
@@ -50,14 +74,14 @@ export default function ArtworkDetailPage() {
   })).filter((artwork) => artwork.id !== query.id);
 
   return (
-    <Box as="main">
+    <Box as="main" flexGrow="1">
       <Head>
         <title>
           {query && query.id && mockContentMap[query.id as keyof Artwork].title}{' '}
           | Gabriel Lippmann | Catalogue Raisonnée
         </title>
       </Head>
-      <Grid marginTop={4} marginBottom={6} hasOverlay>
+      <Grid marginTop={4} marginBottom={6} variant="small">
         {mockContent.map((artwork) => (
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}

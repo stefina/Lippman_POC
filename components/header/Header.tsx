@@ -93,7 +93,7 @@ export default function Header() {
   const [isFullyScrolledRight, setIsFullyScrolledRight] = useState(false);
 
   return (
-    <Stack gap={1}>
+    <Stack as="header" gap={1}>
       <Stack
         flexDirection="row"
         justifyContent="flex-start"

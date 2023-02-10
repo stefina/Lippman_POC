@@ -1,20 +1,11 @@
 import { style } from '@vanilla-extract/css';
+import { pseudoElementShadow } from '../../styles/global.css';
 import { vars } from '../../styles/theme.css';
 
 export const headerLogoWrapperStyle = style([
+  pseudoElementShadow,
   {
     height: vars.space[14],
-    position: 'relative',
-    ':before': {
-      content: '',
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      zIndex: '-1',
-      boxShadow: vars.shadows.default,
-    },
   },
 ]);
 

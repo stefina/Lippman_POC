@@ -24,7 +24,6 @@ export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
         padding={2}
         paddingBottom={3}
         backgroundColor="white"
-        boxShadow="default"
       >
         <Image src={image} alt={title} />
         <Heading size="small">{title}</Heading>

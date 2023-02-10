@@ -34,7 +34,7 @@ export const [themeClass, vars] = createTheme({
     'heading-large': getResponsiveFontStyles(
       precomputeValues({
         capHeight: 30,
-        leading: 30,
+        leading: 34,
         fontMetrics: photoElyseeMetrics,
       })
     ),

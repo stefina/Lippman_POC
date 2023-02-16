@@ -80,12 +80,10 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
 export default function ArtworksPage({ artworks }: GetStaticPropsType) {
   return (
     <>
-      <div>
-        {artworks.map((artwork) => (
-          <p>{artwork.subject}</p>
-        ))}{' '}
-        ⭐
-      </div>
+      {artworks.map((artwork) => (
+        <>{artwork.subject}</>
+      ))}
+      ⭐
     </>
   );
 }

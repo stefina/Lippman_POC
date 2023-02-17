@@ -34,6 +34,7 @@ export const stackProperties = defineProperties({
       'space-around',
       'space-between',
     ],
+    flexWrap: ['wrap', 'nowrap'],
     flexDirection: ['row', 'column'],
   },
 });

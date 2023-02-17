@@ -1,4 +1,5 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
+import { vars } from './theme.css';
 
 globalStyle('*', {
   margin: 0,
@@ -32,4 +33,18 @@ globalStyle('img', {
 
 globalStyle('input, button, textarea, select', {
   font: 'inherit',
+});
+
+export const pseudoElementShadow = style({
+  position: 'relative',
+  ':before': {
+    content: '',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: '-1',
+    boxShadow: vars.shadows.default,
+  },
 });

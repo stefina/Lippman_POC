@@ -20,6 +20,7 @@ import {
   headerNavList,
   headerSearchIconWrapperStyle,
   headerSearchInputStyle,
+  headerSearchInputWrapperStyle,
 } from './Header.css';
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
@@ -92,11 +93,11 @@ export default function Header() {
   const [isFullyScrolledRight, setIsFullyScrolledRight] = useState(false);
 
   return (
-    <Stack gap={1}>
+    <Stack as="header" flexDirection="column" gap={1}>
       <Stack
-        flexDirection="row"
         justifyContent="flex-start"
         alignItems="flex-end"
+        flexWrap="wrap"
         gap={1}
       >
         <Link href="/">
@@ -117,6 +118,7 @@ export default function Header() {
           gap={2}
           flexDirection="row"
           alignItems="center"
+          flexShrink="1"
         >
           <Box
             as="label"
@@ -131,6 +133,7 @@ export default function Header() {
             alignItems="center"
             backgroundColor="neutral-100"
             color="neutral-900"
+            className={headerSearchInputWrapperStyle}
           >
             <input
               className={headerSearchInputStyle}

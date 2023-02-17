@@ -6,17 +6,11 @@ import { composeClassNames } from '../../utils/composeClassNames';
 export type HeadingSize = 'small' | 'medium' | 'large';
 
 export const headingLargeStyle = style({
-  paddingBottom: vars.space[10],
   fontWeight: 700,
 });
 
 export const headingMediumStyle = style({
-  paddingTop: vars.space[16],
   fontWeight: 700,
-});
-
-globalStyle(`.${headingLargeStyle} + .${headingMediumStyle}`, {
-  paddingTop: 0,
 });
 
 export const headingLargeFontStyle = createTextStyle(

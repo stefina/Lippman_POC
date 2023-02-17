@@ -4,6 +4,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import localFont from '@next/font/local';
 import { themeClass } from '../styles/theme.css';
 import '../styles/global.css';
+import { composeClassNames } from '../utils/composeClassNames';
 
 const photoElyseeFont = localFont({
   src: [
@@ -73,7 +74,7 @@ const photoElyseeFont = localFont({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DefaultLayout
-      className={[photoElyseeFont.className, themeClass].join(' ')}
+      className={composeClassNames(themeClass, photoElyseeFont.className)}
     >
       <Component {...pageProps} />
     </DefaultLayout>

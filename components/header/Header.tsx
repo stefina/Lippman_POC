@@ -1,18 +1,14 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  RefObject,
-  useLayoutEffect,
-} from 'react';
-import styles from './Header.module.scss';
-import ArrowSvg from '../arrow-svg/ArrowSvg';
-
 import useIntersectionObserver from '@react-hook/intersection-observer';
 import useResizeObserver from '@react-hook/resize-observer';
+import Link from 'next/link';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
+
 import { ActiveLink } from '../ActiveLink';
-import { Logo } from '../Logo/Logo';
+import ArrowSvg from '../arrow-svg/ArrowSvg';
 import { Box } from '../Box';
+import { IconSearch } from '../Icons/IconSearch';
+import { Logo } from '../Logo/Logo';
+import { Stack } from '../Stack';
 import {
   headerLabelStyle,
   headerLogoWrapperStyle,
@@ -25,10 +21,6 @@ import {
   headerSearchIconWrapperStyle,
   headerSearchInputStyle,
 } from './Header.css';
-import { Stack } from '../Stack';
-import { IconSearch } from '../Icons/IconSearch';
-import Link from 'next/link';
-import { composeClassNames } from '../../utils/composeClassNames';
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
   const [isCutOff, setIsCutOff] = useState({
@@ -36,7 +28,7 @@ const useIsCutOff = (target: RefObject<HTMLElement>) => {
     width: 0,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (target.current) {
       setIsCutOff({
         isCutOff: target.current.scrollWidth > target.current.clientWidth,

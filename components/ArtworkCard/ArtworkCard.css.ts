@@ -30,3 +30,8 @@ export const artworkTypeIconWrapperStyle = style({
   padding: vars.space[1],
   border: `1px solid ${vars.color.black}`,
 });
+
+export const artworkImageStyle = style({
+  aspectRatio: '260 / 196',
+  objectFit: 'cover',
+});

@@ -5,6 +5,7 @@ import { Box } from '../Box';
 import { Text } from '../Text';
 import { Heading } from '../Heading';
 import {
+  artworkImageStyle,
   artworkLinkStyles,
   artworkTypeIconStyle,
   artworkTypeIconWrapperStyle,
@@ -32,7 +33,12 @@ export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
         backgroundColor="white"
       >
         <Box position="relative">
-          <Image src={image} alt={title} />
+          <Image
+            src={image}
+            alt={title}
+            className={artworkImageStyle}
+            priority
+          />
           <Box position="absolute" className={artworkTypeIconStyle}>
             <Box className={artworkTypeIconWrapperStyle}>
               <IconTypeArtwork />

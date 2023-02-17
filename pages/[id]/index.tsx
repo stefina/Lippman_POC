@@ -15,6 +15,14 @@ import { Overlay } from '../../components/Overlay';
 import { Text } from '../../components/Text';
 
 import testPicture from '../lippmann-default.jpg';
+import testPicture0 from '../lippmann.jpg';
+import testPicture1 from '../lippmann2.jpg';
+import testPicture2 from '../lippmann3.jpg';
+import testPicture3 from '../lippmann4.jpg';
+import testPicture4 from '../lippmann5.jpg';
+import testPicture5 from '../lippmann6.jpg';
+import testPicture6 from '../lippmann7.jpg';
+import testPicture7 from '../lippmann8.jpg';
 import { ActionType, AppContext } from '../_app';
 
 const artwork: Artwork = {
@@ -25,9 +33,21 @@ const artwork: Artwork = {
   id: 'lippmann',
 };
 
-export const mockContent = Array.from({ length: 10 }, (_, i) => ({
+const pictures = [
+  testPicture0,
+  testPicture1,
+  testPicture2,
+  testPicture3,
+  testPicture4,
+  testPicture5,
+  testPicture6,
+  testPicture7,
+];
+
+const mockContent = Array.from({ length: 8 }, (_, i) => ({
   ...artwork,
   id: `${artwork.id}${i}`,
+  image: pictures[i],
   title: `${artwork.title} ${i + 1}`,
 }));
 
@@ -74,12 +94,6 @@ export default function ArtworkDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const mockContent = Array.from({ length: 10 }, (_, i) => ({
-    ...artwork,
-    id: `${artwork.id}${i}`,
-    title: `${artwork.title} ${i + 1}`,
-  }));
-
   const getMock = (key: keyof Artwork) =>
     mockContentMap[query.id as keyof Artwork][key];
 
@@ -100,6 +114,7 @@ export default function ArtworkDetailPage() {
         <Overlay boxShadow="default" position="relative" padding={8}>
           <ArtworkDetailCloseButton />
           <Heading>{mockContentMap[query.id as keyof Artwork].title}</Heading>
+
           <ArtworkDetailCluster>
             <Text as="dt" color="neutral-400">
               Title

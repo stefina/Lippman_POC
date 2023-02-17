@@ -6,7 +6,7 @@ import { ContentWrapper } from '../../components/ContentWrapper';
 export default function index() {
   return (
     <ContentWrapper>
-      <Heading as="h1" size="large">
+      <Heading as="h1" size="large" paddingBottom={10}>
         Gabriel Lippmann: Scientist and Photographer
       </Heading>
       <Text marginTop={4}>

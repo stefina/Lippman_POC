@@ -7,7 +7,7 @@ import { ContentWrapper } from '../../components/ContentWrapper';
 export default function AProposPage() {
   return (
     <ContentWrapper>
-      <Heading as="h1" size="large">
+      <Heading as="h1" size="large" paddingBottom={10}>
         A Propos
       </Heading>
       <Heading as="h2" size="medium">

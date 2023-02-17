@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 
@@ -9,9 +10,9 @@ import { Box } from '../../components/Box';
 import { Button } from '../../components/Button';
 import { Grid } from '../../components/Grid';
 import { Heading } from '../../components/Heading';
-import { IconArrowLeft } from '../../components/Icons/IconArrowLeft';
 import { IconArrowRight } from '../../components/Icons/IconArrowRight';
 import { Overlay } from '../../components/Overlay';
+import { Stack } from '../../components/Stack';
 import { Text } from '../../components/Text';
 
 import testPicture from '../lippmann-default.jpg';
@@ -24,6 +25,11 @@ import testPicture5 from '../lippmann6.jpg';
 import testPicture6 from '../lippmann7.jpg';
 import testPicture7 from '../lippmann8.jpg';
 import { ActionType, AppContext } from '../_app';
+import {
+  imageStyle,
+  imageWrapperStyle,
+} from '../../components/ArtworkDetail/ArtworkDetail.css';
+import { ArtworkDetail } from '../../components/ArtworkDetail';
 
 const artwork: Artwork = {
   author: 'Gabriel Lippmann',
@@ -94,8 +100,7 @@ export default function ArtworkDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getMock = (key: keyof Artwork) =>
-    mockContentMap[query.id as keyof Artwork][key];
+  const getMock = () => mockContentMap[query.id as keyof Artwork];
 
   return (
     <Box as="main" flexGrow="1">
@@ -110,36 +115,7 @@ export default function ArtworkDetailPage() {
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}
       </Grid>
-      {query && query.id && (
-        <Overlay boxShadow="default" position="relative" padding={8}>
-          <ArtworkDetailCloseButton />
-          <Heading>{mockContentMap[query.id as keyof Artwork].title}</Heading>
-
-          <ArtworkDetailCluster>
-            <Text as="dt" color="neutral-400">
-              Title
-            </Text>
-            <Text as="dd">{getMock('title') as string}</Text>
-            <Text as="dt" color="neutral-400">
-              Authors
-            </Text>
-            <Text as="dd">{getMock('author') as string}</Text>
-            <Text as="dt" color="neutral-400">
-              Year
-            </Text>
-            <Text as="dd">{getMock('year') as string}</Text>
-          </ArtworkDetailCluster>
-          <Button
-            asLayout="stack"
-            marginTop={8}
-            gap={3}
-            internalHref={`${query.id}/detail`}
-          >
-            <Box as="span">Go to detail</Box>
-            <IconArrowRight size={5} />
-          </Button>
-        </Overlay>
-      )}
+      {query && query.id && <ArtworkDetail artwork={getMock()} />}
     </Box>
   );
 }

@@ -11,42 +11,42 @@ const photoElyseeFont = localFont({
   src: [
     {
       path: './fonts/PhotoElysee-Bold.woff',
-      weight: '900',
+      weight: '700',
       style: 'normal',
     },
     {
       path: './fonts/PhotoElysee-Bold.woff2',
-      weight: '900',
+      weight: '700',
       style: 'normal',
     },
     {
       path: './fonts/PhotoElysee-BoldItalic.woff',
-      weight: '900',
+      weight: '700',
       style: 'italic',
     },
     {
       path: './fonts/PhotoElysee-BoldItalic.woff2',
-      weight: '900',
+      weight: '700',
       style: 'italic',
     },
     {
       path: './fonts/PhotoElysee-DisplayBold.woff',
-      weight: '900',
+      weight: '700',
       style: 'normal',
     },
     {
       path: './fonts/PhotoElysee-DisplayBold.woff2',
-      weight: '900',
+      weight: '700',
       style: 'normal',
     },
     {
       path: './fonts/PhotoElysee-DisplayBoldItalic.woff',
-      weight: '900',
+      weight: '700',
       style: 'italic',
     },
     {
       path: './fonts/PhotoElysee-DisplayBoldItalic.woff2',
-      weight: '900',
+      weight: '700',
       style: 'italic',
     },
     {

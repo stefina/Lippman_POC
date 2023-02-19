@@ -13,7 +13,7 @@ interface GetStaticPropsType {
   artworks: Artwork[];
 }
 
-async function getLabel(link:string) {
+async function getLabel(link: string) {
   const SparqlClient = require('sparql-http-client');
   const client = new SparqlClient({
     endpointUrl:
@@ -34,11 +34,11 @@ async function getLabel(link:string) {
             `);
   const label = await getValue(labelStream);
   const labelValue = await getObjectValue(label);
-  
+
   return labelValue;
 }
 
-async function getObjectValue(dataset : DatasetExt ) : Promise<string> {
+async function getObjectValue(dataset: DatasetExt): Promise<string> {
   var value = '';
   for (const datasetQuad of dataset) {
     value = `${datasetQuad.obj.value}`;
@@ -46,13 +46,13 @@ async function getObjectValue(dataset : DatasetExt ) : Promise<string> {
   return value;
 }
 
-async function getValue(stream : any ) {
+async function getValue(stream: any) {
   const dataset = rdf.dataset();
   const value = await dataset.import(stream);
   return value;
 }
 
-async function getAccessionNumber(link:string) {
+async function getAccessionNumber(link: string) {
   const SparqlClient = require('sparql-http-client');
   const client = new SparqlClient({
     endpointUrl:
@@ -73,13 +73,13 @@ async function getAccessionNumber(link:string) {
             `);
   const accessionNumber = await getValue(accessionNumberStream);
   const accessionNumberValue = await getObjectValue(accessionNumber);
-  
+
   return accessionNumberValue;
 }
 
-async function Artworks( { endpointUrl = "https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql" } ) {
-
-}
+async function Artworks({
+  endpointUrl = 'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
+}) {}
 
 export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
   var artworkregex = /^https:\/\/pe\.plateforme10\.ch\/Artwork\/\d{5}\/\d{9}$/;
@@ -111,15 +111,13 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
   for (const quad of dataset) {
     var subject = quad.subject.value.toString();
     if (subject.match(artworkregex)) {
-      
       artworks.push({
         id: `${quad.subject.value}`,
         title: await getLabel(subject),
         author: `${quad.object.value}`,
         year: await getAccessionNumber(subject),
-        image: testPicture
+        image: testPicture,
       });
-      
     }
   }
 
@@ -130,20 +128,19 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
   };
 }
 
-export default function ArtworksPage({ artworks } : GetStaticPropsType ) {
-
+export default function ArtworksPage({ artworks }: GetStaticPropsType) {
   return (
     <>
       <Box as="main" flexGrow="1" marginTop={4} marginBottom={6}>
-      <Head>
-        <title>Gabriel Lippmann | Catalogue Raisonnée</title>
-      </Head>
-      <Grid>
-        {artworks.map((artwork) => (
-          <ArtworkCard key={artwork.id} {...artwork} />
-        ))}
-      </Grid>
-    </Box>
+        <Head>
+          <title>Gabriel Lippmann | Catalogue Raisonnée</title>
+        </Head>
+        <Grid>
+          {artworks.map((artwork) => (
+            <ArtworkCard key={artwork.id} {...artwork} />
+          ))}
+        </Grid>
+      </Box>
     </>
   );
 }

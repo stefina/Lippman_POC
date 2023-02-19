@@ -30,16 +30,19 @@
     "eslint": "8.26.0",
     "eslint-config-next": "13.1.6",
     "next": "13.1.6",
-    "rdf-ext": "^2.1.0",
+    "rdf-ext": "^2.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.58.0",
     "sparql-http-client": "^2.4.1",
-    "swr": "^2.0.0",
+    "swr": "^2.0.3",
     "typescript": "4.8.4"
   },
   "devDependencies": {
     "@types/rdf-ext": "^1.3.11",
+    "@vanilla-extract/next-plugin": "^2.1.1",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.1.4",
     "eslint-config-prettier": "^8.6.0",
     "prettier": "^2.8.4"
   }

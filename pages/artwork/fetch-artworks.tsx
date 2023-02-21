@@ -38,7 +38,7 @@ async function getLabel(link: string) {
   return labelValue;
 }
 
-async function getObjectValue(dataset: DatasetExt): Promise<string> {
+async function getObjectValue(dataset: any): Promise<string> {
   var value = '';
   for (const datasetQuad of dataset) {
     value = `${datasetQuad.obj.value}`;

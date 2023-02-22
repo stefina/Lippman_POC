@@ -184,8 +184,8 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
     if (subject.match(artworkregex)) {
       artworks.push({
         id: `${quad.subject.value}`,
-        author: `${quad.object.value}`,
         title: await getTitle(subject),
+        author: `${quad.subject.value}`,
         owner: await getHasCurrentOwner(subject),
         year: await getAccessionNumber(subject),
         image: testPicture,

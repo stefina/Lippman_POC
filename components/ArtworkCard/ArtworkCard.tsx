@@ -22,7 +22,14 @@ export interface Artwork {
   year: string;
 }
 
-export const ArtworkCard = ({ author, id, image, title, year, owner }: Artwork) => {
+export const ArtworkCard = ({
+  author,
+  id,
+  image,
+  title,
+  year,
+  owner,
+}: Artwork) => {
   return (
     <Link className={artworkLinkStyles} href={`/${id}`}>
       <Stack

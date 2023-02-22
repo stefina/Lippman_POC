@@ -41,7 +41,7 @@ async function getLabel(link: string) {
 async function getTitle(link: string) {
   const client = new SparqlClient({
     endpointUrl:
-        'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
+      'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
   });
   const titleStream = await client.query.select(`
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -65,7 +65,7 @@ async function getTitle(link: string) {
 async function getHasCurrentOwner(link: string) {
   const client = new SparqlClient({
     endpointUrl:
-        'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
+      'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
   });
   const hasCurrentOwnerStream = await client.query.select(`
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -113,10 +113,13 @@ function getObjectValue(dataset: any) {
   //     }
   //   }
   // }
-  if (dataset._quads.entries().next().value && dataset._quads.entries().next().value.length) {
+  if (
+    dataset._quads.entries().next().value &&
+    dataset._quads.entries().next().value.length
+  ) {
     return dataset._quads.entries().next().value[1].obj.value;
   }
-  return "undefined";
+  return 'undefined';
 }
 
 async function getValue(stream: any) {

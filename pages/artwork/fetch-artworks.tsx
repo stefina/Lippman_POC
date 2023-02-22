@@ -95,10 +95,10 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
     SELECT * WHERE {
         SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
         GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
-            ?subject ?predicate ?object .
+            ?subject ?predicate <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> .
         }
         }
-    } LIMIT 600
+    }
     `);
 
   const dataset = rdf.dataset();

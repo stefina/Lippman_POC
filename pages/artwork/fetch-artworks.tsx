@@ -62,6 +62,46 @@ async function getTitle(link: string) {
   return titleValue;
 }
 
+async function getHasCurrentOwner(link: string) {
+  const client = new SparqlClient({
+    endpointUrl:
+        'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
+  });
+  const hasCurrentOwnerStream = await client.query.select(`
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+            PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+            SELECT DISTINCT ?obj WHERE {
+                SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
+                GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
+                    <${link}> <http://www.cidoc-crm.org/cidoc-crm/P52_has_current_owner> ?obj .
+                }
+                }
+            }
+            `);
+  const hasCurrentOwner = await getValue(hasCurrentOwnerStream);
+  const hasCurrentOwnerValue = await getObjectValue(hasCurrentOwner);
+
+  const ownerStream = await client.query.select(`
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+            PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+            SELECT DISTINCT ?obj WHERE {
+                SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
+                GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
+                    <${hasCurrentOwnerValue}> rdfs:label ?obj .
+                }
+                }
+            }
+            `);
+  const owner = await getValue(ownerStream);
+  const ownerValue = await getObjectValue(owner);
+
+  return ownerValue;
+}
+
 function getObjectValue(dataset: any) {
   // A dataset looks like this:
   // Map(1) {
@@ -146,6 +186,7 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
         id: `${quad.subject.value}`,
         author: `${quad.object.value}`,
         title: await getTitle(subject),
+        owner: await getHasCurrentOwner(subject),
         year: await getAccessionNumber(subject),
         image: testPicture,
       });

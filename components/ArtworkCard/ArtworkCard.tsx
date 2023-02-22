@@ -18,10 +18,11 @@ export interface Artwork {
   id: string;
   image: StaticImageData;
   title: string;
+  owner: string;
   year: string;
 }
 
-export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
+export const ArtworkCard = ({ author, id, image, title, year, owner }: Artwork) => {
   return (
     <Link className={artworkLinkStyles} href={`/${id}`}>
       <Stack
@@ -47,7 +48,7 @@ export const ArtworkCard = ({ author, id, image, title, year }: Artwork) => {
         </Box>
         <Heading size="small">{title}</Heading>
         <Text>{year}</Text>
-        <Text>{author}</Text>
+        <Text>{owner}</Text>
       </Stack>
     </Link>
   );

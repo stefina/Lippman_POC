@@ -36,6 +36,7 @@ const artwork: Artwork = {
   image: testPicture,
   title: 'Haus am See',
   year: '1904',
+  owner: 'Platforme 10',
   id: 'lippmann',
 };
 

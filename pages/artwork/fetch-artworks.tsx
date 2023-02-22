@@ -8,13 +8,13 @@ import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
 import { Stream } from 'stream';
 import DatasetExt from 'rdf-ext/lib/Dataset';
+import SparqlClient from 'sparql-http-client';
 
 interface GetStaticPropsType {
   artworks: Artwork[];
 }
 
 async function getLabel(link: string) {
-  const SparqlClient = require('sparql-http-client');
   const client = new SparqlClient({
     endpointUrl:
       'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
@@ -53,7 +53,6 @@ async function getValue(stream: any) {
 }
 
 async function getAccessionNumber(link: string) {
-  const SparqlClient = require('sparql-http-client');
   const client = new SparqlClient({
     endpointUrl:
       'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
@@ -83,7 +82,6 @@ async function Artworks({
 
 export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
   var artworkregex = /^https:\/\/pe\.plateforme10\.ch\/Artwork\/\d{5}\/\d{9}$/;
-  const SparqlClient = require('sparql-http-client');
   const client = new SparqlClient({
     endpointUrl:
       'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',

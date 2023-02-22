@@ -24,7 +24,7 @@ async function getLabel(link: string) {
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
             PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
-            SELECT * WHERE {
+            SELECT DISTINCT ?obj WHERE {
                 SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
                 GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
                     <${link}> rdfs:label ?obj .
@@ -75,7 +75,7 @@ async function getAccessionNumber(link: string) {
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
             PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
-            SELECT * WHERE {
+            SELECT DISTINCT ?obj WHERE {
                 SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
                 GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
                     <${link}/AccessionNumber> rdfs:label ?obj .

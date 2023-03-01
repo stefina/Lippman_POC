@@ -2,13 +2,15 @@ import Head from 'next/head';
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
 import testPicture from './../lippmann-default.jpg';
 import Link from 'next/link';
-import rdf from 'rdf-ext';
+import rdf, { quad } from 'rdf-ext';
 import type { InferGetStaticPropsType } from 'next';
 import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
 import { Stream } from 'stream';
 import DatasetExt from 'rdf-ext/lib/Dataset';
 import SparqlClient from 'sparql-http-client';
+import { BaseQuad, Quad, Quad_Object } from '@rdfjs/types';
+import QuadExt from 'rdf-ext/lib/Quad';
 
 interface GetStaticPropsType {
   artworks: Artwork[];
@@ -179,20 +181,21 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
 
   const dataset = rdf.dataset();
   await dataset.import(stream);
-  var data = '';
-  let artworks: Artwork[] = [];
 
-  for (const quad of dataset) {
-    var subject = quad.subject.value.toString();
+  let artworks: Artwork[] = [];
+  artworks = await Promise.all(dataset.map(mapArtwork));
+
+  async function mapArtwork(quad: QuadExt): Promise<Artwork | undefined> {
+    const subject = quad.subject.value.toString();
     if (subject.match(artworkregex)) {
-      artworks.push({
+      return {
         id: `${quad.subject.value}`,
         title: await getTitle(subject),
         author: `${quad.subject.value}`,
         owner: await getHasCurrentOwner(subject),
         year: await getAccessionNumber(subject),
         image: testPicture,
-      });
+      };
     }
   }
 

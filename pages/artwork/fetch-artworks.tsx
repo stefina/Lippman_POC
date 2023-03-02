@@ -5,6 +5,8 @@ import rdf from 'rdf-ext';
 import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
 import SparqlClient from 'sparql-http-client';
+
+import ParsingClient from 'sparql-http-client/ParsingClient';
 import QuadExt from 'rdf-ext/lib/Quad';
 import testPicture0 from '../lippmann.jpg';
 import testPicture1 from '../lippmann2.jpg';
@@ -14,6 +16,7 @@ import testPicture4 from '../lippmann5.jpg';
 import testPicture5 from '../lippmann6.jpg';
 import testPicture6 from '../lippmann7.jpg';
 import testPicture7 from '../lippmann8.jpg';
+import { ResultRow } from 'sparql-http-client/ResultParser';
 
 interface GetStaticPropsType {
   artworks: Artwork[];
@@ -185,14 +188,22 @@ async function Artworks({
   endpointUrl = 'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
 }) {}
 
+// Fancy type predicate so that TypeScript understands that we filter falsy values
+type Truthy<T> = T extends false | '' | 0 | null | undefined ? never : T; // copied from lodash
+
+function isTruthy<T>(value: T): value is Truthy<T> {
+  return !!value;
+}
+
 export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
-  var artworkregex = /^https:\/\/pe\.plateforme10\.ch\/Artwork\/\d{5}\/\d{9}$/;
-  const client = new SparqlClient({
+  const artworkregex =
+    /^https:\/\/pe\.plateforme10\.ch\/Artwork\/\d{5}\/\d{9}$/;
+  const client = new ParsingClient({
     endpointUrl:
       'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
   });
 
-  const stream = await client.query.select(`
+  const dataset = await client.query.select(`
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
@@ -206,19 +217,16 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
     }
     `);
 
-  const dataset = rdf.dataset();
-  await dataset.import(stream);
+  const artworksOrUndef = await Promise.all(dataset.map(mapArtwork));
+  const artworks = artworksOrUndef.filter(isTruthy);
 
-  // let artworks: Artwork[] = [];
-  const artworks = await Promise.all(dataset.toArray().map(mapArtwork));
-
-  async function mapArtwork(quad: QuadExt): Promise<Artwork | undefined> {
-    const subject = quad.subject.value.toString();
+  async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
+    const subject = res.subject.value;
     if (subject.match(artworkregex)) {
       return {
-        id: `${quad.subject.value}`,
+        id: subject.slice(8), // Next doesn't like "//" in hrefs so we remove them
         title: await getTitle(subject),
-        author: `${quad.subject.value}`,
+        author: subject,
         owner: await getHasCurrentOwner(subject),
         year: await getAccessionNumber(subject),
         image: testPicture,
@@ -228,7 +236,7 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
 
   return {
     props: {
-      artworks: artworks.filter(Boolean) as Artwork[],
+      artworks,
     },
   };
 }

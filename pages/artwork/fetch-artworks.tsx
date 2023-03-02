@@ -1,16 +1,19 @@
 import Head from 'next/head';
 import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
 import testPicture from './../lippmann-default.jpg';
-import Link from 'next/link';
-import rdf, { quad } from 'rdf-ext';
-import type { InferGetStaticPropsType } from 'next';
+import rdf from 'rdf-ext';
 import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
-import { Stream } from 'stream';
-import DatasetExt from 'rdf-ext/lib/Dataset';
 import SparqlClient from 'sparql-http-client';
-import { BaseQuad, Quad, Quad_Object } from '@rdfjs/types';
 import QuadExt from 'rdf-ext/lib/Quad';
+import testPicture0 from '../lippmann.jpg';
+import testPicture1 from '../lippmann2.jpg';
+import testPicture2 from '../lippmann3.jpg';
+import testPicture3 from '../lippmann4.jpg';
+import testPicture4 from '../lippmann5.jpg';
+import testPicture5 from '../lippmann6.jpg';
+import testPicture6 from '../lippmann7.jpg';
+import testPicture7 from '../lippmann8.jpg';
 
 interface GetStaticPropsType {
   artworks: Artwork[];
@@ -62,6 +65,30 @@ async function getTitle(link: string) {
   const titleValue = await getObjectValue(title);
 
   return titleValue;
+}
+
+async function getOrientation(link: string) {
+  const client = new SparqlClient({
+    endpointUrl:
+      'https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql',
+  });
+  const orientationStream = await client.query.select(`
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+            PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+            SELECT DISTINCT ?obj WHERE {
+                SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
+                GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
+                    <${link}> rdfs:label ?obj .
+                }
+                }
+            }
+            `);
+  const orientation = await getValue(orientationStream);
+  const orientationValue = await getObjectValue(orientation);
+
+  return orientationValue;
 }
 
 async function getHasCurrentOwner(link: string) {
@@ -182,8 +209,8 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
   const dataset = rdf.dataset();
   await dataset.import(stream);
 
-  let artworks: Artwork[] = [];
-  artworks = await Promise.all(dataset.map(mapArtwork));
+  // let artworks: Artwork[] = [];
+  const artworks = await Promise.all(dataset.toArray().map(mapArtwork));
 
   async function mapArtwork(quad: QuadExt): Promise<Artwork | undefined> {
     const subject = quad.subject.value.toString();
@@ -201,7 +228,7 @@ export async function getStaticProps(): Promise<{ props: GetStaticPropsType }> {
 
   return {
     props: {
-      artworks: artworks,
+      artworks: artworks.filter(Boolean) as Artwork[],
     },
   };
 }

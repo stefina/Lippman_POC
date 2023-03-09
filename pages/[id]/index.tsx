@@ -30,54 +30,48 @@ import {
   imageWrapperStyle,
 } from '../../components/ArtworkDetail/ArtworkDetail.css';
 import { ArtworkDetail } from '../../components/ArtworkDetail';
+import { client } from '../../utils/client';
+import { isTruthy } from '../../utils/isTruthy';
+import { mapArtwork } from '../../utils/mapArtwork';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { getArtworks } from '../../utils/getArtworks';
 
-const artwork: Artwork = {
-  author: 'Gabriel Lippmann',
-  image: testPicture,
-  title: 'Haus am See',
-  year: '1904',
-  owner: 'Platforme 10',
-  id: 'lippmann',
-};
-
-const pictures = [
-  testPicture0,
-  testPicture1,
-  testPicture2,
-  testPicture3,
-  testPicture4,
-  testPicture5,
-  testPicture6,
-  testPicture7,
-];
-
-const mockContent = Array.from({ length: 8 }, (_, i) => ({
-  ...artwork,
-  id: `${artwork.id}${i}`,
-  image: pictures[i],
-  title: `${artwork.title} ${i + 1}`,
-}));
-
-const isValidKey = (x: unknown): x is string => typeof x === 'string';
-
-function createObject<T extends object, K extends keyof T>(array: T[], key: K) {
-  return array.reduce<Record<T[K] & string, T>>((accumulator, current) => {
-    const valueAtKey = current[key];
-
-    if (isValidKey(valueAtKey)) {
-      accumulator[valueAtKey] = current;
-    }
-    return accumulator;
-  }, {} as Record<T[K] & string, T>);
+interface ArtworkDetailPageProps {
+  artworks: Artwork[];
+  currentArtwork?: Artwork;
 }
 
-const mockContentMap: Record<keyof Artwork, Artwork> = createObject(
-  mockContent,
-  'id'
-);
+export const getStaticPaths: GetStaticPaths = async () => {
+  const artworks = await getArtworks();
 
-export default function ArtworkDetailPage() {
-  const { query } = useRouter();
+  return {
+    paths: artworks.map((artwork) => ({ params: { id: artwork.id } })),
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}): Promise<{
+  props: ArtworkDetailPageProps;
+}> => {
+  const artworks = await getArtworks();
+  const currentArtwork = artworks.find((artwork) =>
+    params ? artwork.id === params.id : false
+  );
+
+  return {
+    props: {
+      artworks,
+      currentArtwork,
+    },
+  };
+};
+
+export default function ArtworkDetailPage({
+  artworks,
+  currentArtwork,
+}: ArtworkDetailPageProps) {
   const { dispatch } = useContext(AppContext);
 
   useEffect(() => {
@@ -101,22 +95,20 @@ export default function ArtworkDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getMock = () => mockContentMap[query.id as keyof Artwork];
-
   return (
     <Box as="main" flexGrow="1">
       <Head>
         <title>
-          {query && query.id && mockContentMap[query.id as keyof Artwork].title}{' '}
-          | Gabriel Lippmann | Catalogue Raisonnée
+          {currentArtwork && currentArtwork.title} | Gabriel Lippmann |
+          Catalogue Raisonnée
         </title>
       </Head>
       <Grid marginTop={4} marginBottom={6} variant="small">
-        {mockContent.map((artwork) => (
+        {artworks.map((artwork) => (
           <ArtworkCard key={artwork.id} {...artwork} />
         ))}
       </Grid>
-      {query && query.id && <ArtworkDetail artwork={getMock()} />}
+      {currentArtwork && <ArtworkDetail artwork={currentArtwork} />}
     </Box>
   );
 }

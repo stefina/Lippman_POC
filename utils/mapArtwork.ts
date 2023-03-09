@@ -5,12 +5,13 @@ import { getHasCurrentOwner } from './getHasCurrentOwner';
 import { getTitle } from './getTitle';
 import { isArtwork } from './isArtwork';
 import testPicture from '../pages/lippmann-default.jpg';
+import { getArtworkId } from './getArtworkId';
 
 export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
   const subject = res.subject.value;
   if (isArtwork(subject)) {
     return {
-      id: subject.slice(8), // Next doesn't like "//" in hrefs so we remove them
+      id: getArtworkId(subject),
       title: await getTitle(subject),
       author: subject,
       owner: await getHasCurrentOwner(subject),

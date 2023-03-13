@@ -1,16 +1,18 @@
 import React, { ReactNode } from 'react';
 import { composeClassNames } from '../../utils/composeClassNames';
 import { Box, BoxProps } from '../Box';
-import { headingVariants } from './Heading.css';
+import { HeadingLeading, HeadingSize, headingVariants } from './Heading.css';
 
 interface HeadingProps extends BoxProps {
-  size?: 'small' | 'medium' | 'large';
   children?: ReactNode;
+  leading?: HeadingLeading;
+  size?: HeadingSize;
 }
 
 export function Heading({
   as = 'h1',
   className,
+  leading = 'default',
   size = 'large',
   ...rest
 }: HeadingProps) {
@@ -18,7 +20,7 @@ export function Heading({
     <Box
       {...rest}
       as={as}
-      className={composeClassNames(className, headingVariants[size])}
+      className={composeClassNames(className, headingVariants[size][leading])}
     />
   );
 }

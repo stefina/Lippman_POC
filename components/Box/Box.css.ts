@@ -88,11 +88,15 @@ const boxPropertiesResponsive = defineProperties({
     transition: {
       medium: 'all 200ms ease',
     },
+    lineClamp: [1, 2, 3, 4],
     paddingTop: vars.space,
     paddingRight: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
-    marginTop: vars.space,
+    marginTop: {
+      ...defaultSizes,
+      ...vars.space,
+    },
     marginRight: vars.space,
     marginBottom: vars.space,
     marginLeft: vars.space,

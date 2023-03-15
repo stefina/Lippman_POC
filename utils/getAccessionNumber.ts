@@ -1,8 +1,8 @@
-import { client } from './client';
+import { lippmannClient } from './lippmannClient';
 import { getValueFromResultRows } from './getValueFromResultRows';
 
 export async function getAccessionNumber(link: string) {
-  const accessionNumberStream = await client.query.select(`
+  const accessionNumberStream = await lippmannClient.query.select(`
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>

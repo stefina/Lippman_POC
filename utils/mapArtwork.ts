@@ -3,6 +3,7 @@ import { Artwork } from '../components/ArtworkCard';
 import { getAccessionNumber } from './getAccessionNumber';
 import { getHasCurrentOwner } from './getHasCurrentOwner';
 import { getTitle } from './getTitle';
+import { getTitleConstructed } from './getTitleConstructed';
 import { isArtwork } from './isArtwork';
 import testPicture0 from '../pages/lippmann.jpg';
 import testPicture1 from '../pages/lippmann2.jpg';
@@ -32,7 +33,7 @@ export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
   if (isArtwork(subject)) {
     return {
       id: getArtworkId(subject),
-      title: await getTitle(subject),
+      title: await getTitleConstructed(subject),
       author: subject,
       owner: await getHasCurrentOwner(subject),
       year: await getAccessionNumber(subject),

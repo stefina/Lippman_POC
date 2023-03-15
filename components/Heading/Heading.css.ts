@@ -5,11 +5,9 @@ import { composeClassNames } from '../../utils/composeClassNames';
 
 export type HeadingSize = 'small' | 'medium' | 'large';
 
-export const headingLargeStyle = style({
-  fontWeight: 700,
-});
+export type HeadingLeading = 'narrow' | 'default';
 
-export const headingMediumStyle = style({
+export const headingStyle = style({
   fontWeight: 700,
 });
 
@@ -21,12 +19,28 @@ export const headingMediumFontStyle = createTextStyle(
   vars.typography['heading-medium']
 );
 
-export const headingSmallFontStyle = createTextStyle(
-  vars.typography['heading-small']
+export const headingSmallFontDefaultStyle = createTextStyle(
+  vars.typography['heading-small-default']
 );
 
-export const headingVariants: Record<HeadingSize, string | undefined> = {
-  large: composeClassNames(headingLargeFontStyle, headingLargeStyle),
-  medium: composeClassNames(headingMediumFontStyle, headingMediumStyle),
-  small: headingSmallFontStyle,
+export const headingSmallFontNarrowStyle = createTextStyle(
+  vars.typography['heading-small-narrow']
+);
+
+export const headingVariants: Record<
+  HeadingSize,
+  Record<HeadingLeading, string | undefined>
+> = {
+  large: {
+    default: composeClassNames(headingLargeFontStyle, headingStyle),
+    narrow: composeClassNames(headingLargeFontStyle, headingStyle),
+  },
+  medium: {
+    default: composeClassNames(headingMediumFontStyle, headingStyle),
+    narrow: composeClassNames(headingMediumFontStyle, headingStyle),
+  },
+  small: {
+    default: composeClassNames(headingSmallFontDefaultStyle, headingStyle),
+    narrow: composeClassNames(headingSmallFontNarrowStyle, headingStyle),
+  },
 };

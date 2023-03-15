@@ -6,10 +6,11 @@ export const gridStyles = style({
   display: 'grid',
   gap: '1rem',
   transition: 'all 300ms ease',
+  maxWidth: '89rem',
 });
 
 export const gridLargeStyles = style({
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(12rem, 100%), 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(14rem, 100%), 1fr))',
 });
 
 export const gridSmallStyles = style({

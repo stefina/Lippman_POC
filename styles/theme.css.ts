@@ -39,17 +39,45 @@ export const [themeClass, vars] = createTheme({
         fontMetrics: photoElyseeMetrics,
       })
     ),
-    'heading-small': getResponsiveFontStyles(
+    'heading-small-default': getResponsiveFontStyles(
       precomputeValues({
         capHeight: 12,
         leading: 22,
         fontMetrics: photoElyseeMetrics,
       })
     ),
-    'copy-default': getResponsiveFontStyles(
+    'heading-small-narrow': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 12,
+        leading: 18,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'copy-default-default': getResponsiveFontStyles(
       precomputeValues({
         capHeight: 12,
         leading: 22,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'copy-default-narrow': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 12,
+        leading: 18,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'copy-small-default': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 10,
+        leading: 18,
+        fontMetrics: photoElyseeMetrics,
+      })
+    ),
+    'copy-small-narrow': getResponsiveFontStyles(
+      precomputeValues({
+        capHeight: 10,
+        leading: 14,
         fontMetrics: photoElyseeMetrics,
       })
     ),

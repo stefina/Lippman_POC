@@ -14,6 +14,7 @@ import testPicture5 from '../pages/lippmann6.jpg';
 import testPicture6 from '../pages/lippmann7.jpg';
 import testPicture7 from '../pages/lippmann8.jpg';
 import { getArtworkId } from './getArtworkId';
+import { getBegin, getEnd } from './getTimeSpan';
 
 const images = [
   testPicture0,
@@ -31,13 +32,23 @@ export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
   const imageIndex = Math.floor(Math.random() * 7 + 1);
 
   if (isArtwork(subject)) {
+    const id = getId(subject);
     return {
       id: getArtworkId(subject),
       title: await getTitleConstructed(subject),
       author: subject,
       owner: await getHasCurrentOwner(subject),
-      year: await getAccessionNumber(subject),
+      year: (await getBegin(id)) + ' - ' + (await getEnd(id)),
       image: images[imageIndex],
     };
+  }
+}
+
+export function getId(link: string): string {
+  let match = link.match('\\d{9}$');
+  if (match) {
+    return match[0];
+  } else {
+    return '';
   }
 }

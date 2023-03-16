@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { searchArtworks } from '../../utils/searchArtworks';
 import { Box } from '../Box';
 import { IconSearch } from '../Icons/IconSearch';
 import { Stack } from '../Stack';
@@ -10,7 +9,6 @@ import {
   headerSearchInputWrapperStyle,
   headerSearchLabelStyle,
 } from './HeaderSearch.css';
-import useSWR from 'swr';
 
 export const HeaderSearch = () => {
   const router = useRouter();

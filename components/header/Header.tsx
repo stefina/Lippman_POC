@@ -6,11 +6,11 @@ import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { ActiveLink } from '../ActiveLink';
 import ArrowSvg from '../arrow-svg/ArrowSvg';
 import { Box } from '../Box';
-import { IconSearch } from '../Icons/IconSearch';
+import { HeaderSearch } from '../HeaderSearch';
+import { headerSearchLabelStyle } from '../HeaderSearch/HeaderSearch.css';
 import { Logo } from '../Logo/Logo';
 import { Stack } from '../Stack';
 import {
-  headerLabelStyle,
   headerLogoWrapperStyle,
   headerNavArrowButton,
   headerNavContainer,
@@ -18,9 +18,6 @@ import {
   headerNavLink,
   headerNavLinkActive,
   headerNavList,
-  headerSearchIconWrapperStyle,
-  headerSearchInputStyle,
-  headerSearchInputWrapperStyle,
 } from './Header.css';
 
 const useIsCutOff = (target: RefObject<HTMLElement>) => {
@@ -110,47 +107,7 @@ export default function Header() {
             <Logo />
           </Box>
         </Link>
-        <Stack
-          as="form"
-          backgroundColor="white"
-          boxShadow="default"
-          padding={1}
-          gap={2}
-          flexDirection="row"
-          alignItems="center"
-          flexShrink="1"
-        >
-          <Box
-            as="label"
-            display={['none', 'block']}
-            htmlFor="search-bar"
-            className={headerLabelStyle}
-          >
-            Search:
-          </Box>
-          <Stack
-            flexDirection="row"
-            alignItems="center"
-            backgroundColor="neutral-100"
-            color="neutral-900"
-            className={headerSearchInputWrapperStyle}
-          >
-            <input
-              className={headerSearchInputStyle}
-              type="search"
-              id="search-bar"
-              name="search-bar"
-            />
-            <Box
-              as="button"
-              flexShrink="0"
-              padding={1}
-              className={headerSearchIconWrapperStyle}
-            >
-              <IconSearch />
-            </Box>
-          </Stack>
-        </Stack>
+        <HeaderSearch />
       </Stack>
       <Stack
         flexDirection="row"
@@ -171,7 +128,7 @@ export default function Header() {
           <Box
             as="span"
             paddingRight={navIsCutOff ? 0 : 1}
-            className={headerLabelStyle}
+            className={headerSearchLabelStyle}
           >
             Viz:
           </Box>

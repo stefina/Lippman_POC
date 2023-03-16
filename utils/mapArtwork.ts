@@ -28,7 +28,7 @@ const images = [
 ];
 
 export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
-  const subject = res.subject.value;
+  const subject = res.subject ? res.subject.value : res.subj.value;
   const imageIndex = Math.floor(Math.random() * 7 + 1);
 
   if (isArtwork(subject)) {

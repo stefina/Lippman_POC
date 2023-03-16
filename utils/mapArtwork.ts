@@ -27,9 +27,12 @@ const images = [
   testPicture7,
 ];
 
-export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
+export async function mapArtwork(
+  res: ResultRow,
+  index: number
+): Promise<Artwork | undefined> {
   const subject = res.subject ? res.subject.value : res.subj.value;
-  const imageIndex = Math.floor(Math.random() * 7 + 1);
+  const imageIndex = (index + 1) % 8;
 
   if (isArtwork(subject)) {
     const id = getId(subject);

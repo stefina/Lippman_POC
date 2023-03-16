@@ -10,9 +10,9 @@ export const gridStyles = style({
 });
 
 export const gridLargeStyles = style({
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(14rem, 100%), 1fr))',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(min(14rem, 100%), 1fr))',
 });
 
 export const gridSmallStyles = style({
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(10rem, 100%), 1fr))',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(min(10rem, 100%), 1fr))',
 });

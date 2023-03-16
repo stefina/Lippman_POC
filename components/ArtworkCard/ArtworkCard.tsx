@@ -14,6 +14,7 @@ import {
 } from './ArtworkCard.css';
 import { Stack } from '../Stack';
 import { IconTypeArtwork } from '../Icons/IconTypeArtwork';
+import { useRouter } from 'next/router';
 
 export interface Artwork {
   author: string;
@@ -24,16 +25,11 @@ export interface Artwork {
   year: string;
 }
 
-export const ArtworkCard = ({
-  author,
-  id,
-  image,
-  title,
-  year,
-  owner,
-}: Artwork) => {
+export const ArtworkCard = ({ id, image, title, year, owner }: Artwork) => {
+  const { query } = useRouter();
+
   return (
-    <Link className={artworkLinkStyles} href={`/${id}`}>
+    <Link className={artworkLinkStyles} href={{ pathname: `/${id}`, query }}>
       <Stack
         as="section"
         flexDirection="column"

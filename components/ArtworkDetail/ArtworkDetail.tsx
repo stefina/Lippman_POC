@@ -11,8 +11,11 @@ import { Stack } from '../Stack';
 import { imageWrapperStyle, imageStyle } from './ArtworkDetail.css';
 import { Text } from '../../components/Text';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
+  const { query } = useRouter();
+
   return (
     <Overlay boxShadow="default" position="relative">
       <ArtworkDetailCloseButton />
@@ -49,7 +52,7 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           asLayout="stack"
           marginTop={6}
           gap={3}
-          internalHref={`${artwork.id}/detail`}
+          internalHref={{ pathname: `${artwork.id}/detail`, query }}
         >
           <Box as="span">Go to detail</Box>
           <IconArrowRight size={5} />

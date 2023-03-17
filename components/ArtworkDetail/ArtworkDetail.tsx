@@ -52,7 +52,10 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           asLayout="stack"
           marginTop={6}
           gap={3}
-          internalHref={{ pathname: `${artwork.id}/detail`, query }}
+          internalHref={{
+            pathname: `${artwork.id}/detail`,
+            query: { search: query.search },
+          }}
         >
           <Box as="span">Go to detail</Box>
           <IconArrowRight size={5} />

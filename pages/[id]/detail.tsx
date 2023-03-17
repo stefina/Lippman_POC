@@ -54,7 +54,7 @@ export default function ArtworkDetailPage({
       </ContentWrapper>
     );
   }
-  const { title, year, author, image } = artwork;
+  const { title, year, artworkURL, image } = artwork;
   return (
     <Stack className={detailWrapperStyles} gap={8} flexWrap="wrap">
       {image && (
@@ -82,12 +82,12 @@ export default function ArtworkDetailPage({
                 <Text as="dd">{title}</Text>
               </>
             )}
-            {author && (
+            {artworkURL && (
               <>
                 <Text as="dt" color="neutral-400">
                   Authors
                 </Text>
-                <Text as="dd">{author}</Text>
+                <Text as="dd">{artworkURL}</Text>
               </>
             )}
             {year && (

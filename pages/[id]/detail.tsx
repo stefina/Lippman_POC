@@ -54,7 +54,18 @@ export default function ArtworkDetailPage({
       </ContentWrapper>
     );
   }
-  const { title, year, artworkURL, image } = artwork;
+  const {
+    title,
+    year,
+    artworkURL,
+    artProcess,
+    accessionNumber,
+    floraArkURL,
+    ownerOrgURL,
+    ownerOrgWikiDataURL,
+    ownerOrgName,
+    image,
+  } = artwork;
   return (
     <Stack className={detailWrapperStyles} gap={8} flexWrap="wrap">
       {image && (
@@ -82,12 +93,20 @@ export default function ArtworkDetailPage({
                 <Text as="dd">{title}</Text>
               </>
             )}
-            {artworkURL && (
+            {accessionNumber && (
               <>
                 <Text as="dt" color="neutral-400">
-                  Authors
+                  Accession Number
                 </Text>
-                <Text as="dd">{artworkURL}</Text>
+                <Text as="dd">{accessionNumber}</Text>
+              </>
+            )}
+            {artProcess && (
+              <>
+                <Text as="dt" color="neutral-400">
+                  Art Process
+                </Text>
+                <Text as="dd">{artProcess}</Text>
               </>
             )}
             {year && (
@@ -96,6 +115,32 @@ export default function ArtworkDetailPage({
                   Year
                 </Text>
                 <Text as="dd">{year}</Text>
+              </>
+            )}
+            {artworkURL && (
+              <>
+                <Text as="dt" color="neutral-400">
+                  Artwork URL
+                </Text>
+                <Text as="dd">{artworkURL}</Text>
+              </>
+            )}
+            {floraArkURL && (
+              <>
+                <Text as="dt" color="neutral-400">
+                  Flora Ark URL
+                </Text>
+                <Text as="dd">{floraArkURL}</Text>
+              </>
+            )}
+            {ownerOrgName && ownerOrgWikiDataURL && (
+              <>
+                <Text as="dt" color="neutral-400">
+                  Owner
+                </Text>
+                <Text as="dd">
+                  <a href={ownerOrgWikiDataURL}>{ownerOrgName}</a>
+                </Text>
               </>
             )}
           </ArtworkDetailCluster>

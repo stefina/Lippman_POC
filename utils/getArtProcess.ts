@@ -4,7 +4,6 @@ import { gettyClient } from './gettyClient';
 
 export async function getArtProcess(link: string) {
   const artworkProcessURL = await getArtworkProcessURL(link);
-  console.log(artworkProcessURL);
   const gettyProcessStream = await gettyClient.query.select(`
     PREFIX gvp:  <http://vocab.getty.edu/ontology#>
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
@@ -18,7 +17,6 @@ export async function getArtProcess(link: string) {
       FILTER (LANG(?label) = "en")   
     } limit 1
   `);
-  console.log(getValueFromResultRows(gettyProcessStream)); // TODO: returns empty string
   return getValueFromResultRows(gettyProcessStream);
 }
 

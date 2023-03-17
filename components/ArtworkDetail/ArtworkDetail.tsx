@@ -55,22 +55,22 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           <Text as="dt" color="neutral-400">
             Artwork URL
           </Text>
-          <Link as="dd" href={artwork.artworkURL}>
-            {artwork.artworkURL}
-          </Link>
+          <Text as="dd">
+            <a href={artwork.artworkURL}>{artwork.artworkURL}</a>
+          </Text>
           <Text as="dt" color="neutral-400">
             Flora Ark URL
           </Text>
-          <Link as="dd" href={artwork.floraArkURL}>
-            {artwork.floraArkURL}
-          </Link>
+          <Text as="dd">
+            <a href={artwork.floraArkURL}>{artwork.floraArkURL}</a>
+          </Text>
 
           <Text as="dt" color="neutral-400">
             Owner
           </Text>
-          <Link as="dd" href={artwork.ownerOrgWikiDataURL}>
-            {artwork.ownerOrgName}
-          </Link>
+          <Text as="dd">
+            <a href={artwork.ownerOrgWikiDataURL}>{artwork.ownerOrgName}</a>
+          </Text>
         </ArtworkDetailCluster>
         <Button
           asLayout="stack"

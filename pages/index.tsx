@@ -26,29 +26,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 export default function Home({
   artworks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const router = useRouter();
-  const search =
-    typeof router?.query?.search === 'string'
-      ? router?.query?.search || ''
-      : '';
-  const [filteredArtworks, setFilteredArtworks] = useState<Artwork[]>(artworks);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (search) {
-      setIsLoading(true);
-      searchArtworks(search)
-        .then((result) => setFilteredArtworks(result))
-        .then(() => setIsLoading(false))
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-    if (!search) {
-      setFilteredArtworks(artworks);
-    }
-  }, [artworks, search]);
-
   return (
     <Box as="main" flexGrow="1" marginTop={4} marginBottom={6}>
       <Head>

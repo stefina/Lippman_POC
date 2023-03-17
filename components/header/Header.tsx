@@ -1,6 +1,7 @@
 import useIntersectionObserver from '@react-hook/intersection-observer';
 import useResizeObserver from '@react-hook/resize-observer';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 
 import { ActiveLink } from '../ActiveLink';
@@ -45,6 +46,7 @@ const useIsCutOff = (target: RefObject<HTMLElement>) => {
 };
 
 export default function Header() {
+  const { query } = useRouter();
   const refNav = useRef<HTMLUListElement>(null);
   const { isCutOff: navIsCutOff, width: navWidth } = useIsCutOff(refNav);
   const [refFirstLink, setRefFirstLink] = useState<HTMLElement | null>(null);
@@ -97,7 +99,7 @@ export default function Header() {
         flexWrap="wrap"
         gap={1}
       >
-        <Link href="/">
+        <Link href={{ pathname: '/', query: { search: query.search } }}>
           <Box
             backgroundColor="white"
             color="black"

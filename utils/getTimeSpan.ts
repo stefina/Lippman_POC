@@ -30,15 +30,13 @@ export async function getBegin(id: string) {
                 SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
                 GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
                     ?subj <http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin> ?obj .
-                    FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/132694857'))
+                    FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}'))
                 }
             }
         }
     `);
-  console.log(id);
-  console.debug(getValueFromResultRows(beginStream));
 
-  return getValueFromResultRows(beginStream);
+  return getValueFromResultRows(beginStream) || '';
 }
 
 export async function getEnd(id: string) {
@@ -51,7 +49,7 @@ export async function getEnd(id: string) {
                 SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
                 GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
                     ?subj <http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end> ?obj .
-                    FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/132694857'))
+                    FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}'))
                 }
             }
         }
@@ -59,6 +57,3 @@ export async function getEnd(id: string) {
 
   return getValueFromResultRows(endStream);
 }
-
-// FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}'))
-// FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/132694857'))

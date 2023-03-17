@@ -17,13 +17,18 @@ import { IconTypeArtwork } from '../Icons/IconTypeArtwork';
 import { useRouter } from 'next/router';
 
 export interface Artwork {
-  author: string;
+  artworkURL: string;
   id: string;
   image: StaticImageData;
   title: string;
   owner: string;
   year: string;
   artProcess: string;
+  floraArkURL: string;
+  ownerOrgURL: string;
+  ownerOrgName: string;
+  ownerOrgWikiDataURL: string;
+  accessionNumber: string;
 }
 
 export const ArtworkCard = ({

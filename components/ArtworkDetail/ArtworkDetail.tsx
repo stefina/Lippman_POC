@@ -64,7 +64,6 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           <Text as="dd">
             <a href={artwork.floraArkURL}>{artwork.floraArkURL}</a>
           </Text>
-
           <Text as="dt" color="neutral-400">
             Owner
           </Text>

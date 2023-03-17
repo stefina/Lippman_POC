@@ -9,11 +9,12 @@ export async function getArtworks() {
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
     SELECT * WHERE {
-        SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
+    SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
         GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
-            ?subject ?predicate <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> .
+          ?subject <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> <http://vocab.getty.edu/aat/300133025> .
+          FILTER regex(?subject, "^https://pe.plateforme10.ch/Artwork/[0-9]{5}/[0-9]{9}$", "")
         }
-        }
+      }
     }
     `);
 

@@ -15,6 +15,7 @@ import testPicture6 from '../pages/lippmann7.jpg';
 import testPicture7 from '../pages/lippmann8.jpg';
 import { getArtworkId } from './getArtworkId';
 import { getBegin, getEnd } from './getTimeSpan';
+import { getArtProcess } from './getArtProcess';
 
 const images = [
   testPicture0,
@@ -43,6 +44,7 @@ export async function mapArtwork(
       owner: await getHasCurrentOwner(subject),
       year: (await getBegin(id)) + ' - ' + (await getEnd(id)),
       image: images[imageIndex],
+      artProcess: await getArtProcess(subject),
     };
   }
 }

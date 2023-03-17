@@ -23,9 +23,17 @@ export interface Artwork {
   title: string;
   owner: string;
   year: string;
+  artProcess: string;
 }
 
-export const ArtworkCard = ({ id, image, title, year, owner }: Artwork) => {
+export const ArtworkCard = ({
+  id,
+  image,
+  title,
+  year,
+  owner,
+  artProcess,
+}: Artwork) => {
   const { query } = useRouter();
 
   return (
@@ -75,6 +83,11 @@ export const ArtworkCard = ({ id, image, title, year, owner }: Artwork) => {
             {owner && (
               <Text size="small" leading="narrow">
                 <span className={artworkHeadingStyle}>{owner}</span>
+              </Text>
+            )}
+            {artProcess && (
+              <Text size="small" leading="narrow">
+                <span className={artworkHeadingStyle}>{artProcess}</span>
               </Text>
             )}
           </Stack>

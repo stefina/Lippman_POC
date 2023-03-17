@@ -35,7 +35,7 @@ export const ArtworkList = ({ defaultArtworks }: ArtworkListProps) => {
 
   return (
     <>
-      {isLoading && <Text color="white">No results found</Text>}
+      {isLoading && <Text color="white">Loading</Text>}
       {!isLoading &&
         filteredArtworks.length > 0 &&
         filteredArtworks.map((artwork) => (

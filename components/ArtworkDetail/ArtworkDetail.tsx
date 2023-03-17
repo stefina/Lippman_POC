@@ -12,6 +12,7 @@ import { imageWrapperStyle, imageStyle } from './ArtworkDetail.css';
 import { Text } from '../../components/Text';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
   const { query } = useRouter();
@@ -40,13 +41,36 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           </Text>
           <Text as="dd">{artwork.title}</Text>
           <Text as="dt" color="neutral-400">
-            Authors
+            Accession Number
           </Text>
-          <Text as="dd">{artwork.author}</Text>
+          <Text as="dd">{artwork.accessionNumber}</Text>
+          <Text as="dt" color="neutral-400">
+            Process
+          </Text>
+          <Text as="dd">{artwork.artProcess}</Text>
           <Text as="dt" color="neutral-400">
             Year
           </Text>
           <Text as="dd">{artwork.year}</Text>
+          <Text as="dt" color="neutral-400">
+            Artwork URL
+          </Text>
+          <Text as="dd">
+            <a href={artwork.artworkURL}>{artwork.artworkURL}</a>
+          </Text>
+          <Text as="dt" color="neutral-400">
+            Flora Ark URL
+          </Text>
+          <Text as="dd">
+            <a href={artwork.floraArkURL}>{artwork.floraArkURL}</a>
+          </Text>
+
+          <Text as="dt" color="neutral-400">
+            Owner
+          </Text>
+          <Text as="dd">
+            <a href={artwork.ownerOrgWikiDataURL}>{artwork.ownerOrgName}</a>
+          </Text>
         </ArtworkDetailCluster>
         <Button
           asLayout="stack"

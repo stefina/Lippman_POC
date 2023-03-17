@@ -16,6 +16,13 @@ import { getBegin, getEnd } from './getTimeSpan';
 import { getTitleConstructed } from './getTitleConstructed';
 import { isArtwork } from './isArtwork';
 import { mapDate } from './mapDate';
+import { getFloraArkURL } from './getFloraArkURL';
+import {
+  getOrganizationName,
+  getOrganizationURL,
+  getWikiDataOrganizationURL,
+} from './getOrganization';
+import { getAccessionNumber } from './getAccessionNumber';
 
 const images = [
   testPicture0,
@@ -40,11 +47,16 @@ export async function mapArtwork(
     return {
       id: getArtworkId(subject),
       title: await getTitleConstructed(subject),
-      author: subject,
+      artworkURL: subject,
       owner: await getHasCurrentOwner(subject),
       year: mapDate(await getBegin(id), await getEnd(id)),
       image: images[imageIndex],
       artProcess: await getArtProcess(subject),
+      floraArkURL: await getFloraArkURL(subject),
+      ownerOrgURL: await getOrganizationURL(subject),
+      ownerOrgName: await getOrganizationName(subject),
+      ownerOrgWikiDataURL: await getWikiDataOrganizationURL(subject),
+      accessionNumber: await getAccessionNumber(subject),
     };
   }
 }

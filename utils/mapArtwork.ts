@@ -1,9 +1,5 @@
 import { ResultRow } from 'sparql-http-client/ResultParser';
 import { Artwork } from '../components/ArtworkCard';
-import { getAccessionNumber } from './getAccessionNumber';
-import { getHasCurrentOwner } from './getHasCurrentOwner';
-import { getTitle } from './getTitle';
-import { isArtwork } from './isArtwork';
 import testPicture0 from '../pages/lippmann.jpg';
 import testPicture1 from '../pages/lippmann2.jpg';
 import testPicture2 from '../pages/lippmann3.jpg';
@@ -12,7 +8,14 @@ import testPicture4 from '../pages/lippmann5.jpg';
 import testPicture5 from '../pages/lippmann6.jpg';
 import testPicture6 from '../pages/lippmann7.jpg';
 import testPicture7 from '../pages/lippmann8.jpg';
+import { getArtProcess } from './getArtProcess';
 import { getArtworkId } from './getArtworkId';
+import { getHasCurrentOwner } from './getHasCurrentOwner';
+import { getId } from './getId';
+import { getBegin, getEnd } from './getTimeSpan';
+import { getTitleConstructed } from './getTitleConstructed';
+import { isArtwork } from './isArtwork';
+import { mapDate } from './mapDate';
 
 const images = [
   testPicture0,
@@ -25,18 +28,23 @@ const images = [
   testPicture7,
 ];
 
-export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
-  const subject = res.subject.value;
-  const imageIndex = Math.floor(Math.random() * 7 + 1);
+export async function mapArtwork(
+  res: ResultRow,
+  index: number
+): Promise<Artwork | undefined> {
+  const subject = res.subject ? res.subject.value : res.subj.value; // TODO Make more resilient
+  const imageIndex = (index + 1) % 8;
 
   if (isArtwork(subject)) {
+    const id = getId(subject);
     return {
       id: getArtworkId(subject),
-      title: await getTitle(subject),
+      title: await getTitleConstructed(subject),
       author: subject,
       owner: await getHasCurrentOwner(subject),
-      year: await getAccessionNumber(subject),
+      year: mapDate(await getBegin(id), await getEnd(id)),
       image: images[imageIndex],
+      artProcess: await getArtProcess(subject),
     };
   }
 }

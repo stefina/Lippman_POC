@@ -1,10 +1,11 @@
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useContext, useEffect } from 'react';
-import { Artwork, ArtworkCard } from '../../components/ArtworkCard';
+import { Artwork } from '../../components/ArtworkCard';
+import { ArtworkDetail } from '../../components/ArtworkDetail';
+import { ArtworkList } from '../../components/ArtworkList';
 import { Box } from '../../components/Box';
 import { Grid } from '../../components/Grid';
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ArtworkDetail } from '../../components/ArtworkDetail';
 import { getArtworks } from '../../utils/getArtworks';
 import { ActionType, AppContext } from '../_app';
 
@@ -74,9 +75,7 @@ export default function ArtworkDetailPage({
         </title>
       </Head>
       <Grid marginTop={4} marginBottom={6} variant="small">
-        {artworks.map((artwork) => (
-          <ArtworkCard key={artwork.id} {...artwork} />
-        ))}
+        <ArtworkList defaultArtworks={artworks} />
       </Grid>
       {currentArtwork && <ArtworkDetail artwork={currentArtwork} />}
     </Box>

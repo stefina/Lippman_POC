@@ -15,6 +15,7 @@ import {
 import { Stack } from '../Stack';
 import { IconTypeArtwork } from '../Icons/IconTypeArtwork';
 import { useRouter } from 'next/router';
+import { getHrefWithPreservedQuery } from '../../utils/getHrefWithPreservedQuery';
 
 export interface Artwork {
   artworkURL: string;
@@ -42,7 +43,10 @@ export const ArtworkCard = ({
   const { query } = useRouter();
 
   return (
-    <Link className={artworkLinkStyles} href={{ pathname: `/${id}`, query }}>
+    <Link
+      className={artworkLinkStyles}
+      href={getHrefWithPreservedQuery(`/${id}`, query)}
+    >
       <Stack
         as="section"
         flexDirection="column"

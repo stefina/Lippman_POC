@@ -99,7 +99,7 @@ export default function Header() {
         flexWrap="wrap"
         gap={1}
       >
-        <Link href={{ pathname: '/', query: { search: query.search } }}>
+        <Link href="/">
           <Box
             backgroundColor="white"
             color="black"

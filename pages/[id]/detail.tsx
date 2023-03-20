@@ -18,7 +18,9 @@ interface ArtworkDetailPageProps {
   artwork?: Artwork;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<{
+  id: string;
+}> = async () => {
   const artworks = await getArtworks();
 
   return {

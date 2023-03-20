@@ -1,24 +1,32 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
-import { Artwork } from '../../components/ArtworkCard';
-import { ArtworkDetail } from '../../components/ArtworkDetail';
-import { ArtworkList } from '../../components/ArtworkList';
-import { Box } from '../../components/Box';
-import { Grid } from '../../components/Grid';
-import { getArtworks } from '../../utils/getArtworks';
-import { ActionType, AppContext } from '../_app';
+import { Artwork } from '../components/ArtworkCard';
+import { ArtworkDetail } from '../components/ArtworkDetail';
+import { ArtworkList } from '../components/ArtworkList';
+import { Box } from '../components/Box';
+import { Grid } from '../components/Grid';
+import { getArtworks } from '../utils/getArtworks';
+import { ActionType, AppContext } from './_app';
 
 interface ArtworkDetailPageProps {
   artworks: Artwork[];
-  currentArtwork?: Artwork;
+  currentArtwork?: Artwork | null;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<{
+  id: string[];
+}> = async () => {
   const artworks = await getArtworks();
 
+  const paths = [
+    { params: { id: [] } },
+    ...artworks.map((artwork) => ({ params: { id: [artwork.id] } })),
+  ];
+
   return {
-    paths: artworks.map((artwork) => ({ params: { id: artwork.id } })),
+    paths,
     fallback: false,
   };
 };
@@ -27,14 +35,16 @@ export const getStaticProps: GetStaticProps<ArtworkDetailPageProps> = async ({
   params,
 }) => {
   const artworks = await getArtworks();
-  const currentArtwork = artworks.find((artwork) =>
-    params ? artwork.id === params.id : false
-  );
+
+  const currentArtwork =
+    params && params.id && params.id.length > 0
+      ? artworks.find((artwork) => artwork.id === (params.id as string[])[0])
+      : null;
 
   return {
     props: {
       artworks,
-      currentArtwork,
+      currentArtwork: currentArtwork ? currentArtwork : null,
     },
   };
 };
@@ -47,6 +57,7 @@ export default function ArtworkDetailPage({
 
   useEffect(() => {
     dispatch &&
+      currentArtwork &&
       dispatch({
         type: ActionType.SetOverlay,
         payload: {
@@ -63,15 +74,14 @@ export default function ArtworkDetailPage({
           },
         });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentArtwork, dispatch]);
 
   return (
     <Box as="main" flexGrow="1">
       <Head>
         <title>
-          {currentArtwork && currentArtwork.title} | Gabriel Lippmann |
-          Catalogue Raisonnée
+          {currentArtwork?.title || 'Home'} | Gabriel Lippmann | Catalogue
+          Raisonnée
         </title>
       </Head>
       <Grid marginTop={4} marginBottom={6} variant="small">

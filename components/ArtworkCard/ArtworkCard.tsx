@@ -74,12 +74,7 @@ export const ArtworkCard = ({
           className={artworkTextWrapperStyle}
         >
           {title && (
-            <Heading
-              lineClamp={1}
-              color="neutral-500"
-              size="small"
-              leading="narrow"
-            >
+            <Heading color="neutral-500" size="small" leading="narrow">
               <span className={artworkHeadingStyle}>{title}</span>
             </Heading>
           )}

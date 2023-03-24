@@ -12,7 +12,7 @@ import { imageWrapperStyle, imageStyle } from './ArtworkDetail.css';
 import { Text } from '../../components/Text';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { getHrefWithPreservedQuery } from '../../utils/getHrefWithPreservedQuery';
 
 export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
   const { query } = useRouter();
@@ -75,10 +75,10 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           asLayout="stack"
           marginTop={6}
           gap={3}
-          internalHref={{
-            pathname: `${artwork.id}/detail`,
-            query: { search: query.search },
-          }}
+          internalHref={getHrefWithPreservedQuery(
+            `${artwork.id}/detail`,
+            query
+          )}
         >
           <Box as="span">Go to detail</Box>
           <IconArrowRight size={5} />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box } from '../Box';
 import { logoPathStyles, logoStyles } from './Logo.css';
 
 export const Logo = () => {

@@ -5,6 +5,7 @@ import { neutralColor, brandColor } from '../../styles/tokens/color';
 
 export const iconStyle = style({
   fill: 'currentcolor',
+  stroke: 'currentcolor',
   flexShrink: 0,
   display: 'block',
 });

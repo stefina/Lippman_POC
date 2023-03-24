@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { boxSprinkles } from '../components/Box/Box.css';
 
 export const detailWrapperStyles = boxSprinkles({
-  marginTop: 10,
+  marginTop: 2,
   marginBottom: 6,
   paddingX: 4,
   paddingTop: 6,

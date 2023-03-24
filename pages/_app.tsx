@@ -1,7 +1,7 @@
 import '../styles/main.scss';
 import type { AppProps } from 'next/app';
 import DefaultLayout from '../components/DefaultLayout';
-import localFont from '@next/font/local';
+import localFont from "next/font/local";
 import { themeClass } from '../styles/theme.css';
 import '../styles/global.css';
 import { createContext, Dispatch, useReducer } from 'react';

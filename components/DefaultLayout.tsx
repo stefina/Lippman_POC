@@ -38,7 +38,6 @@ export default function DefaultLayout({
         {children}
         <Footer />
       </Box>
-
       <Image
         src={bg}
         alt=""

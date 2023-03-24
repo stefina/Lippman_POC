@@ -39,7 +39,7 @@ export default function AProposPage() {
         qu’à ses modes de présentation et de circulation (projection,
         exposition).
       </Text>
-      <Heading as="h2" size="medium">
+      <Heading as="h2" size="medium" marginTop={16}>
         Photo Elysée
       </Heading>
       <Text marginTop={4}>

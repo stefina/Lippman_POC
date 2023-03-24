@@ -46,7 +46,6 @@ const useIsCutOff = (target: RefObject<HTMLElement>) => {
 };
 
 export default function Header() {
-  const { query } = useRouter();
   const refNav = useRef<HTMLUListElement>(null);
   const { isCutOff: navIsCutOff, width: navWidth } = useIsCutOff(refNav);
   const [refFirstLink, setRefFirstLink] = useState<HTMLElement | null>(null);

@@ -48,10 +48,6 @@
     background-color: $secondary-100;
     border: none;
   }
-
-  &::after {
-    height: 0px;
-  }
 }
 
 .active {

@@ -84,7 +84,11 @@ export default function ArtworkDetailPage({
           Raisonnée
         </title>
       </Head>
-      <Grid marginTop={4} marginBottom={6} variant="small">
+      <Grid
+        marginTop={4}
+        marginBottom={6}
+        variant={currentArtwork ? 'small' : 'large'}
+      >
         <ArtworkList defaultArtworks={artworks} />
       </Grid>
       {currentArtwork && <ArtworkDetail artwork={currentArtwork} />}

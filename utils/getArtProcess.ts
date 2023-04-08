@@ -29,12 +29,7 @@ export async function getArtworkProcessURL(link: string) {
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
     
     SELECT DISTINCT ?obj WHERE {
-      SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
-        GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
-          <https://pe.plateforme10.ch/Artwork/15053/000000002/Type> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ?obj .
-    
-        }
-      }
+        <https://pe.plateforme10.ch/Artwork/15053/000000002/Type> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ?obj .
     } LIMIT 1
   `);
   return getValueFromResultRows(processStream);

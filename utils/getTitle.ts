@@ -8,11 +8,7 @@ export async function getTitle(link: string) {
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
     SELECT DISTINCT ?obj WHERE {
-        SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
-            GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
-                <${link}/Title/original> rdfs:label ?obj .
-            }
-        }
+        <${link}/Title/original> rdfs:label ?obj .
     }
   `);
 

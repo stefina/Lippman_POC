@@ -2,7 +2,6 @@ import { lippmannClient } from './lippmannClient';
 import { isTruthy } from './isTruthy';
 import { mapArtwork } from './mapArtwork';
 
-// TODO: test this!
 export async function searchArtworks(term: string) {
   const dataset = await lippmannClient.query.select(`
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

@@ -10,8 +10,10 @@ export async function getOrganizationURL(link: string) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
+
     SELECT DISTINCT ?obj WHERE {
-        <${link}> <http://www.cidoc-crm.org/cidoc-crm/P52_has_current_owner> ?obj .
+        <${link}> cidoc:P52_has_current_owner ?obj .
     }
   `);
   return getValueFromResultRows(organizationStream);

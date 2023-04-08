@@ -7,8 +7,9 @@ export async function getTimeSpan(id: string) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
     SELECT DISTINCT ?obj WHERE {
-      ?subj <http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at> ?obj .
+      ?subj cidoc:P7_took_place_at ?obj .
       FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}}'))
     }
   `);
@@ -22,8 +23,9 @@ export async function getBegin(id: string) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
     SELECT DISTINCT ?obj WHERE {
-      ?subj <http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin> ?obj .
+      ?subj cidoc:P82a_begin_of_the_begin ?obj .
       FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}'))
     }
   `);
@@ -37,8 +39,9 @@ export async function getEnd(id: string) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
     SELECT DISTINCT ?obj WHERE {
-      ?subj <http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end> ?obj .
+      ?subj cidoc:P82b_end_of_the_end ?obj .
       FILTER (strstarts(str(?subj), 'https://pe.plateforme10.ch/Event/Production/${id}'))
     }
   `);

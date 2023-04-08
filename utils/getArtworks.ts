@@ -8,8 +8,9 @@ export async function getArtworks() {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
     SELECT * WHERE {
-      ?subject <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> <http://vocab.getty.edu/aat/300133025> .
+      ?subject cidoc:P2_has_type <http://vocab.getty.edu/aat/300133025> .
       FILTER regex(?subject, "^https://pe.plateforme10.ch/Artwork/[0-9]{5}/[0-9]{9}$", "")
     }
     `);

@@ -27,9 +27,11 @@ export async function getArtworkProcessURL(link: string) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
+    
     
     SELECT DISTINCT ?obj WHERE {
-        <https://pe.plateforme10.ch/Artwork/15053/000000002/Type> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ?obj .
+        <https://pe.plateforme10.ch/Artwork/15053/000000002/Type> cidoc:P2_has_type ?obj .
     } LIMIT 1
   `);
   return getValueFromResultRows(processStream);

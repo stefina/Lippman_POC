@@ -1,13 +1,12 @@
 import { lippmannClient } from './lippmannClient';
 import { isTruthy } from './isTruthy';
 import { mapArtwork } from './mapArtwork';
+import { prefixes } from './getPrefixes';
 
 export async function searchArtworks(term: string) {
   const dataset = await lippmannClient.query.select(`
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    ${prefixes}
+    
     SELECT * WHERE {
       ?subj rdfs:label ?obj .
       FILTER regex(?obj, "${term}", "i")

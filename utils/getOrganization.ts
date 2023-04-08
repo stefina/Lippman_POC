@@ -3,14 +3,11 @@ import { wikidataClient } from './wikidataClient';
 import { lippmannClient } from './lippmannClient';
 import { getOrganizationID } from './getOrganizationID';
 import { getLabelValueFromResult } from './getLabelValueFromResult';
+import { prefixes } from './getPrefixes';
 
 export async function getOrganizationURL(link: string) {
   const organizationStream = await lippmannClient.query.select(`
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
-    PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
+    ${prefixes}
 
     SELECT DISTINCT ?obj WHERE {
         <${link}> cidoc:P52_has_current_owner ?obj .
@@ -30,11 +27,8 @@ export async function getOrganizationName(link: string) {
   const organizationURL = await getOrganizationURL(link);
   const id = await getOrganizationID(organizationURL);
   const organizationNameStream = await wikidataClient.query.select(`
-    PREFIX p: <http://www.wikidata.org/prop/>
-    PREFIX ps: <http://www.wikidata.org/prop/statement/>
-    PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
-    PREFIX wd: <http://www.wikidata.org/entity/>
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    ${prefixes}
+    
     SELECT DISTINCT * WHERE {
       wd:${id} rdfs:label ?label . 
       FILTER (LANG(?label) = "en")

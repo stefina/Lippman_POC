@@ -30,6 +30,7 @@ export interface Artwork {
   ownerOrgName: string;
   ownerOrgWikiDataURL: string;
   accessionNumber: string;
+  tookPlaceAt: string;
 }
 
 export const ArtworkCard = ({

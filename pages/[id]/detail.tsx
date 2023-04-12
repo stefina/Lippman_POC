@@ -77,6 +77,7 @@ export default function ArtworkDetailPage({
     ownerOrgURL,
     ownerOrgWikiDataURL,
     ownerOrgName,
+    tookPlaceAt,
     image,
   } = artwork;
   return (
@@ -146,6 +147,14 @@ export default function ArtworkDetailPage({
                     Year
                   </Text>
                   <Text as="dd">{year}</Text>
+                </>
+              )}
+              {tookPlaceAt && (
+                <>
+                  <Text as="dt" color="neutral-400">
+                    P7_took_place_at
+                  </Text>
+                  <Text as="dd">{tookPlaceAt}</Text>
                 </>
               )}
               {artworkURL && (

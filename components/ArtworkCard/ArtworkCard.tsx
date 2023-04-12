@@ -31,6 +31,7 @@ export interface Artwork {
   ownerOrgWikiDataURL: string;
   accessionNumber: string;
   tookPlaceAt: string;
+  wasProducedBy: string;
 }
 
 export const ArtworkCard = ({

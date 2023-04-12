@@ -24,6 +24,7 @@ import {
 } from './getOrganization';
 import { getAccessionNumber } from './getAccessionNumber';
 import { getTookPlaceAt } from './getTookPlaceAt';
+import { getWasProducedBy } from './getWasProducedBy';
 
 const images = [
   testPicture0,
@@ -58,6 +59,7 @@ export async function mapArtwork(
       ownerOrgName: await getOrganizationName(subject),
       ownerOrgWikiDataURL: await getWikiDataOrganizationURL(subject),
       tookPlaceAt: await getTookPlaceAt(subject),
+      wasProducedBy: await getWasProducedBy(subject),
       accessionNumber: await getAccessionNumber(subject),
     };
   }

@@ -78,6 +78,7 @@ export default function ArtworkDetailPage({
     ownerOrgWikiDataURL,
     ownerOrgName,
     tookPlaceAt,
+    wasProducedBy,
     image,
   } = artwork;
   return (
@@ -155,6 +156,14 @@ export default function ArtworkDetailPage({
                     P7_took_place_at
                   </Text>
                   <Text as="dd">{tookPlaceAt}</Text>
+                </>
+              )}
+              {wasProducedBy && (
+                <>
+                  <Text as="dt" color="neutral-400">
+                    P108i_was_produced_by
+                  </Text>
+                  <Text as="dd">{wasProducedBy}</Text>
                 </>
               )}
               {artworkURL && (

@@ -1,8 +1,5 @@
 import { lippmannClient } from './lippmannClient';
-import {
-  getValueFromResultRows,
-  getValueFromResultRowsDebug,
-} from './getValueFromResultRows';
+import { getValueFromResultRows } from './getValueFromResultRows';
 import { prefixes } from './getPrefixes';
 
 export async function getWasProducedBy(link: string) {
@@ -14,5 +11,5 @@ export async function getWasProducedBy(link: string) {
     }
   `);
 
-  return getValueFromResultRowsDebug(wasProducedByStream);
+  return getValueFromResultRows(wasProducedByStream);
 }

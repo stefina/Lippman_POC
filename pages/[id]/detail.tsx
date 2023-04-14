@@ -73,6 +73,7 @@ export default function ArtworkDetailPage({
     artworkURL,
     artProcess,
     accessionNumber,
+    carriedOutBy,
     floraArkURL,
     ownerOrgURL,
     ownerOrgWikiDataURL,
@@ -164,6 +165,14 @@ export default function ArtworkDetailPage({
                     P108i_was_produced_by
                   </Text>
                   <Text as="dd">{wasProducedBy}</Text>
+                </>
+              )}
+              {carriedOutBy && (
+                <>
+                  <Text as="dt" color="neutral-400">
+                    P14_carried_out_by
+                  </Text>
+                  <Text as="dd">{carriedOutBy}</Text>
                 </>
               )}
               {artworkURL && (

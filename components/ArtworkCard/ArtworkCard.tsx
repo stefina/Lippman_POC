@@ -32,6 +32,7 @@ export interface Artwork {
   accessionNumber: string;
   tookPlaceAt: string;
   wasProducedBy: string;
+  carriedOutBy: string;
 }
 
 export const ArtworkCard = ({

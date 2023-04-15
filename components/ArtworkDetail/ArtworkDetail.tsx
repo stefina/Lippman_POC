@@ -49,6 +49,12 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
           </Text>
           <Text as="dd">{artwork.artProcess}</Text>
           <Text as="dt" color="neutral-400">
+            Concept
+          </Text>
+          <Text as="dd">
+            <a href={artwork.conceptURL}>{artwork.concept}</a>
+          </Text>
+          <Text as="dt" color="neutral-400">
             Year
           </Text>
           <Text as="dd">{artwork.year}</Text>

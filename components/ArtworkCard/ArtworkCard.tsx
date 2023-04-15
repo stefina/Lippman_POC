@@ -33,6 +33,8 @@ export interface Artwork {
   tookPlaceAt: string;
   wasProducedBy: string;
   carriedOutBy: string;
+  concept: string;
+  conceptURL: string;
 }
 
 export const ArtworkCard = ({

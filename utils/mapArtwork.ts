@@ -26,6 +26,7 @@ import { getAccessionNumber } from './getAccessionNumber';
 import { getTookPlaceAt } from './getTookPlaceAt';
 import { getWasProducedBy } from './getWasProducedBy';
 import { getCarriedOutBy } from './getCarriedOutBy';
+import { getConcept } from './getConcept';
 
 const images = [
   testPicture0,
@@ -55,6 +56,8 @@ export async function mapArtwork(
       year: mapDate(await getBegin(id), await getEnd(id)),
       image: images[imageIndex],
       artProcess: await getArtworkProcess(subject),
+      concept: await getConcept(subject),
+      conceptURL: await getArtworkProcessURL(subject),
       floraArkURL: await getFloraArkURL(subject),
       ownerOrgURL: await getOrganizationURL(subject),
       ownerOrgName: await getOrganizationName(subject),

@@ -3,20 +3,14 @@ import { getValueFromResultRows } from './getValueFromResultRows';
 import { gettyClient } from './gettyClient';
 import { prefixes } from './getPrefixes';
 
-export async function getArtProcess(link: string) {
+export async function getArtworkProcess(link: string) {
   const artworkProcessURL = await getArtworkProcessURL(link);
   const gettyProcessStream = await gettyClient.query.select(`
-    PREFIX gvp:  <http://vocab.getty.edu/ontology#>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     
-    SELECT ?label {
-      BIND (<${artworkProcessURL}> AS ?x)
-            {$x a gvp:ObsoleteSubject; skos:prefLabel ?label}
-    
-      UNION {$x rdfs:label ?label}
-      FILTER (LANG(?label) = "en")   
-    } limit 1
+    SELECT (STR(?obj) AS ?label) {
+        <${artworkProcessURL}> rdfs:label ?obj .
+    }
   `);
   return getValueFromResultRows(gettyProcessStream);
 }
@@ -27,8 +21,10 @@ export async function getArtworkProcessURL(link: string) {
     ${prefixes}
     
     SELECT DISTINCT ?obj WHERE {
-        <https://pe.plateforme10.ch/Artwork/15053/000000002/Type> cidoc:P2_has_type ?obj .
-    } LIMIT 1
+        <${link}/Type> cidoc:P2_has_type ?obj .
+        ?subject cidoc:P2_has_type ?obj .
+        FILTER regex(?subject, "^https://pe.plateforme10.ch/Artwork/[0-9]{5}/[0-9]{9}$", "")
+    } 
   `);
   return getValueFromResultRows(processStream);
 }

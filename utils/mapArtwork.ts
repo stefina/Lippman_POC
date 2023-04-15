@@ -8,7 +8,7 @@ import testPicture4 from '../pages/lippmann5.jpg';
 import testPicture5 from '../pages/lippmann6.jpg';
 import testPicture6 from '../pages/lippmann7.jpg';
 import testPicture7 from '../pages/lippmann8.jpg';
-import { getArtProcess } from './getArtProcess';
+import { getArtworkProcess, getArtworkProcessURL } from './getArtworkProcess';
 import { getArtworkId } from './getArtworkId';
 import { getHasCurrentOwner } from './getHasCurrentOwner';
 import { getId } from './getId';
@@ -54,7 +54,7 @@ export async function mapArtwork(
       owner: await getHasCurrentOwner(subject),
       year: mapDate(await getBegin(id), await getEnd(id)),
       image: images[imageIndex],
-      artProcess: await getArtProcess(subject),
+      artProcess: await getArtworkProcess(subject),
       floraArkURL: await getFloraArkURL(subject),
       ownerOrgURL: await getOrganizationURL(subject),
       ownerOrgName: await getOrganizationName(subject),

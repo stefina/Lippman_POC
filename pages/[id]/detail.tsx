@@ -75,7 +75,6 @@ export default function ArtworkDetailPage({
     accessionNumber,
     carriedOutBy,
     floraArkURL,
-    ownerOrgURL,
     ownerOrgWikiDataURL,
     ownerOrgName,
     tookPlaceAt,

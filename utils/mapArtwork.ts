@@ -8,7 +8,7 @@ import testPicture4 from '../pages/lippmann5.jpg';
 import testPicture5 from '../pages/lippmann6.jpg';
 import testPicture6 from '../pages/lippmann7.jpg';
 import testPicture7 from '../pages/lippmann8.jpg';
-import { getArtProcess } from './getArtProcess';
+import { getArtworkProcess, getArtworkProcessURL } from './getArtworkProcess';
 import { getArtworkId } from './getArtworkId';
 import { getHasCurrentOwner } from './getHasCurrentOwner';
 import { getId } from './getId';
@@ -23,6 +23,10 @@ import {
   getWikiDataOrganizationURL,
 } from './getOrganization';
 import { getAccessionNumber } from './getAccessionNumber';
+import { getTookPlaceAt } from './getTookPlaceAt';
+import { getWasProducedBy } from './getWasProducedBy';
+import { getCarriedOutBy } from './getCarriedOutBy';
+import { getConcept } from './getConcept';
 
 const images = [
   testPicture0,
@@ -51,11 +55,16 @@ export async function mapArtwork(
       owner: await getHasCurrentOwner(subject),
       year: mapDate(await getBegin(id), await getEnd(id)),
       image: images[imageIndex],
-      artProcess: await getArtProcess(subject),
+      artProcess: await getArtworkProcess(subject),
+      concept: await getConcept(subject),
+      conceptURL: await getArtworkProcessURL(subject),
       floraArkURL: await getFloraArkURL(subject),
       ownerOrgURL: await getOrganizationURL(subject),
       ownerOrgName: await getOrganizationName(subject),
       ownerOrgWikiDataURL: await getWikiDataOrganizationURL(subject),
+      tookPlaceAt: await getTookPlaceAt(subject),
+      wasProducedBy: await getWasProducedBy(subject),
+      carriedOutBy: await getCarriedOutBy(subject),
       accessionNumber: await getAccessionNumber(subject),
     };
   }

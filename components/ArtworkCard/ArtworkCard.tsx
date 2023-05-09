@@ -30,6 +30,11 @@ export interface Artwork {
   ownerOrgName: string;
   ownerOrgWikiDataURL: string;
   accessionNumber: string;
+  tookPlaceAt: string;
+  wasProducedBy: string;
+  carriedOutBy: string;
+  concept: string;
+  conceptURL: string;
 }
 
 export const ArtworkCard = ({
@@ -87,11 +92,6 @@ export const ArtworkCard = ({
             {owner && (
               <Text size="small" leading="narrow">
                 <span className={artworkHeadingStyle}>{owner}</span>
-              </Text>
-            )}
-            {artProcess && (
-              <Text size="small" leading="narrow">
-                <span className={artworkHeadingStyle}>{artProcess}</span>
               </Text>
             )}
           </Stack>

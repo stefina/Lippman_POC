@@ -1,18 +1,13 @@
 import { lippmannClient } from './lippmannClient';
 import { getValueFromResultRows } from './getValueFromResultRows';
+import { prefixes } from './getPrefixes';
 
 export async function getAccessionNumber(link: string) {
   const accessionNumberStream = await lippmannClient.query.select(`
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+    ${prefixes}
+    
     SELECT DISTINCT ?obj WHERE {
-        SERVICE <https://api.triplydb.com/datasets/FredericNoyer/lippmann/services/lippmann/sparql> {
-            GRAPH <https://triplydb.com/FredericNoyer/lippmann/graphs/default> {
-                <${link}/AccessionNumber> rdfs:label ?obj .
-            }
-        }
+        <${link}/AccessionNumber> rdfs:label ?obj .
     }
   `);
 

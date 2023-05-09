@@ -2,14 +2,14 @@ import { lippmannClient } from './lippmannClient';
 import { getValueFromResultRows } from './getValueFromResultRows';
 import { prefixes } from './getPrefixes';
 
-export async function getTitle(link: string) {
-  const titleStream = await lippmannClient.query.select(`
+export async function getWasProducedBy(link: string) {
+  const wasProducedByStream = await lippmannClient.query.select(`
     ${prefixes}
     
     SELECT DISTINCT ?obj WHERE {
-        <${link}/Title/original> rdfs:label ?obj .
+        <${link}> cidoc:P108i_was_produced_by ?obj .
     }
   `);
 
-  return getValueFromResultRows(titleStream);
+  return getValueFromResultRows(wasProducedByStream);
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '../Box';
-import { artworkDetailClusterStyle } from './ArtworkDetailCluster.css';
+import { artworkDetailClusterStyle } from './ArtworkOverlayCluster.css';
 
 interface ArtworkDetailClusterProps {
   children?: ReactNode;

@@ -27,6 +27,7 @@ import { getTookPlaceAt } from './getTookPlaceAt';
 import { getWasProducedBy } from './getWasProducedBy';
 import { getCarriedOutBy } from './getCarriedOutBy';
 import { getConcept } from './getConcept';
+import { getTitle } from './getTitle';
 
 const images = [
   testPicture0,
@@ -50,7 +51,8 @@ export async function mapArtwork(
     const id = getId(subject);
     return {
       id: getArtworkId(subject),
-      title: await getTitleConstructed(subject),
+      title: await getTitle(subject),
+      titleConstructed: await getTitleConstructed(subject),
       artworkURL: subject,
       owner: await getHasCurrentOwner(subject),
       year: mapDate(await getBegin(id), await getEnd(id)),

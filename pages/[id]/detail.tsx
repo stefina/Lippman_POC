@@ -5,7 +5,7 @@ import { getArtworks } from '../../utils/getArtworks';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Heading } from '../../components/Heading';
 import { Text } from '../../components/Text';
-import { ArtworkDetailCluster } from '../../components/ArtworkDetailCluster';
+import { ArtworkDetailCluster } from '../../components/ArtworkOverlayCluster';
 import { Box } from '../../components/Box';
 import { Stack } from '../../components/Stack';
 import {
@@ -69,6 +69,7 @@ export default function ArtworkDetailPage({
   }
   const {
     title,
+    titleConstructed,
     year,
     artworkURL,
     artProcess,
@@ -115,7 +116,9 @@ export default function ArtworkDetailPage({
           </Stack>
         )}
         <Box>
-          {title && <Heading>{title}</Heading>}
+          {(title || titleConstructed) && (
+            <Heading>{titleConstructed ? titleConstructed : title}</Heading>
+          )}
           <Box marginTop={8}>
             <ArtworkDetailCluster>
               {title && (
@@ -124,6 +127,14 @@ export default function ArtworkDetailPage({
                     Title
                   </Text>
                   <Text as="dd">{title}</Text>
+                </>
+              )}
+              {titleConstructed && (
+                <>
+                  <Text as="dt" color="neutral-400">
+                    Title (constructed)
+                  </Text>
+                  <Text as="dd">{titleConstructed}</Text>
                 </>
               )}
               {accessionNumber && (

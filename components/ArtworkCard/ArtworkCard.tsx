@@ -22,6 +22,7 @@ export interface Artwork {
   id: string;
   image: StaticImageData;
   title: string;
+  titleConstructed: string;
   owner: string;
   year: string;
   artProcess: string;
@@ -41,9 +42,9 @@ export const ArtworkCard = ({
   id,
   image,
   title,
+  titleConstructed,
   year,
   owner,
-  artProcess,
 }: Artwork) => {
   const { query } = useRouter();
 
@@ -78,9 +79,11 @@ export const ArtworkCard = ({
           gap={3}
           className={artworkTextWrapperStyle}
         >
-          {title && (
+          {(title || titleConstructed) && (
             <Heading color="neutral-500" size="small" leading="narrow">
-              <span className={artworkHeadingStyle}>{title}</span>
+              <span className={artworkHeadingStyle}>
+                {titleConstructed ? titleConstructed : title}
+              </span>
             </Heading>
           )}
           <Stack flexDirection="column" gap={2} marginTop="auto">

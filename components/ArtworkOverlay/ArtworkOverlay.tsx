@@ -27,17 +27,24 @@ export const ArtworkOverlay = ({ artwork }: ArtworkOverlayProps) => {
       <Heading paddingX={8} paddingTop={8} paddingBottom={4}>
         {artwork.titleConstructed ? artwork.titleConstructed : artwork.title}
       </Heading>
-      <Stack
-        justifyContent="center"
-        alignItems="center"
-        paddingY={4}
-        paddingX={8}
-        backgroundColor="neutral-100"
-      >
-        <Box className={imageWrapperStyle} position="relative">
-          <Image src={artwork.image} alt="" className={imageStyle} fill></Image>
-        </Box>
-      </Stack>
+      {artwork.image && (
+        <Stack
+          justifyContent="center"
+          alignItems="center"
+          paddingY={4}
+          paddingX={8}
+          backgroundColor="neutral-100"
+        >
+          <Box className={imageWrapperStyle} position="relative">
+            <Image
+              src={artwork.image}
+              alt=""
+              className={imageStyle}
+              fill
+            ></Image>
+          </Box>
+        </Stack>
+      )}
       <Box paddingX={8} marginTop={4}>
         <ArtworkDetailCluster>
           <Text as="dt" color="neutral-400">

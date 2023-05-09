@@ -20,7 +20,7 @@ import { getHrefWithPreservedQuery } from '../../utils/getHrefWithPreservedQuery
 export interface Artwork {
   artworkURL: string;
   id: string;
-  image: StaticImageData;
+  image: StaticImageData | null;
   title: string;
   titleConstructed: string;
   owner: string;
@@ -62,12 +62,16 @@ export const ArtworkCard = ({
         backgroundColor="white"
       >
         <Box position="relative">
-          <Image
-            src={image}
-            alt={title}
-            className={artworkImageStyle}
-            priority
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt={title}
+              className={artworkImageStyle}
+              priority
+            />
+          ) : (
+            <Box className={artworkImageStyle} />
+          )}
           <Box position="absolute" className={artworkTypeIconStyle}>
             <Box className={artworkTypeIconWrapperStyle}>
               <IconTypeArtwork />

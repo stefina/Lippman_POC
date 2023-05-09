@@ -1,25 +1,22 @@
-import Image from 'next/image';
-import { Artwork } from '../../components/ArtworkCard';
-import { ContentWrapper } from '../../components/ContentWrapper';
-import { getArtworks } from '../../utils/getArtworks';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Heading } from '../../components/Heading';
-import { Text } from '../../components/Text';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { Artwork } from '../../components/ArtworkCard';
 import { ArtworkDetailCluster } from '../../components/ArtworkOverlayCluster';
 import { Box } from '../../components/Box';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { BreadcrumbsLink } from '../../components/BreadcrumbsLink';
+import { ContentWrapper } from '../../components/ContentWrapper';
+import { Heading } from '../../components/Heading';
+import { NavLink } from '../../components/NavLink';
 import { Stack } from '../../components/Stack';
+import { Text } from '../../components/Text';
 import {
   detailImageStyle,
   detailImageWrapperStyle,
   detailWrapperStyles,
 } from '../../styles/detail.css';
-import { useRouter } from 'next/router';
-import { CustomLink } from '../../components/link/Link';
-import { IconChevronRight } from '../../components/Icons/IconChevronRight';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { BreadcrumbsLink } from '../../components/BreadcrumbsLink';
-import { Clickable } from '../../components/Clickable';
-import { NavLink } from '../../components/NavLink';
+import { getArtworks } from '../../utils/getArtworks';
 
 interface ArtworkDetailPageProps {
   artwork?: Artwork;
@@ -81,6 +78,8 @@ export default function ArtworkDetailPage({
     tookPlaceAt,
     wasProducedBy,
     image,
+    concept,
+    conceptURL,
   } = artwork;
   return (
     <Stack flexDirection="column" alignItems="flex-start" paddingTop={8}>
@@ -121,96 +120,60 @@ export default function ArtworkDetailPage({
           )}
           <Box marginTop={8}>
             <ArtworkDetailCluster>
-              {title && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Title
-                  </Text>
-                  <Text as="dd">{title}</Text>
-                </>
-              )}
-              {titleConstructed && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Title (constructed)
-                  </Text>
-                  <Text as="dd">{titleConstructed}</Text>
-                </>
-              )}
-              {accessionNumber && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Accession Number
-                  </Text>
-                  <Text as="dd">{accessionNumber}</Text>
-                </>
-              )}
-              {artProcess && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Art Process
-                  </Text>
-                  <Text as="dd">{artProcess}</Text>
-                </>
-              )}
-              {year && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Year
-                  </Text>
-                  <Text as="dd">{year}</Text>
-                </>
-              )}
-              {tookPlaceAt && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    P7_took_place_at
-                  </Text>
-                  <Text as="dd">{tookPlaceAt}</Text>
-                </>
-              )}
-              {wasProducedBy && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    P108i_was_produced_by
-                  </Text>
-                  <Text as="dd">{wasProducedBy}</Text>
-                </>
-              )}
-              {carriedOutBy && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    P14_carried_out_by
-                  </Text>
-                  <Text as="dd">{carriedOutBy}</Text>
-                </>
-              )}
-              {artworkURL && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Artwork URL
-                  </Text>
-                  <Text as="dd">{artworkURL}</Text>
-                </>
-              )}
-              {floraArkURL && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Flora Ark URL
-                  </Text>
-                  <Text as="dd">{floraArkURL}</Text>
-                </>
-              )}
-              {ownerOrgName && ownerOrgWikiDataURL && (
-                <>
-                  <Text as="dt" color="neutral-400">
-                    Owner
-                  </Text>
-                  <Text as="dd">
-                    <a href={ownerOrgWikiDataURL}>{ownerOrgName}</a>
-                  </Text>
-                </>
-              )}
+              <Text as="dt" color="neutral-400">
+                Title
+              </Text>
+              <Text as="dd">{title}</Text>
+              <Text as="dt" color="neutral-400">
+                Title (constructed)
+              </Text>
+              <Text as="dd">{titleConstructed}</Text>
+              <Text as="dt" color="neutral-400">
+                Accession Number
+              </Text>
+              <Text as="dd">{accessionNumber}</Text>
+              <Text as="dt" color="neutral-400">
+                Process
+              </Text>
+              <Text as="dd">{artProcess}</Text>
+              <Text as="dt" color="neutral-400">
+                Concept
+              </Text>
+              <Text as="dd">
+                <a href={conceptURL} rel="noreferrer">
+                  {concept}
+                </a>
+              </Text>
+              <Text as="dt" color="neutral-400">
+                Year
+              </Text>
+              <Text as="dd">{year}</Text>
+              <Text as="dt" color="neutral-400">
+                P7_took_place_at
+              </Text>
+              <Text as="dd">{tookPlaceAt}</Text>
+              <Text as="dt" color="neutral-400">
+                P108i_was_produced_by
+              </Text>
+              <Text as="dd">{wasProducedBy}</Text>
+              <Text as="dt" color="neutral-400">
+                P14_carried_out_by
+              </Text>
+              <Text as="dd">{carriedOutBy}</Text>
+              <Text as="dt" color="neutral-400">
+                Artwork URL
+              </Text>
+              <Text as="dd">{artworkURL}</Text>
+              <Text as="dt" color="neutral-400">
+                Flora Ark URL
+              </Text>
+              <Text as="dd">{floraArkURL}</Text>
+              <Text as="dt" color="neutral-400">
+                Owner
+              </Text>
+              <Text as="dd">
+                <a href={ownerOrgWikiDataURL}>{ownerOrgName}</a>
+              </Text>
             </ArtworkDetailCluster>
           </Box>
         </Box>

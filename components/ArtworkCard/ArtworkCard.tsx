@@ -94,11 +94,6 @@ export const ArtworkCard = ({
                 <span className={artworkHeadingStyle}>{owner}</span>
               </Text>
             )}
-            {artProcess && (
-              <Text size="small" leading="narrow">
-                <span className={artworkHeadingStyle}>{artProcess}</span>
-              </Text>
-            )}
           </Stack>
         </Stack>
       </Stack>

@@ -2,6 +2,7 @@ import { lippmannClient } from './lippmannClient';
 import { getValueFromResultRows } from './getValueFromResultRows';
 import { gettyClient } from './gettyClient';
 import { prefixes } from './getPrefixes';
+import { ResultRow } from 'sparql-http-client/ResultParser';
 
 export async function getArtworkProcess(link: string) {
   const artworkProcessURL = await getArtworkProcessURL(link);
@@ -12,7 +13,7 @@ export async function getArtworkProcess(link: string) {
         <${artworkProcessURL}> rdfs:label ?obj .
     }
   `);
-  return getValueFromResultRows(gettyProcessStream);
+  return gettyProcessStream.map((row: ResultRow) => row.label.value).join(', ');
 }
 
 // returns http://vocab.getty.edu/aat/300133464

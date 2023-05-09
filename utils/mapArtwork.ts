@@ -1,13 +1,13 @@
 import { ResultRow } from 'sparql-http-client/ResultParser';
 import { Artwork } from '../components/ArtworkCard';
-import testPicture0 from '../pages/lippmann.jpg';
-import testPicture1 from '../pages/lippmann2.jpg';
-import testPicture2 from '../pages/lippmann3.jpg';
-import testPicture3 from '../pages/lippmann4.jpg';
-import testPicture4 from '../pages/lippmann5.jpg';
-import testPicture5 from '../pages/lippmann6.jpg';
-import testPicture6 from '../pages/lippmann7.jpg';
-import testPicture7 from '../pages/lippmann8.jpg';
+import Image_MEL_009079 from '../assets/MEL_LIPPMANN_Gabriel_009079.jpg';
+import Image_MEL_009087 from '../assets/MEL_LIPPMANN_Gabriel_009087.jpg';
+import Image_MEL_009089 from '../assets/MEL_LIPPMANN_Gabriel_009089.jpg';
+import Image_MEL_009903 from '../assets/MEL_LIPPMANN_Gabriel_009903.jpg';
+import Image_MEL_009907 from '../assets/MEL_LIPPMANN_Gabriel_009907.jpg';
+import Image_MEL_009955 from '../assets/MEL_LIPPMANN_Gabriel_009955.jpg';
+import Image_MEL_009986 from '../assets/MEL_LIPPMANN_Gabriel_009986.jpg';
+import Image_MEL_010014 from '../assets/MEL_LIPPMANN_Gabriel_010014.jpg';
 import { getArtworkProcess, getArtworkProcessURL } from './getArtworkProcess';
 import { getArtworkId } from './getArtworkId';
 import { getHasCurrentOwner } from './getHasCurrentOwner';
@@ -28,27 +28,25 @@ import { getWasProducedBy } from './getWasProducedBy';
 import { getCarriedOutBy } from './getCarriedOutBy';
 import { getConcept } from './getConcept';
 import { getTitle } from './getTitle';
+import { StaticImageData } from 'next/image';
 
-const images = [
-  testPicture0,
-  testPicture1,
-  testPicture2,
-  testPicture3,
-  testPicture4,
-  testPicture5,
-  testPicture6,
-  testPicture7,
-];
+const images: Record<string, StaticImageData> = {
+  Image_MEL_009079,
+  Image_MEL_009087,
+  Image_MEL_009089,
+  Image_MEL_009903,
+  Image_MEL_009907,
+  Image_MEL_009955,
+  Image_MEL_009986,
+  Image_MEL_010014,
+};
 
-export async function mapArtwork(
-  res: ResultRow,
-  index: number
-): Promise<Artwork | undefined> {
+export async function mapArtwork(res: ResultRow): Promise<Artwork | undefined> {
   const subject = res.subject ? res.subject.value : res.subj.value; // TODO Make more resilient
-  const imageIndex = (index + 1) % 8;
 
   if (isArtwork(subject)) {
     const id = getId(subject);
+    const accessionNumber = await getAccessionNumber(subject);
     return {
       id: getArtworkId(subject),
       title: await getTitle(subject),
@@ -56,7 +54,6 @@ export async function mapArtwork(
       artworkURL: subject,
       owner: await getHasCurrentOwner(subject),
       year: mapDate(await getBegin(id), await getEnd(id)),
-      image: images[imageIndex],
       artProcess: await getArtworkProcess(subject),
       concept: await getConcept(subject),
       conceptURL: await getArtworkProcessURL(subject),
@@ -67,7 +64,11 @@ export async function mapArtwork(
       tookPlaceAt: await getTookPlaceAt(subject),
       wasProducedBy: await getWasProducedBy(subject),
       carriedOutBy: await getCarriedOutBy(subject),
-      accessionNumber: await getAccessionNumber(subject),
+      accessionNumber,
+      image:
+        accessionNumber && images[`Image_${accessionNumber}`]
+          ? images[`Image_${accessionNumber}`]
+          : null,
     };
   }
 }

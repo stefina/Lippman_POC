@@ -32,6 +32,7 @@ export const artworkTypeIconWrapperStyle = style({
 });
 
 export const artworkImageStyle = style({
+  backgroundColor: vars.color.neutral[100],
   aspectRatio: '260 / 196',
   objectFit: 'cover',
 });

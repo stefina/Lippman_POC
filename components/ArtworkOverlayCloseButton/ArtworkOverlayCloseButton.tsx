@@ -3,7 +3,7 @@ import { parse, stringify } from 'querystring';
 import React from 'react';
 import { Clickable } from '../Clickable';
 import { IconArrowLeft } from '../Icons/IconArrowLeft';
-import { articleDetailCloseStyle } from './ArtworkDetailCloseButton.css';
+import { articleDetailCloseStyle } from './ArtworkOverlayCloseButton.css';
 
 export const ArtworkDetailCloseButton = () => {
   const router = useRouter();

@@ -1,27 +1,31 @@
 import React from 'react';
 import { Artwork } from '../ArtworkCard';
-import { ArtworkDetailCloseButton } from '../ArtworkDetailCloseButton/ArtworkDetailCloseButton';
-import { ArtworkDetailCluster } from '../ArtworkDetailCluster';
+import { ArtworkDetailCloseButton } from '../ArtworkOverlayCloseButton/ArtworkOverlayCloseButton';
+import { ArtworkDetailCluster } from '../ArtworkOverlayCluster';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Heading } from '../Heading';
 import { IconArrowRight } from '../Icons/IconArrowRight';
 import { Overlay } from '../Overlay';
 import { Stack } from '../Stack';
-import { imageWrapperStyle, imageStyle } from './ArtworkDetail.css';
-import { Text } from '../../components/Text';
+import { imageWrapperStyle, imageStyle } from './ArtworkOverlay.css';
+import { Text } from '../Text';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { getHrefWithPreservedQuery } from '../../utils/getHrefWithPreservedQuery';
 
-export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
+interface ArtworkOverlayProps {
+  artwork: Artwork;
+}
+
+export const ArtworkOverlay = ({ artwork }: ArtworkOverlayProps) => {
   const { query } = useRouter();
 
   return (
     <Overlay boxShadow="default" position="relative">
       <ArtworkDetailCloseButton />
       <Heading paddingX={8} paddingTop={8} paddingBottom={4}>
-        {artwork.title}
+        {artwork.titleConstructed ? artwork.titleConstructed : artwork.title}
       </Heading>
       <Stack
         justifyContent="center"
@@ -40,6 +44,10 @@ export const ArtworkDetail = ({ artwork }: { artwork: Artwork }) => {
             Title
           </Text>
           <Text as="dd">{artwork.title}</Text>
+          <Text as="dt" color="neutral-400">
+            Title (constructed)
+          </Text>
+          <Text as="dd">{artwork.titleConstructed}</Text>
           <Text as="dt" color="neutral-400">
             Accession Number
           </Text>

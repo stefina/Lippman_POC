@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { Artwork } from '../components/ArtworkCard';
-import { ArtworkDetail } from '../components/ArtworkDetail';
+import { ArtworkOverlay } from '../components/ArtworkOverlay';
 import { ArtworkList } from '../components/ArtworkList';
 import { Box } from '../components/Box';
 import { Grid } from '../components/Grid';
@@ -91,7 +91,7 @@ export default function ArtworkDetailPage({
       >
         <ArtworkList defaultArtworks={artworks} />
       </Grid>
-      {currentArtwork && <ArtworkDetail artwork={currentArtwork} />}
+      {currentArtwork && <ArtworkOverlay artwork={currentArtwork} />}
     </Box>
   );
 }

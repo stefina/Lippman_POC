@@ -16,5 +16,7 @@ export async function getArtworks() {
   const artworksOrUndef = await Promise.all(dataset.map(mapArtwork));
   const artworks = artworksOrUndef.filter(isTruthy);
 
+  console.log('ARTWORKS', artworks);
+
   return artworks;
 }

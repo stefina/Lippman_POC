@@ -7,11 +7,12 @@ export async function searchArtworks(term: string) {
   const dataset = await lippmannClient.query.select(`
     ${prefixes}
     
-    SELECT * WHERE {
-      ?subj rdfs:label ?obj .
-      FILTER regex(?obj, "${term}", "i")
-      FILTER regex(?subj, "^https://pe.plateforme10.ch/Artwork/[0-9]{5}/[0-9]{9}$", "")
-    }
+    SELECT DISTINCT * {
+    ?art cidoc:P52_has_current_owner ?hasCurrentOwner .
+    ?hasCurrentOwner rdfs:label ?ownerValue .
+    ?art rdfs:label ?labelValue .
+  	FILTER (regex(?ownerValue, "${term}", "i") || regex(?labelValue, "${term}", "i"))	
+}
  `);
 
   const artworksOrUndef = await Promise.all(dataset.map(mapArtwork));
